@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './Button.css';
 
 function Button({ name, type, onClick, children}) {
   return (
@@ -6,6 +7,7 @@ function Button({ name, type, onClick, children}) {
         name={name} 
         type={type} 
         onClick={onClick}
+        className={styles.Button}
     >
       {children}
     </button>
