@@ -8,7 +8,8 @@ export default {
   component: Button, 
 };
 
-export const Default = (args) => <Button {...args} />;
-Default.args = {
-    label: 'Click'
-};
+export const Default = () => { 
+  return ( 
+    <Button />
+  );
+}

@@ -1,14 +1,12 @@
 const path = require('path');
 
 module.exports = {
-  mode: 'production',
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'src/index.js',
-    libraryTarget: 'umd',
+    filename: 'bundle.js',
     library: 'ccs-react-components',
-    umdNamedDefine: true,
+    libraryTarget: 'umd',
   },
   module: {
     rules: [
@@ -17,9 +15,6 @@ module.exports = {
         exclude: /(node_modules)/,
         use: {
           loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react'],
-          },
         },
       },
     ],
