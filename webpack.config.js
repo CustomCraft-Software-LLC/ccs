@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: 'src/index.js',
     libraryTarget: 'umd',
     library: 'ccs-react-components',
     umdNamedDefine: true,
