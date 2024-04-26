@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import styles from './Button.css';
 import PropTypes from 'prop-types';
 

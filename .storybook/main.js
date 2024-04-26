@@ -1,11 +1,10 @@
 /** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const config = {
-  core: {
-    framework: "react"
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {}
   },
-
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
-
   addons: [
     "@storybook/addon-webpack5-compiler-swc",
     "@storybook/addon-onboarding",
@@ -15,14 +14,9 @@ const config = {
     "@storybook/addon-interactions",
     "@storybook/addon-mdx-gfm"
   ],
-
   docs: {
     autodocs: "tag",
   },
-
-  framework: {
-    name: "@storybook/react-webpack5",
-    options: {}
-  }
 };
+
 export default config;

@@ -8,7 +8,9 @@ export default {
 };
 
 export const Default = () => {
-    return (   
-        <Box />
-    );
+  return (   
+    <Box>
+      <p>This is some content inside the Box component.</p>
+    </Box>
+  );
 }
