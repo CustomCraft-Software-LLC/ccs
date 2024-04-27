@@ -5,7 +5,10 @@ import Button from './Button';
 
 export default {
   title: 'Components/Button', 
-  component: Button, 
+  component: Button,
+  parameters: {
+    layout: 'centered',
+  }, 
 };
 
 export const Default = () => { 

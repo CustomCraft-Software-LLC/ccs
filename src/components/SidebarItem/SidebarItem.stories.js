@@ -1,10 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import SidebarLink from './SidebarLink'; 
+import SidebarItem from './SidebarItem'; 
 
 export default {
-  title: 'Components/SidebarLink', 
-  component: SidebarLink,
+  title: 'Components/SidebarItem', 
+  component: SidebarItem,
   parameters: {
     layout: 'centered',
   },
@@ -12,7 +12,8 @@ export default {
 
 export const Default = () => {
   return (   
-    <SidebarLink>
-    </SidebarLink>
+    <SidebarItem>
+      link
+    </SidebarItem>
   );
 }
