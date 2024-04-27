@@ -1,10 +1,10 @@
 import * as React from 'react';
-import styles from './Sidebar.css';
+import './Sidebar.css';
 import PropTypes from 'prop-types';
 
 export default function Sidebar({ children }) {
   return (
-    <div className={styles.Sidebar}>
+    <div className="Sidebar">
         <ul>
             {children}
         </ul>

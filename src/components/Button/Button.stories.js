@@ -10,6 +10,6 @@ export default {
 
 export const Default = () => { 
   return ( 
-    <Button />
+    <Button label="Click me" />
   );
 }
