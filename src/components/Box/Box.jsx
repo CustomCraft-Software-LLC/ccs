@@ -11,7 +11,7 @@ export default function Box({ bgColor, bRad, color, children }) {
 
   return (
     <div 
-      className="Box"
+      className="box"
       style={style}
     >
         { children }

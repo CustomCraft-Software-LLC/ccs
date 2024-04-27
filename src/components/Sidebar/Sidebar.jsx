@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function Sidebar({ children }) {
   return (
-    <div className="Sidebar">
+    <div className="sidebar">
         <ul>
             {children}
         </ul>

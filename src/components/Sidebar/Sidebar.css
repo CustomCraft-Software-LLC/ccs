@@ -1,4 +1,4 @@
-.Sidebar {
+.sidebar {
     width: 350px;
     height: 100%;
     background-color: #f0f0f0;
@@ -7,7 +7,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.Sidebar ul {
+.sidebar ul {
     list-style: none;
     padding: 0;
 }

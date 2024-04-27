@@ -6,7 +6,7 @@ export default function Button({ label, ...props}) {
   return (
     <button 
         type="button" 
-        className="Button"
+        className="button"
         {...props}
     >
       {label}

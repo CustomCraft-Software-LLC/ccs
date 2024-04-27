@@ -7,7 +7,7 @@ export default function SidebarItem({ to, ...props }) {
     <li>
       <a 
           href={to}
-          className="SidebarItem"
+          className="sidebarItem"
           {...props}
       />
     </li>
