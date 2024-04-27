@@ -28,5 +28,5 @@ Box.propTypes = {
 Box.defaultProps = {
   bgColor: '#ffffff',
   bRad: '5px',
-  color: '#000000aa',
+  color: '#000000',
 }
