@@ -12,7 +12,7 @@ export default {
 
 export const Default = () => {
   return (   
-    <Box>
+    <Box bgColor="#000000" bRad="20px">
       <p>This is some content inside the Box component.</p>
     </Box>
   );
