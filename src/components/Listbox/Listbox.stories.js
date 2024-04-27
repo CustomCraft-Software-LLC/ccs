@@ -1,10 +1,10 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Dropdown from './Dropdown'; 
+import Listbox from './Listbox'; 
 
 export default {
-  title: 'Components/Dropdown', 
-  component: Dropdown,
+  title: 'Components/Listbox', 
+  component: Listbox,
   parameters: {
     layout: 'centered',
   },
@@ -12,11 +12,11 @@ export default {
 
 export const Default = () => {
   return (   
-    <Dropdown>
+    <Listbox>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
-    </Dropdown>
+    </Listbox>
   );
 }
