@@ -10,10 +10,10 @@ export default function Profile({ name, img, alt }) {
     <Box className="profile" bRad="100px">
       <Row>
         <Col>
-          <h5 className="profile-h5">{name}</h5>
+          <img src={img} alt={alt} className="profile-img" />
         </Col>
         <Col>
-          <img src={img} alt={alt} className="profile-img" />
+          <h5 className="profile-h5">{name}</h5>
         </Col>
       </Row>
     </Box>
