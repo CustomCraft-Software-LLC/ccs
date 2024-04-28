@@ -1,21 +1,21 @@
 import * as React from 'react';
 import Box from '../Box/Box';
-import './Profile.css';
+import Row from '../Row/Row';
+import Col from '../Col/Col';
 import PropTypes from 'prop-types';
+import './Profile.css';
 
 export default function Profile({ name, img, alt }) {
   return (
-    <Box className="profile" bRad="50px">
-      <div>
-        <div>
-
-        </div>
-        <div>
-          
-        </div>
-      </div>
-      <h5 className="profile-h5">{name}</h5>
-      <img src={img} alt={alt} className="profile-img" />
+    <Box className="profile" bRad="100px">
+      <Row>
+        <Col>
+          <h5 className="profile-h5">{name}</h5>
+        </Col>
+        <Col>
+          <img src={img} alt={alt} className="profile-img" />
+        </Col>
+      </Row>
     </Box>
   );
 };

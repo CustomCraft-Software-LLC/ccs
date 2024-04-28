@@ -1,15 +1,13 @@
 .profile {
-    padding: 4px;
     flex-direction: column;
-    display: block
+    display: block;
+    width: 100%;
 }
 
 .profile-h5 {
     opacity: 0.8;
     letter-spacing: 4px;
     text-align: center;
-    justify-content: center;
-    align-items: center;
 }
 
 .profile-img {
