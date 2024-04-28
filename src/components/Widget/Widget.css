@@ -1,9 +1,9 @@
-.Widget {
+.widget {
     padding: 10px;
     width: 100%;
 }
 
-.Widget h3 {
+.widget h3 {
     padding-left: 40px;
     font-size: 2.5em;
 }

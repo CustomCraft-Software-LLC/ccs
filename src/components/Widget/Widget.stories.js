@@ -7,7 +7,7 @@ export default {
     title: 'Components/Widget', 
     component: Widget,
     parameters: {
-    layout: 'centered',
+        layout: 'centered',
     },
 };
 
@@ -17,8 +17,8 @@ export const Default = () => {
     }, []);
 
     return (   
-    <Widget>
-        <canvas id="myChart" width="400" height="400"></canvas>
-    </Widget>
+        <Widget>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </Widget>
     );
 }

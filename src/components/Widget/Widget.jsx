@@ -3,19 +3,19 @@ import Box  from '../Box/Box';
 import './Widget.css';
 import PropTypes from 'prop-types';
 
-export default function SidebarItem({ title, children }) {
+export default function Widget({ title, children }) {
   return (
-    <Box bRad="15px" className="Widget">
+    <Box bRad="15px" className="widget">
         <h3>{title}</h3>
         {children}
     </Box>
   );
 };
 
-SidebarItem.propTypes = {
+Widget.propTypes = {
   title: PropTypes.string.isRequired,
 }
 
-SidebarItem.defaultProps = {
+Widget.defaultProps = {
   title: 'Title',
 }
