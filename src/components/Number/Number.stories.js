@@ -1,12 +1,17 @@
-/* eslint-disable */
-import Number from './Number';
+import React from 'react';
+import { action } from '@storybook/addon-actions';
+import Number from './Number'; 
 
 export default {
-  title: "Number",
+  title: 'Components/Number', 
+  component: Number,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const Default = () => <Number />;
-
-Default.story = {
-  name: 'default',
-};
+export const Default = () => {
+  return (   
+    <Number bgColor="#000000" bRad="20px" />
+  );
+}

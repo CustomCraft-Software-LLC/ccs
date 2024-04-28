@@ -1,12 +1,15 @@
-/* eslint-disable */
 import Percentage from './Percentage';
 
 export default {
-  title: "Percentage",
+  title: 'Components/Percentage', 
+  component: Percentage,
+  parameters: {
+    layout: 'centered',
+  },
 };
 
-export const Default = () => <Percentage />;
-
-Default.story = {
-  name: 'default',
-};
+export const Default = () => {
+  return (   
+    <Percentage />
+  );
+}
