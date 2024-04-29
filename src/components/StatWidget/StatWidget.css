@@ -1,7 +1,4 @@
 .statWidget {
-    text-align: center;
-}
-
-.statWidget h3 {
-    text-align: center;
+    justify-content: center;
+    align-items: center;
 }

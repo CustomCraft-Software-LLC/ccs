@@ -3,7 +3,6 @@
     font-size: 50px;
     font-weight: bold;
     animation: pulse 1s infinite alternate;
-    text-align: center;
 }
 
 @keyframes pulse {
