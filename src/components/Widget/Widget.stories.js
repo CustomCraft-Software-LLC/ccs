@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { action } from '@storybook/addon-actions';
 import Widget from './Widget';
-import { createChart } from '../../utils/chart'; 
+// import { createChart } from '../../utils/chart'; 
 
 export default {
     title: 'Components/Widget', 
@@ -12,9 +12,11 @@ export default {
 };
 
 export const Default = () => {
+    /*
     useEffect(() => {
         createChart();
     }, []);
+    */
 
     return (   
         <Widget>
