@@ -1,3 +1,4 @@
+import React from 'react';
 import StatWidget from './StatWidget';
 
 export default {
@@ -10,8 +11,9 @@ export default {
 
 export const Default = () => {
   return (   
-    <StatWidget>
-      
-    </StatWidget>
+    <div>
+      <StatWidget isNum={true} percent={30} title="Growth" />
+      <StatWidget isNum={false} percent={30} title="Growth" />
+    </div>
   );
 }
