@@ -11,6 +11,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <Percentage percent={30.2}/>
+    <Percentage sign={true} percent={30.2}/>
   );
 }

@@ -5,20 +5,23 @@ import Box from '../Box/Box';
 import Row from '../Row/Row';
 import Number from '../Number/Number';
 import Percentage from '../Percentage/Percentage';
+import Container from '../Container/Container';
 
 export default function StatWidget({ isNum, title, stat }) { 
   return ( 
-    <Box>
-      <Row>
-        <h5>{title}</h5>
-      </Row>
-      <Row>
-        {isNum ? ( 
-          <Number number={stat} />
-        ) : ( 
-          <Percentage sign={true} percent={stat} /> 
-        )};
-      </Row>
+    <Box padding="0px" className="statWidget">
+      <Container>
+          <Row>
+            <h3>{title}</h3>
+          </Row>
+          <Row>
+            {isNum ? ( 
+              <Number number={stat} />
+            ) : ( 
+              <Percentage sign={true} percent={stat} /> 
+            )}
+          </Row>
+      </Container>
     </Box>
   );
 }

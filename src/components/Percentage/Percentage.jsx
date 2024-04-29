@@ -6,8 +6,8 @@ import Row from '../Row/Row';
 import Container from '../Container/Container';
 
 export default function Percentage({ sign, percent }) { 
-  const s = sign ? '+ ' : '- ';
-  const p = s + percent + ' %';
+  const s = sign ? '+' : '- ';
+  const p = s + percent.toFixed(1) + '%';
   return ( 
     <Container>
       <Row>

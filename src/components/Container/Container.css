@@ -2,7 +2,10 @@
     width: 100%;
     padding-left: 15px;
     padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
     box-sizing: border-box; 
+    overflow: hidden;
 }
 
 @media (min-width: 576px) {
