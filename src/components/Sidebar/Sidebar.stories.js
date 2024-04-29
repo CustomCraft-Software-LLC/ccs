@@ -2,9 +2,6 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import Sidebar from './Sidebar'; 
 import SidebarItem from '../SidebarItem/SidebarItem';
-import Row from '../Row/Row';
-import Col from '../Col/Col';
-import Container from '../Container/Container';
 import Box from '../Box/Box';
 
 export default {
@@ -17,20 +14,20 @@ export default {
 
 export const Default = () => {
   return (   
-    <Container>
-      <Row>
-        <Col>
+    <div>
+      <div>
+        <div>
           <Sidebar>
             <SidebarItem>1</SidebarItem>
             <SidebarItem>2</SidebarItem>
             <SidebarItem>3</SidebarItem>
             <SidebarItem>4</SidebarItem>
           </Sidebar>
-        </Col>
-        <Col>
+        </div>
+        <div>
           <Box bgColor="#004400">hello</Box>
-        </Col>
-      </Row>
-    </Container>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -2,26 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './StatWidget.css';
 import Box from '../Box/Box';
-import Row from '../Row/Row';
 import Number from '../Number/Number';
 import Percentage from '../Percentage/Percentage';
-import Container from '../Container/Container';
 
 export default function StatWidget({ isNum, title, stat }) { 
   return ( 
     <Box padding="0px" className="statWidget">
-      <Container>
-          <Row>
+      <div>
+          <div>
             <h3>{title}</h3>
-          </Row>
-          <Row>
+          </div>
+          <div>
             {isNum ? ( 
               <Number number={stat} />
             ) : ( 
               <Percentage sign={true} percent={stat} /> 
             )}
-          </Row>
-      </Container>
+          </div>
+      </div>
     </Box>
   );
 }

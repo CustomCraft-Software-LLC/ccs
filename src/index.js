@@ -1,4 +1,5 @@
 import './styles/styles.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 export { default as Button } from './components/Button/Button';
 export { default as Box } from './components/Box/Box';
