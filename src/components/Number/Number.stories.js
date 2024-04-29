@@ -12,6 +12,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <Number bgColor="#000000" bRad="20px" />
+    <Number number="20"/>
   );
 }

@@ -2,14 +2,16 @@ import * as React from 'react';
 import './Bar.css';
 import PropTypes from 'prop-types';
 
-export default function Bar({ bgColor, percent }) {
+export default function Bar({ bgColor, animation, percent, sColor }) {
     const bg_style = {
         backgroundColor: bgColor,
+        opacity: 1.0,
     }
 
     const progress_style = {
-        backgroundColor: bgColor,
-        width: `${percent}%`,
+        backgroundColor: sColor,
+        width: '50%',
+        opacity: 1.0,
     }
 
     return (
@@ -21,10 +23,14 @@ export default function Bar({ bgColor, percent }) {
 
 Bar.propTypes = {
     bgColor: PropTypes.string,
+    animation: PropTypes.bool,
     percent: PropTypes.number,
+    sColor: PropTypes.string,
 }
 
 Bar.defaultProps = {
-    bgColor: '#000000',
+    bgColor: '#cccccc',
+    animation: false,
     percent: 0,
+    sColor: '#55bd98',
 }

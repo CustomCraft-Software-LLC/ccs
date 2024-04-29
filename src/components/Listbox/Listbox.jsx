@@ -5,7 +5,7 @@ import Box from '../Box/Box';
 
 export default function Listbox({children}) {
   return (
-    <Box bRad="20px">
+    <Box bRad="50px">
       <select className="listBox">{children}</select>
     </Box>
   );
