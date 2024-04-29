@@ -1,3 +1,4 @@
+import React from 'react';
 import Percentage from './Percentage';
 
 export default {
@@ -10,6 +11,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <Percentage />
+    <Percentage percent={30.2}/>
   );
 }
