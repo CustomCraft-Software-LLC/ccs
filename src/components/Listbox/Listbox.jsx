@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './Listbox.css';
 import PropTypes from 'prop-types';
-import Box from '../Box/Box';
+import Box from '../Box/Box.jsx';
 
 const Listbox = ({children}) => {
   return (

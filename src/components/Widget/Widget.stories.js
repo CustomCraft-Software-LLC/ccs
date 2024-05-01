@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { action } from '@storybook/addon-actions';
-import Widget from './Widget';
+import Widget from './Widget.jsx';
 // import { createChart } from '../../utils/chart'; 
 
 export default {

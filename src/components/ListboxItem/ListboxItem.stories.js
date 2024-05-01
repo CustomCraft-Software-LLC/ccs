@@ -1,7 +1,7 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import ListboxItem from './ListboxItem'; 
-import Listbox from '../Listbox/Listbox';
+import ListboxItem from './ListboxItem.jsx'; 
+import Listbox from '../Listbox/Listbox.jsx';
 
 export default {
   title: 'Components/ListboxItem', 

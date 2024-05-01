@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Bar from './Bar';
+import Bar from './Bar.jsx';
 
 export default {
     title: 'Components/Bar', 

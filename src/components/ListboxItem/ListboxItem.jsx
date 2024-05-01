@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '../Box/Box';
 import './ListboxItem.css';
 import PropTypes from 'prop-types';
 

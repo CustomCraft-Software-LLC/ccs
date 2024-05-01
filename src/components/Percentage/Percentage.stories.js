@@ -1,5 +1,5 @@
 import React from 'react';
-import Percentage from './Percentage';
+import Percentage from './Percentage.jsx';
 
 export default {
   title: 'Components/Percentage', 

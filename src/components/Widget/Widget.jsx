@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box  from '../Box/Box';
+import Box  from '../Box/Box.jsx';
 import './Widget.css';
 import PropTypes from 'prop-types';
 

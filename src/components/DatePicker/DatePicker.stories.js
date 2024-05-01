@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import DatePicker from './DatePicker'; 
+import DatePicker from './DatePicker.jsx'; 
 
 export default {
   title: 'Components/DatePicker', 
