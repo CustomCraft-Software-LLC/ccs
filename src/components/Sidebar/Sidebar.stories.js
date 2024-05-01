@@ -18,7 +18,7 @@ export const Default = () => {
       <div>
         <div>
           <Sidebar>
-            <SidebarItem>1</SidebarItem>
+            <SidebarItem to="/">1</SidebarItem>
             <SidebarItem>2</SidebarItem>
             <SidebarItem>3</SidebarItem>
             <SidebarItem>4</SidebarItem>
