@@ -8,6 +8,12 @@ module.exports = {
     library: 'ccs-react-components',
     libraryTarget: 'umd',
   },
+  resolve: {
+    alias: {
+      'ccs-react-components': path.resolve(__dirname, 'src/components'),
+    },
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     rules: [
       {
