@@ -2,7 +2,7 @@ import * as React from 'react';
 import './SidebarItem.css';
 import PropTypes from 'prop-types';
 
-export default function SidebarItem({ to, ...props }) {
+const SidebarItem = ({ to, ...props }) => {
   return (
     <li>
       <a 
@@ -21,3 +21,5 @@ SidebarItem.propTypes = {
 SidebarItem.defaultProps = {
   
 }
+
+export default SidebarItem;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Box.css';
 import PropTypes from 'prop-types';
 
-export default function Box({ bgColor, bRad, color, padding, children }) {
+const Box = ({ bgColor, bRad, color, padding, children }) => {
   const style = {
     backgroundColor: bgColor,
     borderRadius: bRad,
@@ -33,3 +33,5 @@ Box.defaultProps = {
   color: '#000000',
   padding: '0',
 }
+
+export default Box;

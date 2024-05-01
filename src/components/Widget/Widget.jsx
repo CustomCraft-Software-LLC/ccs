@@ -4,7 +4,7 @@ import './Widget.css';
 import PropTypes from 'prop-types';
 
 
-export default function Widget({ title, children }) {
+const Widget = ({ title, children }) => {
   return (
     <div className="container">
       <Box className="widget">
@@ -30,3 +30,5 @@ Widget.propTypes = {
 Widget.defaultProps = {
   title: 'Title',
 }
+
+export default Widget;

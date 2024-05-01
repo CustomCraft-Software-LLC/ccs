@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Sidebar.css';
 import PropTypes from 'prop-types';
 
-export default function Sidebar({ children }) {
+const Sidebar = ({ children }) => {
   return (
     <div className="sidebar">
         <ul>
@@ -19,3 +19,5 @@ Sidebar.propTypes = {
 Sidebar.defaultProps = {
   
 }
+
+export default Sidebar;

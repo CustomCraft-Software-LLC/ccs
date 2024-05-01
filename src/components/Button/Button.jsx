@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Button.css';
 import PropTypes from 'prop-types';
 
-export default function Button({ label, ...props}) {
+const Button = ({ label, ...props}) => {
   return (
     <button 
         type="button" 
@@ -22,3 +22,5 @@ Button.propTypes = {
 Button.defaultProps = {
   onclick: undefined
 }
+
+export default Button;

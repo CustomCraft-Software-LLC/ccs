@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Percentage.css';
 import Bar from '../Bar/Bar';
 
-export default function Percentage({ sign, percent }) { 
+const Percentage = ({ sign, percent }) => { 
   const s = sign ? '+' : '- ';
   const p = s + percent.toFixed(1) + '%';
   return ( 
@@ -27,3 +27,4 @@ Percentage.defaultProps = {
   
 };
 
+export default Percentage;

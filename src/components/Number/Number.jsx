@@ -2,7 +2,7 @@ import * as React from 'react';
 import './Number.css';
 import PropTypes from 'prop-types';
 
-export default function Number({ number, color }) {
+const Number = ({ number, color }) => {
   const style = {
     color: color,
   }
@@ -20,3 +20,5 @@ Number.propTypes = {
 Number.defaultProps = {
   color: '#bd5519',
 }
+
+export default Number;

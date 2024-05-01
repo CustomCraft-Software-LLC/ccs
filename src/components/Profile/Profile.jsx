@@ -3,7 +3,7 @@ import Box from '../Box/Box';
 import PropTypes from 'prop-types';
 import './Profile.css';
 
-export default function Profile({ name, img, alt }) {
+const Profile = ({ name, img, alt }) => {
   return (
     <Box bRad="70%">
       <div className="profile" >
@@ -30,3 +30,5 @@ Profile.defaultProps = {
     img: '',
     alt: '',
 }
+
+export default Profile;

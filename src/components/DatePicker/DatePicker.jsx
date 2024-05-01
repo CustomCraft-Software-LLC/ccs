@@ -2,7 +2,7 @@ import * as React from 'react';
 import './DatePicker.css';
 import PropTypes from 'prop-types';
 
-export default function DatePicker({...props}) {
+const DatePicker = () => {
   return (
     <div>
       <label for="date">Select a date:</label>
@@ -21,3 +21,5 @@ DatePicker.propTypes = {
 DatePicker.defaultProps = {
 
 }
+
+export default DatePicker;

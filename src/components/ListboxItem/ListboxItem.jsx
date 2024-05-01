@@ -3,7 +3,7 @@ import Box from '../Box/Box';
 import './ListboxItem.css';
 import PropTypes from 'prop-types';
 
-export default function ListboxItem({ value, label, ...props}) {
+const ListboxItem = ({ value, label, ...props}) => {
   return (
     <option
     value={value}
@@ -24,3 +24,5 @@ ListboxItem.defaultProps = {
     value: '',
     label: '',
 }
+
+export default ListboxItem;

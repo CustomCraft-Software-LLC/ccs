@@ -5,7 +5,7 @@ import Box from '../Box/Box';
 import Number from '../Number/Number';
 import Percentage from '../Percentage/Percentage';
 
-export default function StatWidget({ isNum, title, stat }) { 
+const StatWidget = ({ isNum, title, stat }) => { 
   return ( 
     <Box padding="0px" className="statWidget">
       <div>
@@ -32,3 +32,5 @@ StatWidget.propTypes = {
 StatWidget.defaultProps = {
   title: '',
 };
+
+export default StatWidget;
