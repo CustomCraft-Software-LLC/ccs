@@ -6,15 +6,15 @@ import PropTypes from 'prop-types';
 
 const Widget = ({ title, children }) => {
   return (
-    <div className="container">
-      <Box className="widget">
-        <div className="row">
-          <div className="col">
+    <div>
+      <Box>
+        <div>
+          <div>
             <h3>{title}</h3>
           </div>
         </div>
-        <div className="row">
-          <div className="col">
+        <div>
+          <div>
             {children}
           </div>
         </div>
