@@ -1,14 +1,20 @@
 import * as React from 'react';
 import './Bar.css';
-import PropTypes from 'prop-types';
 
-const Bar = ({ bgColor, animation, percent, sColor }) => {
-    const bg_style = {
+interface BarProps { 
+    bgColor: string;
+    animation: string;
+    percent: string;
+    sColor: string;
+}
+
+const Bar: React.FC<BarProps> = ({ bgColor, animation, percent, sColor }) => {
+    const bg_style: React.CSSProperties = {
         backgroundColor: bgColor,
         opacity: 1.0,
     }
 
-    const progress_style = {
+    const progress_style: React.CSSProperties = {
         backgroundColor: sColor,
         width: '50%',
         opacity: 1.0,
@@ -20,19 +26,5 @@ const Bar = ({ bgColor, animation, percent, sColor }) => {
         </div>
     );
 };
-
-Bar.propTypes = {
-    bgColor: PropTypes.string,
-    animation: PropTypes.bool,
-    percent: PropTypes.number,
-    sColor: PropTypes.string,
-}
-
-Bar.defaultProps = {
-    bgColor: '#cccccc',
-    animation: false,
-    percent: 0,
-    sColor: '#55bd98',
-}
 
 export default Bar;

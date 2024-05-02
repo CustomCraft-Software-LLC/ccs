@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { Meta, Story } from '@storybook/react/types-6-0'
 import Bar from './Bar.jsx';
 
 export default {
@@ -8,7 +8,7 @@ export default {
     parameters: {
         layout: 'centered',
     },
-};
+} as Meta;
 
 export const Default = () => {
     return ( 
