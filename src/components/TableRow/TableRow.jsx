@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TableRow.css';
 
-const TableRow = () => { 
+const TableRow = ({children}) => { 
   return ( 
     <tr>
-
+      {children}
     </tr>
   );
 }
