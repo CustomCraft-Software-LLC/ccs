@@ -4,7 +4,7 @@ import './TableCol.css';
 
 const TableCol = ({children}) => { 
   return ( 
-    <td>
+    <td className="tableCol">
       {children}
     </td>
   );

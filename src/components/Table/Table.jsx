@@ -4,7 +4,7 @@ import './Table.css';
 
 const Table = ({children}) => { 
   return ( 
-    <table>
+    <table className="table">
       {children}
     </table>
   );

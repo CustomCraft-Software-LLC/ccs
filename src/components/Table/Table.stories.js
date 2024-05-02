@@ -28,12 +28,7 @@ export const Default = () => {
 
   return (   
     <Table>
-      <TableRow>
-        <TableHead>t</TableHead>
-        <TableHead>a</TableHead>
-        <TableHead>b</TableHead>
-        <TableHead>l</TableHead>
-      </TableRow>
+      <TableHead cols={['t', 'a', 'b', 'l']}>t</TableHead>
       {table}
     </Table>
   );
