@@ -1,10 +1,14 @@
 import * as React from 'react';
 import Box  from '../Box/Box.tsx';
 import './Widget.css';
-import PropTypes from 'prop-types';
+
+interface WidgetProps { 
+  title: string;
+  children?: React.ReactNode;
+}
 
 
-const Widget = ({ title, children }) => {
+const Widget: React.FC<WidgetProps> = ({ title = 'title' , children }) => {
   return (
     <div>
       <Box>
@@ -22,13 +26,5 @@ const Widget = ({ title, children }) => {
     </div>
   );
 };
-
-Widget.propTypes = {
-  title: PropTypes.string.isRequired,
-}
-
-Widget.defaultProps = {
-  title: 'Title',
-}
 
 export default Widget;

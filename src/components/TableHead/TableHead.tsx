@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import './TableHead.css';
 
 interface TableHeadProps { 
-  cols: Array<T>;
+  cols: Array<string>;
   bgColor?: string;
   color?: string;
 }
 
-const TableHead: React.FC<TableHeadProps> = ({ cols, bgColor, color }) => { 
-  const [head, setHead] = useState(cols);
+const TableHead: React.FC<TableHeadProps> = ({ cols, bgColor = 'rgba(0,0,0,0.8)', color = 'rgba(255,255,255,0.4)' }) => { 
+  const [head, setHead] = useState<JSX.Element[]>([]);
 
   const style: React.CSSProperties = { 
     backgroundColor: bgColor,
@@ -27,7 +26,7 @@ const TableHead: React.FC<TableHeadProps> = ({ cols, bgColor, color }) => {
       );
     }
     setHead(tableHead);
-  }, []);
+  }, [cols, style]);
 
   return ( 
     <tr>
@@ -35,17 +34,5 @@ const TableHead: React.FC<TableHeadProps> = ({ cols, bgColor, color }) => {
     </tr>
   );
 }
-
-TableHead.propTypes = {
-  cols: PropTypes.object,
-  bgColor: PropTypes.string,
-  color: PropTypes.string,
-}
-
-TableHead.defaultProps = {
-  cols: [],
-  bgColor: 'rgb(0,0,0,0.8)',
-  color: 'rgb(255,255,255,0.4)',
-};
 
 export default TableHead;

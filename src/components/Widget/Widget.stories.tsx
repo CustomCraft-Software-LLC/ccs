@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/react';
 import Widget from './Widget.tsx';
 // import { createChart } from '../../utils/chart'; 
 
@@ -9,7 +9,7 @@ export default {
     parameters: {
         layout: 'centered',
     },
-};
+} as Meta;
 
 export const Default = () => {
     /*

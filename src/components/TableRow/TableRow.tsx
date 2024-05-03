@@ -1,9 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './TableRow.css';
 
-const TableRow = ({children}) => { 
-  const style = { 
+interface TableRowProps { 
+  children?: React.ReactNode;
+}
+
+const TableRow: React.FC<TableRowProps> = ({children}) => { 
+  const style: React.CSSProperties = { 
 
   }
 
@@ -13,13 +16,5 @@ const TableRow = ({children}) => {
     </tr>
   );
 }
-
-TableRow.propTypes = {
-
-}
-
-TableRow.defaultProps = {
-
-};
 
 export default TableRow;
