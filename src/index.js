@@ -6,6 +6,7 @@ export { default as Listbox } from './components/Listbox/Listbox.jsx';
 export { default as ListboxItem } from './components/ListboxItem/ListboxItem.jsx';
 export { default as Number } from './components/Number/Number.jsx';
 export { default as Percentage } from './components/Percentage/Percentage.jsx';
+export { default as Search } from './Search.tsx';
 export { default as Sidebar } from './components/Sidebar/Sidebar.jsx';
 export { default as SidebarItem } from './components/SidebarItem/SidebarItem.jsx';
 export { default as StatWidget } from './components/StatWidget/StatWidget.jsx';

@@ -1,25 +1,17 @@
 import * as React from 'react';
 import './DatePicker.css';
-import PropTypes from 'prop-types';
 
-const DatePicker = () => {
+interface DatePickerProps { 
+  selectDate?: Date;
+
+}
+
+const DatePicker: React.FC<DatePickerProps> = ({ selectDate = undefined, ...props }) => {
   return (
-    <div>
-      <label for="date">Select a date:</label>
-      <div className="date-input-container">
-        <input type="date" id="date" name="date" value =""/>
-        <span className="date-input-arrow">&#x25BC;</span>
-      </div>
+    <div className="datePicker">
+      <input className="dateI" type="date" placeholder="" defaultValue={selectDate ? selectDate.toISOString().split('T')[0] : ''} {...props} />
     </div>
   );
 };
-
-DatePicker.propTypes = {
-    
-}
-
-DatePicker.defaultProps = {
-
-}
 
 export default DatePicker;

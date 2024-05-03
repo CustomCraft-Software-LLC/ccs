@@ -1,62 +1,29 @@
 .datePicker {
-    padding: 8px;
+    position: relative;
+}
+
+.datePicker::after { 
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    color: #999;
+    pointer-events: none;
+}
+
+.dateI {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    padding: 8px;
+    padding-right: 24px;
     width: 200px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none; 
-    display: inline;
 }
 
-.datePicker:hover {
-
-}
-
-/* Style the label */
-label {
-    font-size: 16px;
-    margin-bottom: 12px;
-    color: #333; /* Text color */
-    display: block;
-}
-
-/* Style the date input container */
-.date-input-container {
-    position: relative;
-    width: 220px;
-}
-
-/* Style the date input */
-input[type="date"] {
-    padding: 10px;
-    border: 2px solid #ccc; /* Border color */
-    border-radius: 6px;
-    font-size: 16px;
-    width: 100%;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    color: #555; /* Text color */
-}
-
-/* Style the date input arrow */
-.date-input-arrow {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none; /* Ensure the arrow doesn't interfere with clicking on the input */
-}
-
-/* Hide the default text */
-input[type="date"]::before {
-    content: '';
-    display: block;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: transparent;
+.dateI::-webkit-calendar-picker-indicator {
+    display: none;
 }

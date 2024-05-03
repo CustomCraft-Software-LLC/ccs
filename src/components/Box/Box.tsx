@@ -1,9 +1,16 @@
 import * as React from 'react';
 import './Box.css';
-import PropTypes from 'prop-types';
 
-const Box = ({ bgColor, bRad, color, padding, children }) => {
-  const style = {
+interface BoxProps { 
+  bgColor?: string, 
+  bRad?: string, 
+  color?: string, 
+  padding?: string, 
+  children?: React.ReactNode, 
+}
+
+const Box: React.FC<BoxProps> = ({ bgColor = 'rgb(255,255,255,1.0)', bRad = '5px', color = 'rgb(0,0,0,1.0)', padding = '0', children }) => {
+  const style: React.CSSProperties = {
     backgroundColor: bgColor,
     borderRadius: bRad,
     color: color,
@@ -19,19 +26,5 @@ const Box = ({ bgColor, bRad, color, padding, children }) => {
     </div>
   );
 };
-
-Box.propTypes = {
-  bgColor: PropTypes.string,
-  bRad: PropTypes.string,
-  color: PropTypes.string,
-  padding: PropTypes.string,
-}
-
-Box.defaultProps = {
-  bgColor: '#ffffff',
-  bRad: '5px',
-  color: '#000000',
-  padding: '0',
-}
 
 export default Box;

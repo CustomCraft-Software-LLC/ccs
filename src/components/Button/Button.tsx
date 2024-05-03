@@ -1,8 +1,11 @@
 import * as React from 'react';
 import './Button.css';
-import PropTypes from 'prop-types';
 
-const Button = ({ label, ...props}) => {
+interface ButtonProps { 
+  label: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ label, ...props}) => {
   return (
     <button 
         type="button" 
@@ -12,15 +15,6 @@ const Button = ({ label, ...props}) => {
       {label}
     </button>
   );
-}
-
-Button.propTypes = {
-  label: PropTypes.string.isRequired,
-  onclick: PropTypes.func
-}
-
-Button.defaultProps = {
-  onclick: undefined
 }
 
 export default Button;

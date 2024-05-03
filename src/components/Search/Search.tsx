@@ -7,3 +7,5 @@ const Search = ({ data, ...props }) => {
         <input type="text" placeholder="Search" {...props}/>
     );
 }
+
+export default Search;

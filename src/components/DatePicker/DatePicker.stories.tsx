@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/react';
 import DatePicker from './DatePicker.tsx'; 
 
 export default {
@@ -8,10 +8,10 @@ export default {
   parameters: {
     layout: 'centered',
   },
-};
+} as Meta;
 
 export const Default = () => {
   return (   
-    <DatePicker min="2024-04-20" max="2024-04-27" />
+    <DatePicker />
   );
 }
