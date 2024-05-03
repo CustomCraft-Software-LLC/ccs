@@ -9,7 +9,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-    "noEmit": false, 
+    "noEmit": true, 
     "emitDeclarationOnly": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
