@@ -1,5 +1,5 @@
 import React from 'react';
-import StatWidget from './StatWidget.jsx';
+import StatWidget from './StatWidget.tsx';
 
 export default {
   title: 'Components/StatWidget', 

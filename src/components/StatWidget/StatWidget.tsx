@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './StatWidget.css';
-import Box from '../Box/Box.jsx';
-import Number from '../Number/Number.jsx';
-import Percentage from '../Percentage/Percentage.jsx';
+import Box from '../Box/Box.tsx';
+import Number from '../Number/Number.tsx';
+import Percentage from '../Percentage/Percentage.tsx';
 
 const StatWidget = ({ isNum, title, stat }) => { 
   return ( 

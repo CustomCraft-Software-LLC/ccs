@@ -1,5 +1,5 @@
 import React from 'react';
-import TableCol from './TableCol.jsx';
+import TableCol from './TableCol.tsx';
 
 export default {
   title: 'Components/TableCol', 

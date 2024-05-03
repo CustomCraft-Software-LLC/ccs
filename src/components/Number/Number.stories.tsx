@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Number from './Number.jsx'; 
+import Number from './Number.tsx'; 
 
 export default {
   title: 'Components/Number', 

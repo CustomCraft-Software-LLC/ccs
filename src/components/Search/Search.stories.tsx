@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Search from './Search.jsx'; 
+import Search from './Search.tsx'; 
 
 export default {
   title: 'Components/Search', 

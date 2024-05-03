@@ -1,6 +1,6 @@
-import React from 'react';
-import { Meta, Story } from '@storybook/react/types-6-0'
-import Bar from './Bar.jsx';
+import * as React from 'react';
+import { Meta } from '@storybook/react';
+import Bar from './Bar.tsx';
 
 export default {
     title: 'Components/Bar', 

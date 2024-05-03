@@ -1,5 +1,5 @@
 import React from 'react';
-import TableHead from './TableHead.jsx';
+import TableHead from './TableHead.tsx';
 
 export default {
   title: 'Components/TableHead', 

@@ -1,8 +1,8 @@
 import React from 'react';
-import Table from './Table.jsx';
-import TableCol from '../TableCol/TableCol.jsx';
-import TableRow from '../TableRow/TableRow.jsx';
-import TableHead from '../TableHead/TableHead.jsx';
+import Table from './Table.tsx';
+import TableCol from '../TableCol/TableCol.tsx';
+import TableRow from '../TableRow/TableRow.tsx';
+import TableHead from '../TableHead/TableHead.tsx';
 
 export default {
   title: 'Components/Table', 

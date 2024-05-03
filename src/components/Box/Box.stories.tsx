@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Box from './Box.jsx'; 
+import Box from './Box.tsx'; 
 
 export default {
   title: 'Components/Box', 

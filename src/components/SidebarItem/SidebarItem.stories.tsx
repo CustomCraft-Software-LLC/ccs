@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import SidebarItem from './SidebarItem.jsx'; 
+import SidebarItem from './SidebarItem.tsx'; 
 
 export default {
   title: 'Components/SidebarItem', 

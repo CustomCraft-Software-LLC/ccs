@@ -1,5 +1,5 @@
 import React from 'react';
-import TableRow from './TableRow.jsx';
+import TableRow from './TableRow.tsx';
 
 export default {
   title: 'Components/TableRow', 

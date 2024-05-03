@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Profile from './Profile.jsx'; 
+import Profile from './Profile.tsx'; 
 
 export default {
   title: 'Components/Profile', 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import Sidebar from './Sidebar.jsx'; 
-import SidebarItem from '../SidebarItem/SidebarItem.jsx';
-import Box from '../Box/Box.jsx';
+import Sidebar from './Sidebar.tsx'; 
+import SidebarItem from '../SidebarItem/SidebarItem.tsx';
+import Box from '../Box/Box.tsx';
 
 export default {
   title: 'Components/Sidebar', 
