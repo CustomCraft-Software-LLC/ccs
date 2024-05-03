@@ -13,7 +13,6 @@ const TableHead: React.FC<TableHeadProps> = ({ cols, bgColor = 'rgba(0,0,0,0.8)'
   const style: React.CSSProperties = { 
     backgroundColor: bgColor,
     color: color,
-    border: '2px solid rgb(0,0,0,0.5)',
   }
 
   useEffect(() => { 

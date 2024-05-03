@@ -7,9 +7,10 @@ interface BoxProps {
   color?: string, 
   padding?: string, 
   children?: React.ReactNode, 
+  className?: string;
 }
 
-const Box: React.FC<BoxProps> = ({ bgColor = 'rgb(255,255,255,1.0)', bRad = '5px', color = 'rgb(0,0,0,1.0)', padding = '0', children }) => {
+const Box: React.FC<BoxProps> = ({ bgColor = 'rgb(255,255,255,1.0)', bRad = '5px', color = 'rgb(0,0,0,1.0)', padding = '0', children, className = '' }) => {
   const style: React.CSSProperties = {
     backgroundColor: bgColor,
     borderRadius: bRad,
@@ -19,7 +20,7 @@ const Box: React.FC<BoxProps> = ({ bgColor = 'rgb(255,255,255,1.0)', bRad = '5px
 
   return (
     <div 
-      className="box"
+      className={`box ${className}`}
       style={style}
     >
         { children }

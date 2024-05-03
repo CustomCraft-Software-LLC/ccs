@@ -4,9 +4,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
+import typescript from '@rollup/plugin-typescript'; 
 
 export default {
-  input: 'src/index.js',
+  input: 'src/index.ts',
   output: {
     file: 'dist/bundle.js',
     format: 'umd',
@@ -20,6 +21,7 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
+    typescript(),
     babel({
       babelHelpers: 'bundled',
       presets: ['@babel/preset-env', '@babel/preset-react'],

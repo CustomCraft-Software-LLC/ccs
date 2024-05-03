@@ -12,18 +12,16 @@ interface StatWidgetProps {
 
 const StatWidget: React.FC<StatWidgetProps> = ({ isNum, title = '', stat = 0 }) => { 
   return ( 
-    <Box padding="0px">
+    <Box bRad="40px" padding="40px 40px" className="statWidget">
       <div>
-          <div>
-            <h3>{title}</h3>
-          </div>
-          <div>
-            {isNum ? ( 
-              <Number num={stat} />
-            ) : ( 
-              <Percentage sign='+' percent={stat} /> 
-            )}
-          </div>
+        <h3>{title}</h3>
+      </div>
+      <div>
+        {isNum ? ( 
+          <Number num={stat} />
+        ) : ( 
+          <Percentage sign='+' percent={stat} /> 
+        )}
       </div>
     </Box>
   );

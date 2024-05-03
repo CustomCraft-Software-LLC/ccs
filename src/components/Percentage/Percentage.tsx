@@ -17,7 +17,7 @@ const Percentage: React.FC<PercentageProps> = ({ sign, percent }) => {
         <p className="percentage">{p}</p>
       </div>
       <div>
-        <Bar percent={percent} />
+        <Bar percent={percent} scaleX={1.6} />
       </div>
     </div>
   );

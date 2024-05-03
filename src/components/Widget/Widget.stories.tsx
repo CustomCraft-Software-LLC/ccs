@@ -19,8 +19,7 @@ export const Default = () => {
     */
 
     return (   
-        <Widget>
-            <canvas id="myChart" width="400" height="400"></canvas>
+        <Widget title="height">
         </Widget>
     );
 }

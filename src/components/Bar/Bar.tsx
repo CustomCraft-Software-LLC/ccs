@@ -6,12 +6,14 @@ interface BarProps {
     animation?: string;
     percent?: number;
     sColor?: string;
+    scaleX?: number;
 }
 
-const Bar: React.FC<BarProps> = ({ bgColor = 'rgb(0,0,0,0.8)', animation = '', percent = 0, sColor = 'rgb(70,242,194,0.7)' }) => {
+const Bar: React.FC<BarProps> = ({ bgColor = 'rgb(0,0,0,0.8)', animation = '', percent = 0, sColor = 'rgb(70,242,194,0.7)', scaleX = 1.0 }) => {
     const bg_style: React.CSSProperties = {
         backgroundColor: bgColor,
         opacity: 1.0,
+        transform: `scaleX(${scaleX})`,
     }
 
     const progress_style: React.CSSProperties = {

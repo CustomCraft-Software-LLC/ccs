@@ -12,6 +12,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <Number number="20"/>
+    <Number num={20} />
   );
 }

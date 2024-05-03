@@ -1,5 +1,6 @@
-import React from 'react';
+import Search from '../Search/Search.tsx';
 import { Meta } from '@storybook/react';
+import React from 'react';
 import Table from './Table.tsx';
 import TableCol from '../TableCol/TableCol.tsx';
 import TableRow from '../TableRow/TableRow.tsx';
@@ -28,9 +29,12 @@ export const Default = () => {
   }
 
   return (   
-    <Table>
-      <TableHead cols={['t', 'a', 'b', 'l']}>t</TableHead>
-      {table}
-    </Table>
+    <div>
+      <Search />
+      <Table>
+        <TableHead cols={["t", "a", "b", "l"]}></TableHead>
+        {table}
+      </Table>
+    </div>
   );
 }

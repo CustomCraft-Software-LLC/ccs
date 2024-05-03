@@ -1,6 +1,6 @@
 {
   "name": "ccs-react-components",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "CustomCraft LLC ready made react components",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
@@ -39,6 +39,7 @@
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@storybook/addon-essentials": "^8.0.9",
     "@storybook/addon-interactions": "^8.0.9",
     "@storybook/addon-links": "^8.0.9",

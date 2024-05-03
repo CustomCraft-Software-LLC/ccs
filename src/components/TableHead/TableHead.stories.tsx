@@ -11,6 +11,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <TableHead></TableHead>
+    <TableHead cols={["1", "2", "3", "4"]}></TableHead>
   );
 }
