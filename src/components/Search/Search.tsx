@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import './Search.css';
 
-const Search = ({ data, ...props }) => { 
+interface SearchProps { 
+    data?: string;
+}
+
+const Search: React.FC<SearchProps> = ({ data = '', ...props }) => { 
     return ( 
         <input type="text" placeholder="Search" {...props}/>
     );

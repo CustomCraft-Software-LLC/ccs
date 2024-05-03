@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/react';
 import Sidebar from './Sidebar.tsx'; 
 import SidebarItem from '../SidebarItem/SidebarItem.tsx';
 import Box from '../Box/Box.tsx';
@@ -10,7 +10,7 @@ export default {
   parameters: {
     layout: 'centered',
   },
-};
+} as Meta;
 
 export const Default = () => {
   return (   

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meta } from '@storybook/react';
 import Table from './Table.tsx';
 import TableCol from '../TableCol/TableCol.tsx';
 import TableRow from '../TableRow/TableRow.tsx';
@@ -10,10 +11,10 @@ export default {
   parameters: {
     layout: 'centered',
   },
-};
+} as Meta;
 
 export const Default = () => {
-  const table = [];
+  const table: JSX.Element[] = [];
 
   for(let i = 0; i < 5; i++) {
     table.push(

@@ -2,17 +2,23 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './TableHead.css';
 
-const TableHead = ({ cols, bgColor, color }) => { 
+interface TableHeadProps { 
+  cols: Array<T>;
+  bgColor?: string;
+  color?: string;
+}
+
+const TableHead: React.FC<TableHeadProps> = ({ cols, bgColor, color }) => { 
   const [head, setHead] = useState(cols);
 
-  const style = { 
+  const style: React.CSSProperties = { 
     backgroundColor: bgColor,
     color: color,
     border: '2px solid rgb(0,0,0,0.5)',
   }
 
   useEffect(() => { 
-    const tableHead = [];
+    const tableHead: JSX.Element[] = [];
     for (let i = 0; i < cols.length; i++) {
       tableHead.push(
         <th className="tableHead" style={style}>

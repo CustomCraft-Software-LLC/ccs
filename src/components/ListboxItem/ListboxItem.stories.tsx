@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from '@storybook/addon-actions';
+import { Meta } from '@storybook/react';
 import ListboxItem from './ListboxItem.tsx'; 
 import Listbox from '../Listbox/Listbox.tsx';
 
@@ -9,7 +9,7 @@ export default {
   parameters: {
     layout: 'centered',
   },
-};
+} as Meta;
 
 export const Default = () => {
   return (   

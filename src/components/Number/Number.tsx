@@ -2,23 +2,19 @@ import * as React from 'react';
 import './Number.css';
 import PropTypes from 'prop-types';
 
-const Number = ({ number, color }) => {
-  const style = {
+interface NumberProps { 
+  num: number;
+  color?: string;
+}
+
+const Number: React.FC<NumberProps> = ({ num, color = '#bd5519' }) => {
+  const style: React.CSSProperties = {
     color: color,
   }
 
   return (
-    <p className="number" style={style}>{number}</p>
+    <p className="number" style={style}>{num}</p>
   );
 };
-
-Number.propTypes = {
-  color: PropTypes.string,
-  number: PropTypes.number.isRequired,
-}
-
-Number.defaultProps = {
-  color: '#bd5519',
-}
 
 export default Number;

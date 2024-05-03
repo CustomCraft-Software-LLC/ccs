@@ -1,9 +1,14 @@
 import * as React from 'react';
 import './Sidebar.css';
-import PropTypes from 'prop-types';
 
-const Sidebar = ({ shadowColor, bgColor, children }) => {
-  const style = {
+interface SidebarProps { 
+  shadowColor?: string;
+  bgColor?: string;
+  children?: React.ReactNode;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ shadowColor = 'rgba(0,0,0,0.1)', bgColor = 'rgba(255,255,255,1.0)', children }) => {
+  const style: React.CSSProperties = {
     backgroundColor: bgColor,
     boxShadow: `0 4px 8px ${shadowColor}`
   }
@@ -16,15 +21,5 @@ const Sidebar = ({ shadowColor, bgColor, children }) => {
     </div>
   );
 };
-
-Sidebar.propTypes = {
-  shadowColor: PropTypes.string,
-  bgColor: PropTypes.string,
-}
-
-Sidebar.defaultProps = {
-  shadowColor: 'rgba(0, 0, 0, 0.1)',
-  bgColor: '#ffffff',
-}
 
 export default Sidebar;

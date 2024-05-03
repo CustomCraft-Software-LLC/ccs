@@ -1,22 +1,17 @@
 import * as React from 'react';
 import './Listbox.css';
-import PropTypes from 'prop-types';
 import Box from '../Box/Box.tsx';
 
-const Listbox = ({children}) => {
+interface ListboxProps { 
+  children?: React.ReactNode;
+}
+
+const Listbox: React.FC<ListboxProps> = ({children}) => {
   return (
     <Box bRad="50px">
       <select className="listBox">{children}</select>
     </Box>
   );
 };
-
-Listbox.propTypes = {
-    
-}
-
-Listbox.defaultProps = {
-
-}
 
 export default Listbox;

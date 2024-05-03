@@ -1,9 +1,14 @@
 import * as React from 'react';
 import Box from '../Box/Box.tsx';
-import PropTypes from 'prop-types';
 import './Profile.css';
 
-const Profile = ({ name, img, alt }) => {
+interface ProfileProps { 
+  name: string;
+  img?: string;
+  alt?: string;
+}
+
+const Profile: React.FC<ProfileProps> = ({ name = 'user', img = '', alt = '' }) => {
   return (
     <Box bRad="70%">
       <div className="profile" >
@@ -17,18 +22,5 @@ const Profile = ({ name, img, alt }) => {
     </Box>
   );
 };
-
-Profile.propTypes = {
-    name: PropTypes.string.isRequired,
-    img: PropTypes.string,
-    alt: PropTypes.string,
-}
-
-// add source path default
-Profile.defaultProps = {
-    name: 'user',
-    img: '',
-    alt: '',
-}
 
 export default Profile;

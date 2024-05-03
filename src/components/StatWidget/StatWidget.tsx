@@ -1,36 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './StatWidget.css';
 import Box from '../Box/Box.tsx';
 import Number from '../Number/Number.tsx';
 import Percentage from '../Percentage/Percentage.tsx';
 
-const StatWidget = ({ isNum, title, stat }) => { 
+interface StatWidgetProps { 
+  isNum: boolean;
+  title?: string;
+  stat?: number;
+}
+
+const StatWidget: React.FC<StatWidgetProps> = ({ isNum, title = '', stat = 0 }) => { 
   return ( 
-    <Box padding="0px" className="statWidget">
+    <Box padding="0px">
       <div>
           <div>
             <h3>{title}</h3>
           </div>
           <div>
             {isNum ? ( 
-              <Number number={stat} />
+              <Number num={stat} />
             ) : ( 
-              <Percentage sign={true} percent={stat} /> 
+              <Percentage sign='+' percent={stat} /> 
             )}
           </div>
       </div>
     </Box>
   );
 }
-
-StatWidget.propTypes = {
-  isNum: PropTypes.bool.isRequired,
-  title: PropTypes.string,
-};
-
-StatWidget.defaultProps = {
-  title: '',
-};
 
 export default StatWidget;

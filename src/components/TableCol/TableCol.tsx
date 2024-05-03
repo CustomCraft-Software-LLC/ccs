@@ -1,21 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import './TableCol.css';
 
-const TableCol = ({children}) => { 
+interface TableColProps { 
+  children?: React.ReactNode;
+}
+
+const TableCol: React.FC<TableColProps> = ({children}) => { 
   return ( 
     <td className="tableCol">
       {children}
     </td>
   );
 }
-
-TableCol.propTypes = {
-
-}
-
-TableCol.defaultProps = {
-  
-};
 
 export default TableCol;

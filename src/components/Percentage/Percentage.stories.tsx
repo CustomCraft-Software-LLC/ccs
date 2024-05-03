@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meta } from '@storybook/react';
 import Percentage from './Percentage.tsx';
 
 export default {
@@ -7,10 +8,10 @@ export default {
   parameters: {
     layout: 'centered',
   },
-};
+} as Meta;
 
 export const Default = () => {
   return (   
-    <Percentage sign={true} percent={30.2}/>
+    <Percentage sign='+' percent={30.2}/>
   );
 }

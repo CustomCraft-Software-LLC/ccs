@@ -1,11 +1,16 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import './Percentage.css';
 import Bar from '../Bar/Bar.tsx';
 
-const Percentage = ({ sign, percent }) => { 
-  const s = sign ? '+' : '- ';
-  const p = s + percent.toFixed(1) + '%';
+type Sign = '+' | '-';
+
+interface PercentageProps { 
+  sign: Sign;
+  percent: number;
+}
+
+const Percentage: React.FC<PercentageProps> = ({ sign, percent }) => { 
+  const p: string = `${sign}${percent.toFixed(1)}%`;
   return ( 
     <div>
       <div>
@@ -17,14 +22,5 @@ const Percentage = ({ sign, percent }) => {
     </div>
   );
 }
-
-Percentage.propTypes = {
-  sign: PropTypes.bool.isRequired,
-  percent: PropTypes.number.isRequired,
-};
-
-Percentage.defaultProps = {
-  
-};
 
 export default Percentage;

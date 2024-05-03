@@ -1,8 +1,12 @@
 import * as React from 'react';
 import './ListboxItem.css';
-import PropTypes from 'prop-types';
 
-const ListboxItem = ({ value, label, ...props}) => {
+interface ListboxItemProps { 
+  value: string;
+  label: string;
+}
+
+const ListboxItem: React.FC<ListboxItemProps> = ({ value = '', label = '', ...props}) => {
   return (
     <option
     value={value}
@@ -13,15 +17,5 @@ const ListboxItem = ({ value, label, ...props}) => {
     </option> 
   );
 };
-
-ListboxItem.propTypes = {
-    value: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-}
-
-ListboxItem.defaultProps = {
-    value: '',
-    label: '',
-}
 
 export default ListboxItem;
