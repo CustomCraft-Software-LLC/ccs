@@ -10,8 +10,8 @@ interface WidgetProps {
 
 const Widget: React.FC<WidgetProps> = ({ title = 'title' , children }) => {
   return (
-    <Box>
-      <div>
+    <Box bRad="40px">
+      <div className="widget">
         <h3>{title}</h3>
       </div>
       {children}
