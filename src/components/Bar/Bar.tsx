@@ -18,7 +18,7 @@ const Bar: React.FC<BarProps> = ({ bgColor = 'rgb(0,0,0,0.8)', animation = '', p
 
     const progress_style: React.CSSProperties = {
         backgroundColor: sColor,
-        width: '50%',
+        width: `${percent}%`,
         opacity: 1.0,
     }
 

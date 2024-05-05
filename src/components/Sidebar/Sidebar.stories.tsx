@@ -14,20 +14,11 @@ export default {
 
 export const Default = () => {
   return (   
-    <div>
-      <div>
-        <div>
-          <Sidebar>
-            <SidebarItem to="/">1</SidebarItem>
-            <SidebarItem>2</SidebarItem>
-            <SidebarItem>3</SidebarItem>
-            <SidebarItem>4</SidebarItem>
-          </Sidebar>
-        </div>
-        <div>
-          <Box bgColor="#004400">hello</Box>
-        </div>
-      </div>
-    </div>
+    <Sidebar>
+      <SidebarItem to="/">1</SidebarItem>
+      <SidebarItem>2</SidebarItem>
+      <SidebarItem>3</SidebarItem>
+      <SidebarItem>4</SidebarItem>
+    </Sidebar>
   );
 }
