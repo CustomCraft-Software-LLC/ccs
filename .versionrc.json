@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "postrelease": "git push --follow-tags origin master"
+    }
+}
