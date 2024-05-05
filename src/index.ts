@@ -1,19 +1,4 @@
-/**
- * Renders a Bar component.
- * @example
- * ```tsx
- * <Bar />
- * ```
- */
 export { default as Bar } from './components/Bar/Bar.tsx';
-
-/**
- * Renders a Box component.
- * @example
- * ```tsx
- * <Box />
- * ```
- */
 export { default as Box } from './components/Box/Box.tsx';
 export { default as Button } from './components/Button/Button.tsx';
 export { default as DatePicker } from './components/DatePicker/DatePicker.tsx';
