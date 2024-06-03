@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './Number.css';
-import PropTypes from 'prop-types';
+import { Typography } from '@mui/material';
+import { SxProps, Theme } from '@mui/system';
 
 interface NumberProps { 
   num: number;
@@ -8,12 +9,12 @@ interface NumberProps {
 }
 
 const Number: React.FC<NumberProps> = ({ num, color = '#bd5519' }) => {
-  const style: React.CSSProperties = {
+  const style: SxProps<Theme> = { 
     color: color,
   }
 
   return (
-    <p className="number" style={style}>{num}</p>
+    <Typography variant='h5' sx={style}>{num}</Typography>
   );
 };
 
