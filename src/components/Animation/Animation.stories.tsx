@@ -1,0 +1,19 @@
+import React, { useState, useEffect } from 'react';
+import { Meta } from '@storybook/react';
+import Animation from './Animation.tsx';
+
+export default {
+    title: 'Components/Animation', 
+    component: Animation,
+    parameters: {
+        layout: 'centered',
+    },
+} as Meta;
+
+export const Default = () => {
+    return ( 
+        <Animation name="bounceIn">
+
+        </Animation>
+    );
+}
