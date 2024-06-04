@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
+import { Drawer, List } from '@mui/material';
 
 interface SidebarProps { 
   shadowColor?: string;
@@ -17,26 +18,19 @@ const Sidebar: React.FC<SidebarProps> = ({ shadowColor = 'rgba(0,0,0,0.1)', bgCo
   const style: React.CSSProperties = {
     backgroundColor: bgColor,
     boxShadow: `0 4px 8px ${shadowColor}`,
-    display: isOpen ? 'none' : 'flex',
   }
 
-  const toggleButtonStyle: React.CSSProperties = {
-    position: 'absolute',
-    top: '10px',
-    left: '10px',
-  };
-
   return (
-    <div>
-      <button onClick={toggleSidebar} style={toggleButtonStyle}>
-        {isOpen ? 'Close Sidebar' : 'Open Sidebar'}
-      </button>
-      <div className="sidebar" style={style}>
-          <ul>
-              {children}
-          </ul>
-      </div>
-    </div>
+    <Drawer
+      open={true}
+      variant='permanent'
+      anchor="left"
+      sx={style}
+    >
+      <List>
+        {children}
+      </List>
+    </Drawer>
   );
 };
 
