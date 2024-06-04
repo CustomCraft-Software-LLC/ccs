@@ -3,8 +3,8 @@ import { Typography } from '@mui/material';
 import { HTML_TAGS } from '../constants/html.js';
 import santizeHtml from 'sanitize-html';
 
-export const countHTMLText = (text) => { 
-    let count = 0;
+export const countHTMLText = (text: string) => { 
+    let count : number = 0;
 
     /* HTML_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6',
                    'p', 'strong', 'em', 'b', 'i', 'u',
@@ -13,25 +13,24 @@ export const countHTMLText = (text) => {
                    'sup', 'time', 'q', 'cite', 'abbr',
                    'dfn', 'kbd', 'samp', 'var', 's'];
     */
-    HTML_TAGS.forEach(tag => { 
+    HTML_TAGS.forEach((tag : string) => { 
         const regex = new RegExp(`<${tag.toLowerCase()}[^>]*>.*?</${tag.toLowerCase()}>`, 'g');
-        if (text.match(regex)) {
-            count += text.match(regex).length;
-        }
+        count += text.match(regex)?.length ?? 0;
     });
 
     return count;
 }
 
-export const splitHTMLText = (text) => {
-    if(typeof text === 'string') {
-        text = text.split('\n');
+export const splitHTMLText = (text: string) => {
+    let splitText : string[] = [];
+    if(typeof text === 'string' && text !== "") {
+        splitText = text.split('\n');
+        splitText = splitText.map((line : string) => line.trim());
     }
-    text = text.map(line => line.trim());
-    return text;
+    return splitText;
 }
 
-export const convertTextIntoTypography = (text) => {
+export const convertTextIntoTypography = (text: string) => {
     for (let tag of HTML_TAGS) { 
         if(text.includes(`<${tag.toLowerCase()}>`)) { 
             text = text.replace(`<${tag.toLowerCase()}>`, `<Typography variant="${tag.toLowerCase()}">`);
@@ -59,19 +58,19 @@ export const convertTextIntoTypography = (text) => {
     
     countHTMLText: 5
 */
-export const formatText = (text) => { 
-    let properText = [];
+export const formatText = (text: string) => { 
+    let properText : string[] = [];
 
     // santize text
-    properText = santizeHtml(text);
+    text = santizeHtml(text);
 
-    const textCountHtml = countHTMLText(properText);
+    const textCountHtml = countHTMLText(text);
 
     // push text into properText
-    properText = splitHTMLText(properText);
+    properText = splitHTMLText(text);
 
     // convert text into typography
-    properText = properText.map(text => convertTextIntoTypography(text));
+    properText = properText.map((text : string) => convertTextIntoTypography(text));
     // return properText
     return properText;
 }
