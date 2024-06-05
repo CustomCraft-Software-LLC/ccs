@@ -1,3 +1,8 @@
-export const parseJSON = (json: JSON) : JSON => { 
-    return JSON.parse(json)
+export const parseJSON = (json: string) : any => { 
+    try { 
+        return JSON.parse(json);
+    } catch (error) { 
+        console.error("Invalid JSON", error);
+        return null;
+    }
 }

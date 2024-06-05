@@ -66,3 +66,13 @@ export const validatePassword = (password: string, regex: RegExp): boolean => {
 	else
 		return true;
 }
+
+export const validatePhoneNumber = (phoneNumber: string): boolean => {
+	if (!phoneNumber)
+		return false;
+	else if(!/^\d{10}$/.test(phoneNumber))
+		return false;
+	else
+		return true;
+}
+	
