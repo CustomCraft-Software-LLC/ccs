@@ -48,3 +48,21 @@ export const validateContactForm = (formData : FormData) : Errors => {
 
     return errors;
 };
+
+export const validateEmail = (email: string): boolean => {
+	if (!email) 
+		return false;
+	else if (!/\S+@\S+\.\S+/.test(email)) 
+		return false;
+	else 
+		return true;
+}  
+
+export const validatePassword = (password: string, regex: RegExp): boolean => {
+	if (!password)
+		return false;
+	else if(!regex.test(password))
+		return false;
+	else
+		return true;
+}
