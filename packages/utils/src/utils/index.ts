@@ -1,0 +1,1 @@
+export { sortTable } from './sortTable.ts';

@@ -1,4 +1,4 @@
-const sortTable = (table : number[]): number[] => { 
+export const sortTable = (table : number[]): number[] => { 
     let sortedTable = [...table];
     for (let i = 0; i < sortedTable.length; i++) {
         sortedTable[i] = 0;
