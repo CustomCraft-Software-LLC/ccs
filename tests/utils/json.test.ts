@@ -8,6 +8,6 @@ const json = {
 
 describe('parseJSON', () => { 
     test('parseJSON', () => {
-        expect(parseJSON(JSON.stringify(json))).toBe(json);
+        expect(parseJSON(JSON.stringify(json))).toStrictEqual(json);
     });
 });

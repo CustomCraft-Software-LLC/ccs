@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '@mui/material';
-import { HTML_TAGS } from '../constants/html.js';
+import { HTML_TAGS } from '../constants/html.ts';
 import santizeHtml from 'sanitize-html';
 
 export const countHTMLText = (text: string) => { 
