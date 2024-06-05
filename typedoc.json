@@ -1,0 +1,13 @@
+{
+  "entryPoints": [
+    "packages/components/src/index.ts",
+    "packages/utils/src/index.ts"
+  ],
+  "out": "docs",
+  "exclude": ["**/node_modules/**", "**/dist/**"],
+  "tsconfig": "./tsconfig.json",
+  "includeVersion": true,
+  "excludePrivate": true,
+  "excludeExternals": true,
+  "excludeNotDocumented": true
+}
