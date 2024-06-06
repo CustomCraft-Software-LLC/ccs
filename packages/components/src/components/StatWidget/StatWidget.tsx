@@ -2,7 +2,7 @@ import React from 'react';
 import './StatWidget.css';
 import Box from '../Custom/Box/Box.tsx';
 import Number from '../Custom/Number/Number.tsx';
-import Percentage from '../Percentage/Percentage.tsx';
+import Percentage from '../Custom/Percentage/Percentage.tsx';
 import Widget from '../Widget/Widget.tsx';
 
 interface StatWidgetProps { 

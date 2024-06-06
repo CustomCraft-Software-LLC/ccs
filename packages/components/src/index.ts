@@ -5,7 +5,7 @@ export { default as DatePicker } from './components/Custom/DatePicker/DatePicker
 export { default as Listbox } from './components/Custom/Listbox/Listbox';
 export { default as ListboxItem } from './components/Custom/ListboxItem/ListboxItem';
 export { default as Number } from './components/Custom/Number/Number';
-export { default as Percentage } from './components/Percentage/Percentage';
+export { default as Percentage } from './components/Custom/Percentage/Percentage';
 export { default as Profile } from './components/Custom/Profile/Profile';
 export { default as Search } from './components/Custom/Search/Search';
 export { default as Sidebar } from './components/Sidebar/Sidebar';

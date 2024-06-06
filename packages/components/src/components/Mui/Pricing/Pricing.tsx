@@ -26,6 +26,7 @@ const Pricing: React.FC<PricingProps> = ({title = 'title', pricing = 0, to="/", 
           {children}
         <Divider />
         <Button component={Link} to={to}>{buttonText}</Button>
+        <Divider />
     </Box>
   );
 };
