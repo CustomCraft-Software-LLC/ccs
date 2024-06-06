@@ -1,8 +1,9 @@
 import React from 'react';
 import './StatWidget.css';
-import Box from '../Box/Box.tsx';
-import Number from '../Number/Number.tsx';
+import Box from '../Custom/Box/Box.tsx';
+import Number from '../Custom/Number/Number.tsx';
 import Percentage from '../Percentage/Percentage.tsx';
+import Widget from '../Widget/Widget.tsx';
 
 interface StatWidgetProps { 
   isNum: boolean;
@@ -12,18 +13,13 @@ interface StatWidgetProps {
 
 const StatWidget: React.FC<StatWidgetProps> = ({ isNum, title = '', stat = 0 }) => { 
   return ( 
-    <Box bRad="40px" padding="40px 40px" className="statWidget">
-      <div>
-        <h3>{title}</h3>
-      </div>
-      <div>
+    <Widget title={title}>
         {isNum ? ( 
           <Number num={stat} />
         ) : ( 
           <Percentage sign='+' percent={stat} /> 
         )}
-      </div>
-    </Box>
+    </Widget>
   );
 }
 

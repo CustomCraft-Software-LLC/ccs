@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Percentage.css';
-import Bar from '../Bar/Bar.tsx';
+import Bar from '../Custom/Bar/Bar.tsx';
 
 type Sign = '+' | '-';
 
