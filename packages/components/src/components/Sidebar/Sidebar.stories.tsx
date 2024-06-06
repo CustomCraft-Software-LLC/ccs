@@ -15,10 +15,10 @@ export default {
 export const Default = () => {
   return (   
     <Sidebar>
-      <SidebarItem to="/">1</SidebarItem>
-      <SidebarItem>2</SidebarItem>
-      <SidebarItem>3</SidebarItem>
-      <SidebarItem>4</SidebarItem>
+      <SidebarItem to="/" />
+      <SidebarItem />
+      <SidebarItem />
+      <SidebarItem />
     </Sidebar>
   );
 }
