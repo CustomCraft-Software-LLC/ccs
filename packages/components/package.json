@@ -1,6 +1,6 @@
 {
-  "name": "ccs-react-components",
-  "version": "1.1.0",
+  "name": "components",
+  "version": "1.0.0",
   "description": "CustomCraft LLC ready made react components",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
