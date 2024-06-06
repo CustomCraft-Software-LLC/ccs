@@ -23,7 +23,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({ bgColor = 'rgba(255,255,255,1
       <ListItemButton component={Link} to={to}>
         <ListItemAvatar>
           <Avatar>
-
+            
           </Avatar>
         </ListItemAvatar>
         <ListItemIcon>

@@ -12,8 +12,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <SidebarItem>
-      link
-    </SidebarItem>
+    <SidebarItem />
   );
 }
