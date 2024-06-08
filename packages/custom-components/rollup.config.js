@@ -11,7 +11,7 @@ export default {
   output: {
     file: 'dist/bundle.js',
     format: 'umd',
-    name: 'components',
+    name: 'custom-components',
     globals: {
       react: 'React',
       'react-dom': 'ReactDOM',
