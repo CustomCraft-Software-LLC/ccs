@@ -1,9 +1,12 @@
 {
-  "name": "utils",
+  "name": "@ccs/utils",
   "version": "1.0.0",
   "description": "CustomCraft LLC utils library",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/bundle.js",
     "license",

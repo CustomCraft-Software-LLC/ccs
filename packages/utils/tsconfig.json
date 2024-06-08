@@ -8,9 +8,8 @@
     "allowJs": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "allowImportingTsExtensions": true,
     "noEmit": true, 
-    "emitDeclarationOnly": false,
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist"

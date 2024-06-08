@@ -10,8 +10,8 @@ export default {
   input: 'src/index.ts',
   output: {
     file: 'dist/bundle.js',
-    format: 'umd',
-    name: 'utils',
+    format: 'cjs',
+    name: '@ccs/utils',
     globals: {
       react: 'React',
       'react-dom': 'ReactDOM',
@@ -21,7 +21,9 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript(),
+    typescript({
+      tsconfig: './tsconfig.json',
+    }),
     babel({
       babelHelpers: 'bundled',
       presets: ['@babel/preset-env', '@babel/preset-react'],
