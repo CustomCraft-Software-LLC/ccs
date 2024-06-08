@@ -9,8 +9,8 @@
         "skipLibCheck": true,
         "noEmit": true,
         "allowImportingTsExtensions": true,
-        "jsx": "react",
+        "jsx": "react-jsx"
     },
-    "include": [""],
+    "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules", "dist"]
 }
