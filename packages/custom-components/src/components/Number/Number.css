@@ -1,0 +1,17 @@
+.number {
+    font-family: Segoe UI;
+    font-size: xx-large;
+    font-weight: bold;
+    animation: count 1s ease-out;
+}
+
+@keyframes count {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+}
