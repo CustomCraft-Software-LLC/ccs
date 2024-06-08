@@ -1,19 +1,61 @@
+/**
+ * Represents FormData
+ */
 interface FormData { 
+	/**
+	 * The first name submitted
+	 */
 	first_name?: string;
+	/**
+	 * The last name submitted
+	 */
 	last_name?: string;
+	/**
+	 * The email submitted
+	 */
 	email?: string;
+	/**
+	 * The phone number submitted
+	 */	
 	phone_number?: string;
+	/**
+	 * The message submitted
+	 */ 
 	message?: string;
 }
 
+/**
+ * Represents Error Messages
+ */ 
 interface Errors { 
+	/**
+	 * The first name error message
+	 */
 	first_name?: string;
+	/**
+	 * The last name error message
+	 */
 	last_name?: string;
+	/**
+	 * The email error message
+	 */
 	email?: string;
+	/**
+	 * The phone number error message
+	 */	
 	phone_number?: string;
+	/**
+	 * The message error message
+	 */ 
 	message?: string;
 }
 
+
+/**
+ * validateContactForm - Takes user data and validates contact form
+ * @param {FormData} formdata - takes formdata
+ * @returns {Errors}
+ */
 export const validateContactForm = (formData : FormData) : Errors => {
     let errors : Errors = {};
 
@@ -41,14 +83,15 @@ export const validateContactForm = (formData : FormData) : Errors => {
       errors.message = 'Message is required';
     }
 
-    //
-    //if(!formData.agree) {
-    //  errors.agree = 'Above agreement is required';
-    //}
-
     return errors;
 };
 
+
+/**
+ * validateEmail - validate email
+ * @param {string} email
+ * @returns {boolean}
+ */
 export const validateEmail = (email: string): boolean => {
 	if (!email) 
 		return false;
@@ -58,6 +101,13 @@ export const validateEmail = (email: string): boolean => {
 		return true;
 }  
 
+
+/**
+ * validatePassword - validate password with given regex
+ * @param {string} password 
+ * @param {RegExp} regex 
+ * @returns {boolean}
+ */
 export const validatePassword = (password: string, regex: RegExp): boolean => {
 	if (!password)
 		return false;
@@ -67,6 +117,12 @@ export const validatePassword = (password: string, regex: RegExp): boolean => {
 		return true;
 }
 
+
+/**
+ * validatePhoneNumber - validate phone number
+ * @param {string} phoneNumber 
+ * @returns {boolean}
+ */
 export const validatePhoneNumber = (phoneNumber: string): boolean => {
 	if (!phoneNumber)
 		return false;

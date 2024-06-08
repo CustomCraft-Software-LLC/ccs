@@ -1,5 +1,10 @@
 import Cookies from 'js-cookie';
 
+/**
+ * 
+ * @param name 
+ * @param expDate 
+ */
 export const setCookie = (name : string, expDate : number) => {
     Cookies.set(name, 'true', { expires: expDate });
 }

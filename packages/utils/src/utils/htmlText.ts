@@ -3,7 +3,12 @@ import { Typography } from '@mui/material';
 import { HTML_TAGS } from '../constants/html.ts';
 import santizeHtml from 'sanitize-html';
 
-export const countHTMLText = (text: string) => { 
+/**
+ * countHTMLText - count html text
+ * @param {string} text
+ * @returns {number}
+ */ 
+export const countHTMLText = (text: string) : number => { 
     let count : number = 0;
 
     /* HTML_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6',
