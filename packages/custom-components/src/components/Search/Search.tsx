@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './Search.css';
-import Box from '../../Box/Box.tsx';
+import Box from '../Box/Box.tsx';
 
 interface SearchProps { 
     data?: string;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './Listbox.css';
-import Box from '../../Box/Box.tsx';
+import Box from '../Box/Box';
 
 interface ListboxProps { 
   children?: React.ReactNode;

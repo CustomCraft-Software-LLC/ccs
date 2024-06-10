@@ -1,5 +1,5 @@
 {
-  "name": "@ccs/utils",
+  "name": "@custom-craft-software/utils",
   "version": "1.0.0",
   "description": "CustomCraft LLC utils library",
   "main": "dist/bundle.js",

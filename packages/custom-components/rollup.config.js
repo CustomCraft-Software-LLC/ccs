@@ -11,7 +11,7 @@ export default {
   output: {
     file: 'dist/bundle.js',
     format: 'umd',
-    name: 'custom-components',
+    name: '@custom-craft-software/custom-components',
     globals: {
       react: 'React',
       'react-dom': 'ReactDOM',

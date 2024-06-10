@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '../../Box/Box.tsx';
+import Box from '../Box/Box.tsx';
 import './Profile.css';
 
 interface ProfileProps { 

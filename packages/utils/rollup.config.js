@@ -11,7 +11,7 @@ export default {
   output: {
     file: 'dist/bundle.js',
     format: 'cjs',
-    name: '@ccs/utils',
+    name: '@custom-craft-software/utils',
     globals: {
       react: 'React',
       'react-dom': 'ReactDOM',
