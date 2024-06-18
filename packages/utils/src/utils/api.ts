@@ -1,4 +1,4 @@
-type header = Record<string, any>;
+type header = Record<string, string>;
 
 const isValidURL = (url: string) : boolean => { 
     try { 
