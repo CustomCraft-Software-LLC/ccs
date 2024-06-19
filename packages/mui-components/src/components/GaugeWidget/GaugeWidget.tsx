@@ -5,7 +5,7 @@ import { Gauge, gaugeClasses } from '@mui/x-charts';
 
 import theme from '../styles/theme.js';
 
-import BaseWidget from './BaseWidget.jsx';
+import Widget from '../Widget/Widget.tsx';
 
 const style = { 
     [`& .${gaugeClasses.valueText}`]: {
@@ -17,8 +17,17 @@ const style = {
 }
 
 const GaugeWidget = () => { 
+    const style: React.CSSProperties = { 
+        [`& .${gaugeClasses.valueText}`]: {
+            fontSize: 40,
+        },
+        [`& .${gaugeClasses.valueArc}`]: {
+            fill: `${theme.palette.info.main}`,
+        },
+    }
+
     return ( 
-        <BaseWidget>
+        <Widget>
             <Typography variant="h5">Chart</Typography>
             <Gauge 
                 width={100}
@@ -28,7 +37,7 @@ const GaugeWidget = () => {
                 endAngle={120}
                 sx = {style}
             />
-        </BaseWidget>
+        </Widget>
     );
 }
 

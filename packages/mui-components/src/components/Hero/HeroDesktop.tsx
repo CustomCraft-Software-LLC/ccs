@@ -1,13 +1,18 @@
 import React from "react";
 import { Grid, Box } from '@mui/material';
 
-import { createHeroBlockDesktop } from "../utils/hero.js";
+import { createHeroBlockDesktop } from "../../utils/hero.tsx";
 
 import Animation from "../Animation/Animation.tsx";
 
-interface Hero
+interface HeroDesktopProps { 
+    heading: string;
+    subheading: string;
+    image: string;
+    alt?: string;
+}
 
-const HeroDesktop = ({ heading, subheading, image, alt }) => { 
+const HeroDesktop: React.FC<HeroDesktopProps> = ({ heading, subheading, image, alt="image" }) => { 
     return ( 
         <Grid container>
             <Grid item md={6} xs={12} sx={{mt: 15}}>

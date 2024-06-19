@@ -1,9 +1,16 @@
 import React from "react";
 import { Grid, Box } from '@mui/material';
 
-import { createHeroBlockMobile } from "../utils/hero.js";
+import { createHeroBlockMobile } from "../../utils/hero.tsx";
 
-const HeroMobile = ({ heading, subheading, image, alt }) => { 
+interface HeroMobileProps { 
+    heading: string;
+    subheading: string;
+    image: string;
+    alt?: string;
+}
+
+const HeroMobile: React.FC<HeroMobileProps> = ({ heading, subheading, image, alt="image" }) => { 
     return ( 
         <Grid container>
             <Grid item md={6} xs={12} sx={{mt: 5}}>
