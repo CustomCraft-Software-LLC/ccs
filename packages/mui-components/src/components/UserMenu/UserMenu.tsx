@@ -3,19 +3,18 @@ import { Tooltip, IconButton, Menu, Typography, MenuItem, Box, Avatar } from '@m
 
 import { Link } from 'react-router-dom';
 
-const UserMenu = ({userPages: Array<string> }) => { 
-    const [isUserMenuOpen, setIsUserMenuOpen] = useState(null);
+interface UserMenuProps { 
+    userPages: Array<string>
+}
 
-    const handleUserMenuOpened = (e: HTMLInputElement) => setIsUserMenuOpen(e.currentTarget);
-    const handleUserMenuClosed = (e: HTMLInputElement) => setIsUserMenuOpen(null);
+const UserMenu: React.FC<UserMenuProps> = ({userPages})  => { 
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState<null | HTMLElement>(null);
+
+    const handleUserMenuOpened = (e: React.MouseEvent<HTMLElement>) => setIsUserMenuOpen(e.currentTarget);
+    const handleUserMenuClosed = () => setIsUserMenuOpen(null);
 
     return ( 
-        <Box sx={{ marginLeft: 'auto', background: theme.palette.background.paper }}>
-            <Tooltip title="Profile" sx={{ marginLeft: 'auto' }}>
-                <IconButton onClick={handleUserMenuOpened} sx={{ paddingRight: 2 }}>
-                <Avatar alt="Charan Lamba" src="" />
-                </IconButton>
-            </Tooltip>
+        <Box sx={{ marginLeft: 'auto' }}>
             <Menu
                 sx={{ mt: '40px' }}
                 id='user-menu'
