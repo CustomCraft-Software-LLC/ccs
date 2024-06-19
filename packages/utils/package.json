@@ -1,6 +1,6 @@
 {
   "name": "@custom-craft-software/utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CustomCraft LLC utils library",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",
