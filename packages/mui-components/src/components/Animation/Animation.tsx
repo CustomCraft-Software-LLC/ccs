@@ -94,7 +94,7 @@ const bounceOut = keyframes`
     }
 `;
 
-const AnimationCSS = styled('div')<{ animation: string }>(({theme, animation}) => ({
+const AnimationCSS = styled('div')<{ animation: string }>(({animation}) => ({
     animation: `${animation} 2s infinite`,
 }));
 

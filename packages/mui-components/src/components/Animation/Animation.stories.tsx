@@ -13,7 +13,7 @@ export default {
 export const Default = () => {
     return ( 
         <Animation name="bounceIn">
-
+            <h1>Hello</h1>
         </Animation>
     );
 }

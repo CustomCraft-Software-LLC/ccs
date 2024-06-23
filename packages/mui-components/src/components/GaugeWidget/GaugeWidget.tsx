@@ -1,13 +1,14 @@
 import React from 'react';
 
 import { Card, CardContent, Typography, useTheme } from '@mui/material';
-import { Gauge, gaugeClasses } from '@mui/x-charts';
+// import { Gauge, gaugeClasses } from '@mui/x-charts';
 
 import Widget from '../Widget/Widget.tsx';
 
 const GaugeWidget = () => {
     const theme = useTheme();
     
+    /*
     const style: React.CSSProperties = { 
         [`& .${gaugeClasses.valueText}`]: {
             fontSize: 40,
@@ -16,7 +17,9 @@ const GaugeWidget = () => {
             fill: `${theme.palette.info.main}`,
         },
     }
+    */
 
+    /*
     return ( 
         <Widget>
             <Typography variant="h5">Chart</Typography>
@@ -30,6 +33,7 @@ const GaugeWidget = () => {
             />
         </Widget>
     );
+    */
 }
 
 export default GaugeWidget;
