@@ -26,6 +26,12 @@ export const countHTMLText = (text: string) : number => {
     return count;
 }
 
+/**
+ * splitHTMLText - split string into html lines
+ * @param {string} text 
+ * @returns 
+ */
+
 export const splitHTMLText = (text: string) => {
     let splitText : string[] = [];
     if(typeof text === 'string' && text !== "") {
@@ -63,6 +69,12 @@ export const convertTextIntoTypography = (text: string) => {
     
     countHTMLText: 5
 */
+
+/**
+ * formatText - html string to be formatted html string list
+ * @param {string} text 
+ * @returns 
+ */
 export const formatText = (text: string) => { 
     let properText : string[] = [];
 
