@@ -6,6 +6,8 @@
     "jsx": "react",
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
     "skipLibCheck": true,
     "declaration": true,
     "declarationDir": "./dist/types",
