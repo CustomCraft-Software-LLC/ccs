@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import UserMenu from './UserMenu.tsx'; 
+import UserMenu from './UserMenu'; 
 
 export default {
   title: 'Components/UserMenu', 
@@ -12,6 +12,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <UserMenu />
+    <UserMenu userPages={['Home', 'Services']}/>
   );
 }

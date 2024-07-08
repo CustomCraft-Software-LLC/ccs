@@ -6,8 +6,6 @@
     "jsx": "react",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "allowImportingTsExtensions": true,
-    "emitDeclarationOnly": false,
     "skipLibCheck": true,
     "declaration": true,
     "declarationDir": "./dist/types",
@@ -15,5 +13,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["src"],
-  "exclude": ["node_modules", "dist"],
+  "exclude": ["node_modules", "dist"]
 }

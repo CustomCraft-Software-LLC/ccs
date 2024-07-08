@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, Typography, useTheme } from '@mui/material';
 // import { Gauge, gaugeClasses } from '@mui/x-charts';
 
-import Widget from '../Widget/Widget.tsx';
+import Widget from '../Widget/Widget';
 
 const GaugeWidget = () => {
     const theme = useTheme();

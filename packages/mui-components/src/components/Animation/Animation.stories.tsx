@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Meta } from '@storybook/react';
-import Animation from './Animation.tsx';
+import Animation from './Animation';
 
 export default {
     title: 'Components/Animation', 

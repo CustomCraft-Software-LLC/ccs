@@ -1,12 +1,12 @@
 import React from "react";
 import { Grid, Box } from '@mui/material';
 
-import { createHeroBlockDesktop } from "../../utils/hero.tsx";
+import { createHeroBlockDesktop } from "../../utils/hero";
 
-import Animation from "../Animation/Animation.tsx";
+import Animation from "../Animation/Animation";
 
 interface HeroDesktopProps { 
-    heading: string;
+    heading: string[];
     subheading: string;
     image: string;
     alt?: string;

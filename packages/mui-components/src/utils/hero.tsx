@@ -1,11 +1,9 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Typography, useTheme } from "@mui/material";
 
-import { theme } from '../assets/js/theme.js';
-
-
-export const createHeroBlockDesktop = (heading: string, subheading: string) => { 
+export const createHeroBlockDesktop = (heading: string[], subheading: string) => { 
     const wordList = Array.isArray(heading) ? heading : [];
+    const theme = useTheme();
 
     return ( 
         <React.Fragment>
@@ -38,7 +36,7 @@ export const createHeroBlockDesktop = (heading: string, subheading: string) => {
     );
 }
 
-export const createHeroBlockMobile = (heading: string, subheading: string) => { 
+export const createHeroBlockMobile = (heading: string[], subheading: string) => { 
     const wordList = Array.isArray(heading) ? heading : [];
 
     return ( 

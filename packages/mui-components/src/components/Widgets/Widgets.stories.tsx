@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Meta } from '@storybook/react';
-import Widgets from './Widgets.tsx';
-import Widget from '../Widget/Widget.tsx';
+import Widgets from './Widgets';
+import Widget from '../Widget/Widget';
 
 export default {
     title: 'Components/Widgets', 

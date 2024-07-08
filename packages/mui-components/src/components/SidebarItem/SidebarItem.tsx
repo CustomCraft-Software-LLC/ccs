@@ -1,6 +1,5 @@
 import * as React from 'react';
 import './SidebarItem.css';
-import PropTypes from 'prop-types';
 import { Avatar, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 import { Link } from 'react-router-dom';

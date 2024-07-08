@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import StatWidget from './StatWidget.tsx';
+import StatWidget from './StatWidget';
 
 export default {
   title: 'Components/StatWidget', 

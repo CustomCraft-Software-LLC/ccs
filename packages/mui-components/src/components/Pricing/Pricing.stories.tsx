@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import Pricing from './Pricing.tsx'; 
+import Pricing from './Pricing'; 
 
 export default {
   title: 'Components/Pricing', 
@@ -12,7 +12,7 @@ export default {
 
 export const Default = () => {
   return (   
-    <Pricing title="website" pricing="80" to="/" buttonText="contact">
+    <Pricing title="website" pricing={80} to="/" buttonText="contact">
     </Pricing>
   );
 }

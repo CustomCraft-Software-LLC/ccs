@@ -1,10 +1,10 @@
 import React from "react";
 import { Grid, Box } from '@mui/material';
 
-import { createHeroBlockMobile } from "../../utils/hero.tsx";
+import { createHeroBlockMobile } from "../../utils/hero";
 
 interface HeroMobileProps { 
-    heading: string;
+    heading: string[];
     subheading: string;
     image: string;
     alt?: string;

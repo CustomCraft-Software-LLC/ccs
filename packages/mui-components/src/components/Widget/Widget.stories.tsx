@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Meta } from '@storybook/react';
-import Widget from './Widget.tsx';
+import Widget from './Widget';
 // import { createChart } from '../../utils/chart'; 
 
 export default {

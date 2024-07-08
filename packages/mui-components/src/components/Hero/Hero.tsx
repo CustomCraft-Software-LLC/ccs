@@ -5,8 +5,8 @@ import {
   useMediaQuery,
   useTheme 
 } from '@mui/material';
-import HeroDesktop from './HeroDesktop.jsx';
-import HeroMobile from './HeroMobile.jsx';
+import HeroDesktop from './HeroDesktop';
+import HeroMobile from './HeroMobile';
 
 interface HeroProps { 
     heading: string;
@@ -30,7 +30,7 @@ const HeroSection: React.FC<HeroProps> = ({ heading, subheading, image="https://
 				<Grid item md={0} xs={1}></Grid>
 				<Grid item md={12} xs={10}>
 					{isMobile ? ( 
-						<HeroMobile heading={words} subheading={subheading} image={image} alt={alt} /> 
+						<HeroMobile heading={words} subheading={subheading} image={image} alt={alt} />
 					) : (  
 						<HeroDesktop heading={words} subheading={subheading} image={image} alt={alt} />
 					)}

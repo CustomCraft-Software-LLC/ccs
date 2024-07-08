@@ -18,9 +18,9 @@ export default {
     },
   },
   plugins: [
-    peerDepsExternal(), // Automatically externalize peerDependencies in a rollup bundle
-    resolve(), // Locate and bundle third-party dependencies in node_modules
-    commonjs(), // Convert CommonJS modules to ES6
+    peerDepsExternal(),
+    resolve(),
+    commonjs(),
     typescript({
       tsconfig: './tsconfig.json',
     }),
@@ -29,8 +29,8 @@ export default {
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
     }),
-    postcss(), // Process CSS with PostCSS
-    terser(), // Minify the bundle
+    postcss(),
+    terser(),
   ],
-  external: ['react', 'react-dom'], // Ensure these dependencies are not bundled
+  external: ['react', 'react-dom'],
 };
