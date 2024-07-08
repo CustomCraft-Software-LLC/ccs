@@ -1,13 +1,13 @@
-import babel from '@rollup/plugin-babel';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
-import typescript from '@rollup/plugin-typescript'; 
+import typescript from '@rollup/plugin-typescript';
 
 export default {
-  input: 'src/index.ts',
+  input: 'src/components/index.ts',
   output: {
     file: 'dist/bundle.js',
     format: 'umd',
@@ -21,12 +21,16 @@ export default {
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript(),
+    typescript({
+      tsconfig: './tsconfig.json', // Adjust the path if your tsconfig.json is in a different location
+    }),
     babel({
       babelHelpers: 'bundled',
-      presets: ['@babel/preset-env', '@babel/preset-react'],
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
     }),
     postcss(),
     terser(),
   ],
+  external: ['react', 'react-dom'], // Ensure these dependencies are not bundled
 };

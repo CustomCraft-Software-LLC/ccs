@@ -1,17 +1,19 @@
 import React from 'react';
-import { ThemeProvider, CssBaseline } from '@mui/material';
+import { ThemeProvider, createTheme, CssBaseline, Theme } from '@mui/material';
 
-const ThemeToggleContext = React.createContext();
+const ThemeToggleContext = React.createContext<() => void>(() => {});
 
 interface ThemeToggleProviderProps { 
     children?: React.ReactNode;
+    lightTheme: Theme;
+    darkTheme: Theme;
 }
 
-export const ThemeToggleProvider: React.FC<ThemeToggleProviderProps> = ({ children }) => {
+export const ThemeToggleProvider: React.FC<ThemeToggleProviderProps> = ({ children, lightTheme, darkTheme }) => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
 
   const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
+    setIsDarkMode((prevMode) => !prevMode);
   };
 
   const theme = React.useMemo(() => (isDarkMode ? darkTheme : lightTheme), [isDarkMode]);

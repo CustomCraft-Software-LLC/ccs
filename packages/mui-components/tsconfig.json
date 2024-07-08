@@ -1,20 +1,17 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
     "module": "esnext",
+    "lib": ["dom", "esnext"],
     "jsx": "react",
-    "strict": true,
-    "esModuleInterop": true,
-    "allowJs": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "allowImportingTsExtensions": true,
-    "noEmit": true, 
-    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "outDir": "dist"
+    "declaration": true,
+    "declarationDir": "./dist/types",
+    "outDir": "./dist",
+    "allowSyntheticDefaultImports": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"],
 }
