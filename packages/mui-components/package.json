@@ -1,6 +1,6 @@
 {
   "name": "@custom-craft-software/mui-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CustomCraft LLC ready made react components",
   "main": "dist/bundle.js",
   "module": "dist/bundle.js",

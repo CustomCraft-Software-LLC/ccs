@@ -1,10 +1,10 @@
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import typescript from '@rollup/plugin-typescript';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import resolve from '@rollup/plugin-node-resolve';
 
 export default {
   input: 'src/components/index.ts',
@@ -18,19 +18,19 @@ export default {
     },
   },
   plugins: [
-    peerDepsExternal(),
-    resolve(),
-    commonjs(),
+    peerDepsExternal(), // Automatically externalize peerDependencies in a rollup bundle
+    resolve(), // Locate and bundle third-party dependencies in node_modules
+    commonjs(), // Convert CommonJS modules to ES6
     typescript({
-      tsconfig: './tsconfig.json', // Adjust the path if your tsconfig.json is in a different location
+      tsconfig: './tsconfig.json',
     }),
     babel({
       babelHelpers: 'bundled',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
     }),
-    postcss(),
-    terser(),
+    postcss(), // Process CSS with PostCSS
+    terser(), // Minify the bundle
   ],
   external: ['react', 'react-dom'], // Ensure these dependencies are not bundled
 };
