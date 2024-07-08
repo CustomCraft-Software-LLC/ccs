@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './Widgets.css';
 import { Box } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';

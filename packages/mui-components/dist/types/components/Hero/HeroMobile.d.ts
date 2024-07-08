@@ -1,6 +1,6 @@
 import React from "react";
 interface HeroMobileProps {
-    heading: string;
+    heading: string[];
     subheading: string;
     image: string;
     alt?: string;

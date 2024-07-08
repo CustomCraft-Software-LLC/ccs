@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './SidebarItem.css';
 import { Avatar, ListItem, ListItemButton, ListItemAvatar, ListItemText, ListItemIcon } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
