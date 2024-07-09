@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Sidebar.css';
-import { Drawer, List } from '@mui/material';
+import { Drawer, List, SxProps, Theme } from '@mui/material';
 
 interface SidebarProps { 
   shadowColor?: string;
@@ -15,7 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({ shadowColor = 'rgba(0,0,0,0.1)', bgCo
     setIsOpen(!isOpen);
   };
 
-  const style: React.CSSProperties = {
+  const style: SxProps<Theme> = {
     backgroundColor: bgColor,
     boxShadow: `0 4px 8px ${shadowColor}`,
   }

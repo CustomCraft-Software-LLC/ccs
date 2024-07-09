@@ -3,8 +3,6 @@ import { Grid, Box } from '@mui/material';
 
 import { createHeroBlockDesktop } from "../../utils/hero";
 
-import Animation from "../Animation/Animation";
-
 interface HeroDesktopProps { 
     heading: string[];
     subheading: string;
@@ -16,9 +14,7 @@ const HeroDesktop: React.FC<HeroDesktopProps> = ({ heading, subheading, image, a
     return ( 
         <Grid container>
             <Grid item md={6} xs={12} sx={{mt: 15}}>
-                <Animation name='bounceIn'>
-                    {createHeroBlockDesktop(heading, subheading)}
-                </Animation>
+                {createHeroBlockDesktop(heading, subheading)}
             </Grid>
             <Grid item md={6} xs={12}>
                 <Box component="img"

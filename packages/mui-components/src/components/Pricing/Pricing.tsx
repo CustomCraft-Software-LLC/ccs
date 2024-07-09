@@ -1,7 +1,6 @@
 import React from 'react';
 import { Typography, Box, Divider, Button, Paper } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
-import { Link } from 'react-router-dom';
 
 interface PricingProps { 
   title: string;
