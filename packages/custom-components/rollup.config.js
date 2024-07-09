@@ -10,7 +10,7 @@ export default {
   input: 'src/index.ts',
   output: {
     file: 'dist/bundle.js',
-    format: 'umd',
+    format: 'cjs',
     name: '@custom-craft-software/custom-components',
     globals: {
       react: 'React',
