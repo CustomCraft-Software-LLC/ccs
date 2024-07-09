@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import './Widgets.css';
 interface WidgetsProps {
     children?: React.ReactNode;
