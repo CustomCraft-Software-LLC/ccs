@@ -1,20 +1,38 @@
 .timeline {
     display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.timeline.vertical {
     flex-direction: column;
-    align-items: flex-start;
+}
+
+.timeline.horizontal {
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .timeline-event {
-    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     padding: 10px;
-    border-left: 2px solid #007bff;
+    margin: 10px;
+    background-color: #f9f9f9;
+}
+
+.timeline.vertical .timeline-event {
+    width: 80%;
+}
+
+.timeline.horizontal .timeline-event {
+    min-width: 100px;
 }
 
 .event-date {
     font-weight: bold;
-    margin-bottom: 5px;
 }
 
 .event-description {
-    color: #555;
+    margin-top: 5px;
 }

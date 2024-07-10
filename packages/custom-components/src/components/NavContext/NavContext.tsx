@@ -13,6 +13,7 @@ export const NavProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     const toggleMobileMenu = () => {
         setMobileMenuOpen(!isMobileMenuOpen);
     };
+    
 
     return (
         <NavContext.Provider value={{ isMobileMenuOpen, toggleMobileMenu }}>
