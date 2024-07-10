@@ -1,7 +1,11 @@
 import React, { useRef, useState } from 'react';
 import './FileUpload.css';
 
-const FileUpload: React.FC = () => {
+interface FileUploadProps { 
+  style: React.CSSProperties;
+}
+
+const FileUpload: React.FC<FileUploadProps> = ({style}) => {
   const fileInput = useRef<HTMLInputElement>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -16,7 +20,7 @@ const FileUpload: React.FC = () => {
         type="file"
         ref={fileInput}
         onChange={handleFileSelect}
-        style={{ display: 'none' }}
+        style={style}
       />
       <button onClick={() => fileInput.current?.click()}>Choose File</button>
       {selectedFile && (

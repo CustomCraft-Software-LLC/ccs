@@ -13,7 +13,9 @@ const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
       hours?: number;
       minutes?: number;
       seconds?: number;
-    } = {};
+    };
+
+    timeLeft = {};
 
     if (difference > 0) {
       timeLeft = {
