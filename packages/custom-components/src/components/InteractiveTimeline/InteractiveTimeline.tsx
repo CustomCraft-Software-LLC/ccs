@@ -9,9 +9,10 @@ interface Event {
 interface InteractiveTimelineProps {
   events: Event[];
   orientation: 'horizontal' | 'vertical';
+  style?: React.CSSProperties;
 }
 
-const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({ events, orientation }) => {
+const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({ events, orientation, style = {} }) => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   const handleEventClick = (event: Event) => {
@@ -29,6 +30,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({ events, orien
           key={index} 
           className="timeline-event" 
           onClick={() => handleEventClick(event)}
+          style={style}
         >
           <div className="event-date">{event.date}</div>
           <div className="event-description">{event.description}</div>
@@ -37,7 +39,7 @@ const InteractiveTimeline: React.FC<InteractiveTimelineProps> = ({ events, orien
 
       {selectedEvent && (
         <div className="modal" onClick={handleCloseModal}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={style}>
             <span className="close-button" onClick={handleCloseModal}>&times;</span>
             <h2>{selectedEvent.date}</h2>
             <p>{selectedEvent.description}</p>
