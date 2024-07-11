@@ -1,29 +1,45 @@
 .datePicker {
-    position: relative;
-}
-
-.datePicker::after { 
-    content: '▼';
-    position: absolute;
-    top: 50%;
-    right: 5px;
-    transform: translateY(-50%);
-    color: #555;
-    pointer-events: none;
-}
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+    padding: 10px;
+    background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
 .dateI {
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
+    border: 2px solid #ff6f61;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
 
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 8px;
-    padding-right: 24px;
-    width: 200px;
+.dateI:focus {
+    border-color: #ff3f3f;
 }
 
 .dateI::-webkit-calendar-picker-indicator {
-    display: none;
+    background: url('data:image/svg+xml;charset=UTF-8,<svg viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0zM9 14V9h2v5H9zm0-7V4h2v3H9z" fill="%23ff6f61"/></svg>') no-repeat center;
+    background-size: 20px;
+    cursor: pointer;
+}
+
+.dateI::-webkit-input-placeholder {
+    color: #ff6f61;
+}
+
+.dateI::-moz-placeholder {
+    color: #ff6f61;
+}
+
+.dateI:-ms-input-placeholder {
+    color: #ff6f61;
+}
+
+.dateI:-moz-placeholder {
+    color: #ff6f61;
 }

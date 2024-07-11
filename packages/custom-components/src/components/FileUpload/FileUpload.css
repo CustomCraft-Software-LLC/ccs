@@ -1,11 +1,15 @@
 .file-upload {
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.file-upload button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 15px;
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload {
+    font-size: 14px;
+    color: #333;
 }

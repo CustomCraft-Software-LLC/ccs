@@ -1,72 +1,85 @@
 .interactive-timeline {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-  }
-  
-  .interactive-timeline.vertical {
-    flex-direction: column;
-  }
-  
-  .interactive-timeline.horizontal {
-    flex-direction: row;
-    justify-content: space-between;
-  }
-  
-  .timeline-event {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .timeline-event:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .timeline.vertical .timeline-event {
-    width: 80%;
-  }
-  
-  .timeline.horizontal .timeline-event {
-    min-width: 100px;
-  }
-  
-  .event-date {
-    font-weight: bold;
-  }
-  
-  .event-description {
-    margin-top: 5px;
-  }
-  
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  position: relative;
+}
 
-  }
-  
-  .modal-content {
-    padding: 20px;
-    border-radius: 5px;
-    position: relative;
-    max-width: 500px;
-    width: 80%;
-  }
-  
-  .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-    font-size: 20px;
-  }
+.interactive-timeline.vertical {
+  flex-direction: column;
+}
+
+.interactive-timeline.horizontal {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.timeline-event {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-event:hover {
+  background-color: #e0e0e0;
+}
+
+.interactive-timeline.vertical .timeline-event {
+  width: 80%;
+}
+
+.interactive-timeline.horizontal .timeline-event {
+  min-width: 100px;
+}
+
+.event-date {
+  font-weight: bold;
+}
+
+.event-description {
+  margin-top: 5px;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000;
+}
+
+.modal.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  max-width: 500px;
+  width: 80%;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+}
