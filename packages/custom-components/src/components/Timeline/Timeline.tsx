@@ -10,10 +10,13 @@ const Timeline: React.FC<TimelineProps> = ({ events, orientation }) => {
   return (
     <div className={`timeline ${orientation}`}>
       {events.map((event, index) => (
-        <div key={index} className="timeline-event">
-          <div className="event-date">{event.date}</div>
-          <div className="event-description">{event.description}</div>
-        </div>
+        <React.Fragment>
+          <div key={index} className="timeline-event">
+            <div className="event-date">{event.date}</div>
+            <div className="event-description">{event.description}</div>
+          </div>
+          <div></div>
+        </React.Fragment>
       ))}
     </div>
   );

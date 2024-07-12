@@ -11,15 +11,11 @@ export default {
 } as Meta;
 
 export const Default = () => {
-    const events = [
-        { date: '2024-01-01', description: "New Year's Day" },
-        { date: '2024-02-14', description: "Valentine's Day" },
-        { date: '2024-03-17', description: "St. Patrick's Day" },
-        { date: '2024-04-01', description: "April Fool's Day" },
-        { date: '2024-07-04', description: 'Independence Day' },
-        { date: '2024-10-31', description: 'Halloween' },
-        { date: '2024-12-25', description: 'Christmas Day' }
-    ];
+  const events = [
+    { date: '2021', description: 'Event 1', content: 'Event 1 Details' },
+    { date: '2022', description: 'Event 2', content: 'Event 2 Details' },
+    { date: '2023', description: 'Event 3', content: 'Event 3 Details' }
+];
 
     return (   
         <div>
