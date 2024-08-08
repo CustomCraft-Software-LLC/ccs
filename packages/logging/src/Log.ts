@@ -1,45 +1,54 @@
 import * as fs from 'fs';
-import { Client as PgClient } from 'pg';
-import mysql from 'mysql2/promise';
 import axios from 'axios';
+import chalk from 'chalk';
 
-// Helper functions for each logging method
-const logToFile = (fileName: string, message: string): void => {
-    fs.appendFileSync(fileName, `${new Date().toISOString()} - ${message}\n`);
+// Helper function to format log entries with multi-line support
+const formatLogEntry = (level: string, message: string): string => {
+    const timestamp = new Date().toLocaleString(); // More readable timestamp format
+    const levelString = level.toUpperCase().padEnd(7);
+    
+    // Split message into lines and format each line
+    return message.split('\n').map(line => `[${timestamp}] ${levelString} - ${line}`).join('\n');
 };
 
-const logToConsole = (message: string): void => {
-    console.log(`${new Date().toISOString()} - ${message}`);
+// Color-coded console logging
+const colorizeLog = (level: string, message: string): string => {
+    switch (level.toLowerCase()) {
+        case 'info':
+            return chalk.blue(message);
+        case 'warn':
+            return chalk.yellow(message);
+        case 'error':
+            return chalk.red(message);
+        default:
+            return message;
+    }
 };
 
-const logToJsonFile = (fileName: string, message: string): void => {
+// Log to a file
+const logToFile = (fileName: string, level: string, message: string): void => {
+    fs.appendFileSync(fileName, formatLogEntry(level, message) + '\n');
+};
+
+// Log to the console
+const logToConsole = (level: string, message: string): void => {
+    console.log(colorizeLog(level, formatLogEntry(level, message)));
+};
+
+// Log to a JSON file with proper indentation
+const logToJsonFile = (fileName: string, level: string, message: string): void => {
     const logEntry = {
         timestamp: new Date().toISOString(),
-        level: 'info',
+        level: level.toUpperCase(),
         message: message
     };
-    fs.appendFileSync(fileName, JSON.stringify(logEntry) + '\n');
+    fs.appendFileSync(fileName, JSON.stringify(logEntry, null, 2) + '\n'); // Indent JSON with 2 spaces
 };
 
-const logToMySQL = async (connection: mysql.Connection, message: string): Promise<void> => {
+// Log to an API
+const logToApi = async (url: string, level: string, message: string): Promise<void> => {
     try {
-        await connection.query('INSERT INTO logs (timestamp, message) VALUES (?, ?)', [new Date().toISOString(), message]);
-    } catch (error) {
-        console.error('MySQL logging error:', error);
-    }
-};
-
-const logToPostgreSQL = async (client: PgClient, message: string): Promise<void> => {
-    try {
-        await client.query('INSERT INTO logs (timestamp, message) VALUES ($1, $2)', [new Date().toISOString(), message]);
-    } catch (error) {
-        console.error('PostgreSQL logging error:', error);
-    }
-};
-
-const logToApi = async (url: string, message: string): Promise<void> => {
-    try {
-        await axios.post(url, { timestamp: new Date().toISOString(), message });
+        await axios.post(url, { timestamp: new Date().toISOString(), level: level.toUpperCase(), message });
     } catch (error) {
         console.error('API logging error:', error);
     }
@@ -47,96 +56,38 @@ const logToApi = async (url: string, message: string): Promise<void> => {
 
 // Main Log class
 class Log {
-    private fileName?: string;
-    private jsonFileName?: string;
-    private mysqlConnection?: mysql.Connection;
-    private pgClient?: PgClient;
-    private apiUrl?: string;
+    private static fileName?: string;
+    private static jsonFileName?: string;
+    private static apiUrl?: string;
 
-    constructor(config: {
+    static open(config: {
         file?: string;
         json?: string;
-        mysql?: { host: string, user: string, database: string, password: string },
-        postgresql?: { connectionString: string },
         api?: string
-    }) {
+    }): void {
         if (config.file) {
             this.fileName = config.file;
         }
         if (config.json) {
             this.jsonFileName = config.json;
         }
-        if (config.mysql) {
-            this.mysqlConnection = mysql.createPool(config.mysql);
-        }
-        if (config.postgresql) {
-            this.pgClient = new PgClient({ connectionString: config.postgresql.connectionString });
-            this.pgClient.connect().catch(console.error);
-        }
         if (config.api) {
             this.apiUrl = config.api;
         }
     }
 
-    async file(message: string): Promise<void> {
+    static async log(level: string, message: string): Promise<void> {
         if (this.fileName) {
-            logToFile(this.fileName, message);
+            logToFile(this.fileName, level, message);
         }
-    }
-
-    console(message: string): void {
-        logToConsole(message);
-    }
-
-    async dbMySQL(message: string): Promise<void> {
-        if (this.mysqlConnection) {
-            await logToMySQL(this.mysqlConnection, message);
-        }
-    }
-
-    async dbPostgreSQL(message: string): Promise<void> {
-        if (this.pgClient) {
-            await logToPostgreSQL(this.pgClient, message);
-        }
-    }
-
-    async api(message: string): Promise<void> {
-        if (this.apiUrl) {
-            await logToApi(this.apiUrl, message);
-        }
-    }
-
-    async json(message: string): Promise<void> {
         if (this.jsonFileName) {
-            logToJsonFile(this.jsonFileName, message);
+            logToJsonFile(this.jsonFileName, level, message);
         }
-    }
-
-    async close(): Promise<void> {
-        if (this.pgClient) {
-            await this.pgClient.end();
+        if (this.apiUrl) {
+            await logToApi(this.apiUrl, level, message);
         }
-        if (this.mysqlConnection) {
-            await this.mysqlConnection.end();
-        }
+        logToConsole(level, message);
     }
 }
 
-// Usage example
-const log = new Log({
-    file: 'app.log',
-    json: 'app.json',
-    mysql: { host: 'localhost', user: 'root', database: 'mydatabase', password: 'password' },
-    postgresql: { connectionString: 'postgres://user:password@localhost:5432/mydatabase' },
-    api: 'http://example.com/log'
-});
-
-log.console('This is a console log message');
-log.file('This is a file log message');
-log.json('This is a JSON log message');
-log.dbMySQL('This is a MySQL log message');
-log.dbPostgreSQL('This is a PostgreSQL log message');
-log.api('This is an API log message');
-
-// Make sure to close connections when done
-log.close().catch(console.error);
+export default Log;
