@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import axios from 'axios';
 import chalk from 'chalk';
-
 // Formats log entries with timestamps and levels
 /**
  * Formats a log message with a timestamp and log level.
@@ -9,12 +8,11 @@ import chalk from 'chalk';
  * @param {string} message - The log message, which can span multiple lines.
  * @returns {string} The formatted log entry with timestamp and level.
  */
-const formatLogEntry = (level: string, message: string): string => {
+const formatLogEntry = (level, message) => {
     const timestamp = new Date().toLocaleString();
     const levelString = level.toUpperCase().padEnd(7);
     return message.split('\n').map(line => `[${timestamp}] ${levelString} - ${line}`).join('\n');
 };
-
 // Colorizes log messages for console output
 /**
  * Applies color coding to log messages based on their level.
@@ -22,7 +20,7 @@ const formatLogEntry = (level: string, message: string): string => {
  * @param {string} message - The log message to colorize.
  * @returns {string} The colorized log message.
  */
-const colorizeLog = (level: string, message: string): string => {
+const colorizeLog = (level, message) => {
     switch (level.toLowerCase()) {
         case 'info': return chalk.blue(message);
         case 'warn': return chalk.yellow(message);
@@ -30,47 +28,45 @@ const colorizeLog = (level: string, message: string): string => {
         default: return message;
     }
 };
-
 // Logs to the console
 /**
  * Logs a message to the console with color coding.
  * @param {string} level - The log level (e.g., "INFO", "ERROR").
  * @param {string} message - The log message.
  */
-const logToConsole = (level: string, message: string): void => {
+const logToConsole = (level, message) => {
     const formattedMessage = formatLogEntry(level, message);
     const colorizedMessage = colorizeLog(level, formattedMessage);
     console.log(colorizedMessage);
 };
-
 // Appends log entries to a file
 /**
  * Appends a formatted log entry to a specified file.
  * @param {string} fileName - The name of the file where the log entry will be appended.
  * @param {string} level - The log level (e.g., "INFO", "ERROR").
  * @param {string} message - The log message.
- * 
+ *
  * Logs are formatted with timestamps and levels before being appended. Errors in file operations are logged to the console.
  */
-const logToFile = (fileName: string, level: string, message: string): void => {
+const logToFile = (fileName, level, message) => {
     try {
         const logEntry = formatLogEntry(level, message);
         fs.appendFileSync(fileName, logEntry + '\n');
-    } catch (error) {
+    }
+    catch (error) {
         console.error(`Failed to write log to file "${fileName}":`, error);
     }
 };
-
 // Appends formatted JSON log entries to a file
 /**
  * Appends a JSON-formatted log entry to a specified file.
  * @param {string} fileName - The name of the file where the JSON log entry will be appended.
  * @param {string} level - The log level (e.g., "INFO", "ERROR").
  * @param {string} message - The log message.
- * 
+ *
  * Log entries are formatted as JSON with a timestamp and log level, and then appended to the file.
  */
-const logToJsonFile = (fileName: string, level: string, message: string): void => {
+const logToJsonFile = (fileName, level, message) => {
     const logEntry = {
         timestamp: new Date().toISOString(),
         level: level.toUpperCase(),
@@ -78,33 +74,31 @@ const logToJsonFile = (fileName: string, level: string, message: string): void =
     };
     fs.appendFileSync(fileName, JSON.stringify(logEntry, null, 2) + '\n');
 };
-
 // Sends log entries to an API
 /**
  * Sends a log entry to a specified API endpoint.
  * @param {string} url - The API endpoint URL.
  * @param {string} level - The log level (e.g., "INFO", "ERROR").
  * @param {string} message - The log message.
- * 
+ *
  * The log entry is sent as a POST request with JSON payload. Errors in API communication are logged to the console.
  */
-const logToApi = async (url: string, level: string, message: string): Promise<void> => {
+const logToApi = async (url, level, message) => {
     try {
         await axios.post(url, { timestamp: new Date().toISOString(), level: level.toUpperCase(), message });
-    } catch (error) {
+    }
+    catch (error) {
         console.error('API logging error:', error);
     }
 };
-
 // Main Log class for managing log outputs
 /**
  * A class for managing logging to various destinations.
  */
 class Log {
-    private static fileName?: string; // Optional file path for plain text logs
-    private static jsonFileName?: string; // Optional file path for JSON logs
-    private static apiUrl?: string; // Optional API URL for sending log entries
-
+    static fileName; // Optional file path for plain text logs
+    static jsonFileName; // Optional file path for JSON logs
+    static apiUrl; // Optional API URL for sending log entries
     // Configures log destinations
     /**
      * Sets up the destinations for logging.
@@ -113,26 +107,30 @@ class Log {
      * @param {string} [config.json] - Optional file path for JSON logs.
      * @param {string} [config.api] - Optional API URL for sending log entries.
      */
-    static open(config: { file?: string; json?: string; api?: string }): void {
-        if (config.file) this.fileName = config.file;
-        if (config.json) this.jsonFileName = config.json;
-        if (config.api) this.apiUrl = config.api;
+    static open(config) {
+        if (config.file)
+            this.fileName = config.file;
+        if (config.json)
+            this.jsonFileName = config.json;
+        if (config.api)
+            this.apiUrl = config.api;
     }
-
     // Logs message to configured destinations
     /**
      * Logs a message to all configured destinations.
      * @param {string} level - The log level (e.g., "INFO", "ERROR").
      * @param {string} message - The log message.
-     * 
+     *
      * Logs are sent to the file, JSON file, and API if configured, and also output to the console.
      */
-    static async log(level: string, message: string): Promise<void> {
-        if (this.fileName) logToFile(this.fileName, level, message);
-        if (this.jsonFileName) logToJsonFile(this.jsonFileName, level, message);
-        if (this.apiUrl) await logToApi(this.apiUrl, level, message);
+    static async log(level, message) {
+        if (this.fileName)
+            logToFile(this.fileName, level, message);
+        if (this.jsonFileName)
+            logToJsonFile(this.jsonFileName, level, message);
+        if (this.apiUrl)
+            await logToApi(this.apiUrl, level, message);
         logToConsole(level, message);
     }
 }
-
 export default Log;

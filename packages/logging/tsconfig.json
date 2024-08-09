@@ -1,18 +1,19 @@
 {
   "compilerOptions": {
-    "target": "ES2022",       // Ensure target is ES2022 or higher
-    "module": "ESNext",       // Use ESNext for module to support top-level await
-    "jsx": "react",
-    "strict": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noEmit": true,           // Do not emit JavaScript files
-    "allowImportingTsExtensions": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "target": "ES2022",                     // Set the ECMAScript target version
+    "module": "ESNext",                     // Set the module system
+    "outDir": "./dist",                    // Output directory for compiled files
+    "rootDir": "./src",                    // Root directory of TypeScript files
+    "jsx": "react",                        // Enable JSX support if needed
+    "strict": true,                        // Enable strict type-checking
+    "esModuleInterop": true,               // Enable compatibility between CommonJS and ES Modules
+    "allowJs": true,                       // Allow JavaScript files
+    "moduleResolution": "node",            // Node.js module resolution
+    "resolveJsonModule": true,             // Allow importing JSON modules
+    "noEmit": false,                       // Emit output files (set to false to generate JavaScript files)
+    "skipLibCheck": true,                 // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true // Ensure file name casing consistency
   },
-  "include": ["src/**/*", "examples/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*", "examples/**/*"], // Files to include
+  "exclude": ["node_modules"]              // Directories to exclude
 }
