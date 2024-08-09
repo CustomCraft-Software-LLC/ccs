@@ -3,7 +3,6 @@ import { Logger } from '../src/Logger'; // Adjust path as necessary
 const logger = new Logger({
     filePath: './logs/app.log',
     format: (level, message) => `[CUSTOM FORMAT] [${level.toUpperCase()}] ${message}`,
-    tags: ['error'], // Only log messages containing 'error'
 });
 
 // Logging with different levels

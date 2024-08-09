@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 export class Logger {
     filePath;
     tags;

@@ -1,16 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "outDir": "./dist",
-    "baseUrl": ".",
-    "paths": {
-      "*": ["node_modules/*"]
-    },
+    "target": "ES6",
+    "module": "commonjs",
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "skipLibCheck": true, // Skip checking of library declaration files
+    "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "examples/**/*"],
-  "exclude": ["node_modules"]
+  "include": ["src/**/*.ts", "examples/**/*.ts"]
 }
