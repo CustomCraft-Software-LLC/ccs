@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "example-build": "npx tsc",
-    "start": "node ./dist/examples/Log.js",
+    "start": "ts-node ./examples/Logger.ts",
     "build": "rollup -c",
     "test": "jest"
   },
