@@ -1,95 +1,111 @@
-import * as fs from 'fs';
+import fs from 'fs';
+import path from 'path';
 import chalk from 'chalk';
 
-export type LogLevel = 'info' | 'warn' | 'error';
-
-interface LoggerOptions {
-    filePath?: string;
-    format?: (level: LogLevel, message: string) => string; // Custom format function
-    tags?: string[]; // Tags for log filtering
-}
-
 export class Logger {
-    private filePath?: string;
-    private tags: Set<string>;
-    private format?: (level: LogLevel, message: string) => string;
+  static LEVELS = {
+    DEBUG: 0,
+    INFO: 1,
+    WARN: 2,
+    ERROR: 3
+  };
 
-    constructor(options: LoggerOptions = {}) {
-        this.filePath = options.filePath;
-        this.tags = new Set(options.tags ?? []);
-        this.format = options.format;
+  private level: number;
+  private logFilePath: string;
+  private jsonFilePath: string;
+
+  constructor(
+    level: number = Logger.LEVELS.INFO,
+    logFilePath: string = path.join(__dirname, 'app.log'),
+    jsonFilePath: string = path.join(__dirname, 'app.json')
+  ) {
+    this.level = level;
+    this.logFilePath = logFilePath;
+    this.jsonFilePath = jsonFilePath;
+  }
+
+  private getTimestamp(): string {
+    return new Date().toISOString();
+  }
+
+  private formatMessage(level: number, message: string): string {
+    const levelName = Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key] === level) || 'UNKNOWN';
+
+    let colorFunc;
+    switch (levelName) {
+      case 'DEBUG':
+        colorFunc = chalk.blue;
+        break;
+      case 'INFO':
+        colorFunc = chalk.green;
+        break;
+      case 'WARN':
+        colorFunc = chalk.yellow;
+        break;
+      case 'ERROR':
+        colorFunc = chalk.red;
+        break;
+      default:
+        colorFunc = chalk.reset;
     }
 
-    // Format log message
-    private formatLog(level: LogLevel, message: string): string {
-        const timestamp = new Date().toLocaleString();
-        const tagString = this.tags.size ? `[${[...this.tags].join(', ')}]` : '';
-        return this.format ? this.format(level, message) : `${tagString} [${timestamp}] [${level.toUpperCase()}] - ${message}`;
-    }
+    return `${this.getTimestamp()} ${colorFunc(`[${levelName}]`)} ${message}`;
+  }
 
-    // Colorize log message based on level
-    private colorize(level: LogLevel, message: string): string {
-        switch (level) {
-            case 'info':
-                return chalk.blue(message);
-            case 'warn':
-                return chalk.yellow(message);
-            case 'error':
-                return chalk.red(message);
-            default:
-                return message;
-        }
+  private log(level: number, message: string) {
+    if (level >= this.level) {
+      const formattedMessage = this.formatMessage(level, message);
+      this.appendToFile(this.logFilePath, formattedMessage);
+      this.appendToJsonFile(level, message);
     }
+  }
 
-    // Check if the message matches any of the tags
-    private matchesTags(message: string): boolean {
-        return Array.from(this.tags).some(tag => message.includes(tag));
-    }
+  private appendToFile(filePath: string, message: string) {
+    fs.appendFile(filePath, message + '\n', (err) => {
+      if (err) console.error('Failed to write to log file:', err);
+    });
+  }
 
-    // Write log message to file
-    private async writeToFile(message: string): Promise<void> {
-        if (this.filePath) {
-            try {
-                await fs.promises.appendFile(this.filePath, message + '\n', { encoding: 'utf8' });
-            } catch (error) {
-                console.error('Failed to write log to file:', error);
-            }
-        }
-    }
+  private appendToJsonFile(level: number, message: string) {
+    const logEntry = {
+      timestamp: this.getTimestamp(),
+      level: Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key] === level) || 'UNKNOWN',
+      message
+    };
 
-    // Log a message
-    private async log(level: LogLevel, message: string): Promise<void> {
-        if (this.matchesTags(message)) {
-            const formattedMessage = this.formatLog(level, message);
-            console.log(this.colorize(level, formattedMessage));
-            try {
-                await this.writeToFile(formattedMessage);
-            } catch (error) {
-                console.error('Failed to log message:', error);
-            }
-        }
-    }
+    fs.readFile(this.jsonFilePath, (err, data) => {
+      let json = [];
+      if (!err) {
+        json = JSON.parse(data.toString());
+      }
+      json.push(logEntry);
+      fs.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), (err) => {
+        if (err) console.error('Failed to write to JSON file:', err);
+      });
+    });
+  }
 
-    // Public logging methods
-    async info(message: string): Promise<void> {
-        await this.log('info', message);
-    }
+  debug(message: string) {
+    this.log(Logger.LEVELS.DEBUG, `[DEBUG]: ${message}`);
+  }
 
-    async warn(message: string): Promise<void> {
-        await this.log('warn', message);
-    }
+  info(message: string) {
+    this.log(Logger.LEVELS.INFO, `[INFO]: ${message}`);
+  }
 
-    async error(message: string): Promise<void> {
-        await this.log('error', message);
-    }
+  warn(message: string) {
+    this.log(Logger.LEVELS.WARN, `[WARN]: ${message}`);
+  }
 
-    // Set custom log format function
-    setFormat(format: (level: LogLevel, message: string) => string): void {
-        this.format = format;
-    }
+  error(message: string) {
+    this.log(Logger.LEVELS.ERROR, `[ERROR]: ${message}`);
+  }
 
-    // Add or update tags
-    setTags(tags: string[]): void {
-        this.tags = new Set(tags);
+  setLevel(level: number) {
+    if (Object.values(Logger.LEVELS).includes(level)) {
+      this.level = level;
+    } else {
+      throw new Error('Invalid log level');
     }
+  }
 }
