@@ -1,0 +1,8 @@
+[8/14/2024, 8:19:45 PM] [34m[DEBUG][39m - [DEBUG]: This is a debug message
+
+[8/14/2024, 8:19:45 PM] [32m[INFO][39m - [INFO]: This is an info message
+
+[8/14/2024, 8:19:45 PM] [33m[WARN][39m - [WARN]: This is a warning message
+
+[8/14/2024, 8:19:45 PM] [31m[ERROR][39m - [ERROR]: This is an error message
+
