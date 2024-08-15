@@ -1,17 +1,14 @@
-import fs from 'fs';
-import path from 'path';
-import chalk from 'chalk';
-export class Logger {
-    static LEVELS = {
-        DEBUG: 0,
-        INFO: 1,
-        WARN: 2,
-        ERROR: 3
-    };
-    level;
-    logFilePath;
-    jsonFilePath;
-    constructor(level = Logger.LEVELS.INFO, logFilePath = path.join(__dirname, 'app.log'), jsonFilePath = path.join(__dirname, 'app.json')) {
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.Logger = void 0;
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
+const chalk_1 = __importDefault(require("chalk"));
+class Logger {
+    constructor(level = Logger.LEVELS.INFO, logFilePath = path_1.default.join(__dirname, 'app.log'), jsonFilePath = path_1.default.join(__dirname, 'app.json')) {
         this.level = level;
         this.logFilePath = logFilePath;
         this.jsonFilePath = jsonFilePath;
@@ -19,26 +16,17 @@ export class Logger {
     getTimestamp() {
         return new Date().toISOString();
     }
+    getLevelName(level) {
+        return Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key] === level) || 'UNKNOWN';
+    }
     formatMessage(level, message) {
-        const levelName = Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key] === level) || 'UNKNOWN';
-        let colorFunc;
-        switch (levelName) {
-            case 'DEBUG':
-                colorFunc = chalk.blue;
-                break;
-            case 'INFO':
-                colorFunc = chalk.green;
-                break;
-            case 'WARN':
-                colorFunc = chalk.yellow;
-                break;
-            case 'ERROR':
-                colorFunc = chalk.red;
-                break;
-            default:
-                colorFunc = chalk.reset;
-        }
-        return `${this.getTimestamp()} ${colorFunc(`[${levelName}]`)} ${message}`;
+        const levelName = this.getLevelName(level);
+        const colorFunc = levelName === 'DEBUG' ? chalk_1.default.blue :
+            levelName === 'INFO' ? chalk_1.default.green :
+                levelName === 'WARN' ? chalk_1.default.yellow :
+                    levelName === 'ERROR' ? chalk_1.default.red :
+                        chalk_1.default.reset;
+        return `[${this.getTimestamp()}] ${colorFunc(`[${levelName}]`)} - ${message}\n`;
     }
     log(level, message) {
         if (level >= this.level) {
@@ -48,7 +36,7 @@ export class Logger {
         }
     }
     appendToFile(filePath, message) {
-        fs.appendFile(filePath, message + '\n', (err) => {
+        fs_1.default.appendFile(filePath, message, err => {
             if (err)
                 console.error('Failed to write to log file:', err);
         });
@@ -56,16 +44,16 @@ export class Logger {
     appendToJsonFile(level, message) {
         const logEntry = {
             timestamp: this.getTimestamp(),
-            level: Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key] === level) || 'UNKNOWN',
+            level: this.getLevelName(level),
             message
         };
-        fs.readFile(this.jsonFilePath, (err, data) => {
+        fs_1.default.readFile(this.jsonFilePath, (err, data) => {
             let json = [];
             if (!err) {
                 json = JSON.parse(data.toString());
             }
             json.push(logEntry);
-            fs.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), (err) => {
+            fs_1.default.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), err => {
                 if (err)
                     console.error('Failed to write to JSON file:', err);
             });
@@ -92,3 +80,10 @@ export class Logger {
         }
     }
 }
+exports.Logger = Logger;
+Logger.LEVELS = {
+    DEBUG: 0,
+    INFO: 1,
+    WARN: 2,
+    ERROR: 3
+};

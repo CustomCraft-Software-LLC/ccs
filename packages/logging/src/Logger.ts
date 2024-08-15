@@ -28,28 +28,19 @@ export class Logger {
     return new Date().toISOString();
   }
 
+  private getLevelName(level: number): string {
+    return Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key as keyof typeof Logger.LEVELS] === level) || 'UNKNOWN';
+  }
+
   private formatMessage(level: number, message: string): string {
-    const levelName = Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key] === level) || 'UNKNOWN';
+    const levelName = this.getLevelName(level);
+    const colorFunc = levelName === 'DEBUG' ? chalk.blue :
+                      levelName === 'INFO' ? chalk.green :
+                      levelName === 'WARN' ? chalk.yellow :
+                      levelName === 'ERROR' ? chalk.red :
+                      chalk.reset;
 
-    let colorFunc;
-    switch (levelName) {
-      case 'DEBUG':
-        colorFunc = chalk.blue;
-        break;
-      case 'INFO':
-        colorFunc = chalk.green;
-        break;
-      case 'WARN':
-        colorFunc = chalk.yellow;
-        break;
-      case 'ERROR':
-        colorFunc = chalk.red;
-        break;
-      default:
-        colorFunc = chalk.reset;
-    }
-
-    return `${this.getTimestamp()} ${colorFunc(`[${levelName}]`)} ${message}`;
+    return `[${this.getTimestamp()}] ${colorFunc(`[${levelName}]`)} - ${message}\n`;
   }
 
   private log(level: number, message: string) {
@@ -61,7 +52,7 @@ export class Logger {
   }
 
   private appendToFile(filePath: string, message: string) {
-    fs.appendFile(filePath, message + '\n', (err) => {
+    fs.appendFile(filePath, message, err => {
       if (err) console.error('Failed to write to log file:', err);
     });
   }
@@ -69,17 +60,17 @@ export class Logger {
   private appendToJsonFile(level: number, message: string) {
     const logEntry = {
       timestamp: this.getTimestamp(),
-      level: Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key] === level) || 'UNKNOWN',
+      level: this.getLevelName(level),
       message
     };
 
     fs.readFile(this.jsonFilePath, (err, data) => {
-      let json = [];
+      let json: any[] = [];
       if (!err) {
         json = JSON.parse(data.toString());
       }
       json.push(logEntry);
-      fs.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), (err) => {
+      fs.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), err => {
         if (err) console.error('Failed to write to JSON file:', err);
       });
     });

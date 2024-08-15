@@ -1,0 +1,10 @@
+dist:
+examples/
+src/
+
+dist/examples:
+index.js
+
+dist/src:
+Log.js
+Logger.js
