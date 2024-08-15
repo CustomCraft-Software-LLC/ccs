@@ -34,13 +34,10 @@ export class Logger {
     }
 
     private getTimestamp(): string {
-        const now = moment();
-    
-        return now.format('YYYY-MM-DD HH:mm:ss zzz');
+        return moment().format('YYYY-MM-DD HH:mm:ss zzz');
     }
 
-    private formatMessage(level: LogLevel, message: string, color: boolean = false): string {
-        // Step 1: Define a map for colors
+    private formatMessage(level: LogLevel, message: string, color: boolean = true): string {
         const colorMap: { [key: number]: (text: string) => string } = {
             [Logger.LEVELS.DEBUG]: blue,
             [Logger.LEVELS.INFO]: green,
@@ -48,58 +45,42 @@ export class Logger {
             [Logger.LEVELS.ERROR]: red
         };
 
-        // Step 2: Retrieve the level name
-        let levelName: string = 'UNKNOWN'; // Default value
-        for (const [key, value] of Object.entries(Logger.LEVELS)) {
-            if (value === level) {
-                levelName = key;
-                break;
-            }
-        }
+        const levelName = Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key as keyof typeof Logger.LEVELS] === level) || 'UNKNOWN';
+        const colorFunc = color ? (colorMap[level] || ((text: string) => text)) : (text: string) => text;
 
-        // Step 3: Determine the color function
-        const colorFunc: (text: string) => string = color
-            ? (colorMap[level] || ((text: string) => text))
-            : (text: string) => text;
-
-        // Step 4: Format and return the message
         return `${this.getTimestamp()} ${colorFunc(`[${levelName}]`)} - ${message}`;
     }
 
     private log(level: LogLevel, message: string) {
         if (level >= this.level) {
-        const formattedMessage = this.formatMessage(level, message);
-        this.appendToFile(this.logFilePath, formattedMessage);
-        this.appendToJsonFile(level, message);
+            const formattedMessage = this.formatMessage(level, message);
+            this.appendToFile(this.logFilePath, formattedMessage);
+            this.appendToJsonFile(level, message);
         }
     }
 
     private appendToFile(filePath: string, message: string) {
         fs.appendFile(filePath, message + '\n', err => {
-        if (err) console.error('Failed to write to log file:', err);
+            if (err) console.error('Failed to write to log file:', err);
         });
     }
 
-  private appendToJsonFile(level: LogLevel, message: string) {
+    private appendToJsonFile(level: LogLevel, message: string) {
         const logEntry = {
             timestamp: this.getTimestamp(),
-            level: Object.keys(Logger.LEVELS).find(
-                key => Logger.LEVELS[key as keyof typeof Logger.LEVELS] === level
-            ) || 'UNKNOWN',
+            level: Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key as keyof typeof Logger.LEVELS] === level) || 'UNKNOWN',
             message
         };
 
         fs.readFile(this.jsonFilePath, (err, data) => {
             let json: any[] = [];
-            if (!err) {
+            if (!err && data.length > 0) {
                 try {
-                json = JSON.parse(data.toString());
-                } catch (parseError) {
-                console.error('Failed to parse JSON file:', parseError);
-                json = []; // Initialize as empty if parsing fails
+                    json = JSON.parse(data.toString());
+                } catch {
+                    console.error('Failed to parse JSON file, creating a new one.');
                 }
             }
-
             json.push(logEntry);
             fs.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), err => {
                 if (err) console.error('Failed to write to JSON file:', err);
@@ -107,27 +88,58 @@ export class Logger {
         });
     }
 
+    sendAPI(url: string, jsonFilePaths: string[]) {
+        let allLogs: any[] = [];
+
+        jsonFilePaths.forEach(filePath => {
+            try {
+                const data = fs.readFileSync(filePath, 'utf8');
+                if (data.length > 0) {
+                    const logs = JSON.parse(data);
+                    allLogs = allLogs.concat(logs);
+                }
+            } catch (err) {
+                console.error(`Failed to read or parse JSON file: ${filePath}`, err);
+            }
+        });
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(allLogs)
+        })
+        .then(response => response.json())
+        .then(responseData => {
+            console.log('Successfully sent logs:', responseData);
+        })
+        .catch(error => {
+            console.error('Failed to send logs:', error);
+        });
+    }
+
     debug(message: string) {
-        this.log(Logger.LEVELS.DEBUG, `${message}`);
+        this.log(Logger.LEVELS.DEBUG, message);
     }
 
     info(message: string) {
-        this.log(Logger.LEVELS.INFO, `${message}`);
+        this.log(Logger.LEVELS.INFO, message);
     }
 
     warn(message: string) {
-        this.log(Logger.LEVELS.WARN, `${message}`);
+        this.log(Logger.LEVELS.WARN, message);
     }
 
     error(message: string) {
-        this.log(Logger.LEVELS.ERROR, `${message}`);
+        this.log(Logger.LEVELS.ERROR, message);
     }
 
     setLevel(level: LogLevel) {
         if (Object.values(Logger.LEVELS).includes(level)) {
-        this.level = level;
+            this.level = level;
         } else {
-        throw new Error('Invalid log level');
+            throw new Error('Invalid log level');
         }
     }
 }
