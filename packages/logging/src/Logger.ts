@@ -3,22 +3,25 @@ import path from 'path';
 import chalk from 'chalk';
 import { fileURLToPath } from 'url';
 
+// Define a union type for the log levels
+type LogLevel = 0 | 1 | 2 | 3;
+
 export class Logger {
   static LEVELS = {
     DEBUG: 0,
     INFO: 1,
     WARN: 2,
     ERROR: 3
-  };
+  } as const;
 
-  private level: number;
+  private level: LogLevel;
   private logFilePath: string;
   private jsonFilePath: string;
 
   constructor(
-    level: number = Logger.LEVELS.INFO,
-    logFilePath: string = path.join(this.getBaseDir(), 'app.log'),
-    jsonFilePath: string = path.join(this.getBaseDir(), 'app.json')
+    level: LogLevel = Logger.LEVELS.INFO,
+    logFilePath: string = path.join(this.getBaseDir(), '../logs/app.log'),
+    jsonFilePath: string = path.join(this.getBaseDir(), '../logs/app.json')
   ) {
     this.level = level;
     this.logFilePath = logFilePath;
@@ -30,24 +33,31 @@ export class Logger {
   }
 
   private getTimestamp(): string {
-    return new Date().toLocaleString();
+    return new Date().toISOString();
   }
 
-  private formatMessage(level: number, message: string): string {
+  private formatMessage(level: LogLevel, message: string): string {
+    // Define a map for colors
+    const colorMap = {
+      [Logger.LEVELS.DEBUG]: chalk.blue,
+      [Logger.LEVELS.INFO]: chalk.green,
+      [Logger.LEVELS.WARN]: chalk.yellow,
+      [Logger.LEVELS.ERROR]: chalk.red
+    };
+
+    // Get the level name
     const levelName = Object.keys(Logger.LEVELS).find(
       key => Logger.LEVELS[key as keyof typeof Logger.LEVELS] === level
     ) || 'UNKNOWN';
 
-    const colorFunc = levelName === 'DEBUG' ? chalk.blue :
-                      levelName === 'INFO' ? chalk.green :
-                      levelName === 'WARN' ? chalk.yellow :
-                      levelName === 'ERROR' ? chalk.red :
-                      chalk.reset;
+    // Get the color function or default to no color
+    const colorFunc = colorMap[level] || chalk.reset;
 
-    return `[${this.getTimestamp()}] ${colorFunc(`[${levelName}]`)} - ${message}\n`;
+    // Format the log message
+    return `${this.getTimestamp()} ${colorFunc(`[${levelName}]`)} - ${message}`;
   }
 
-  private log(level: number, message: string) {
+  private log(level: LogLevel, message: string) {
     if (level >= this.level) {
       const formattedMessage = this.formatMessage(level, message);
       this.appendToFile(this.logFilePath, formattedMessage);
@@ -61,7 +71,7 @@ export class Logger {
     });
   }
 
-  private appendToJsonFile(level: number, message: string) {
+  private appendToJsonFile(level: LogLevel, message: string) {
     const logEntry = {
       timestamp: this.getTimestamp(),
       level: Object.keys(Logger.LEVELS).find(
@@ -73,8 +83,14 @@ export class Logger {
     fs.readFile(this.jsonFilePath, (err, data) => {
       let json: any[] = [];
       if (!err) {
-        json = JSON.parse(data.toString());
+        try {
+          json = JSON.parse(data.toString());
+        } catch (parseError) {
+          console.error('Failed to parse JSON file:', parseError);
+          json = []; // Initialize as empty if parsing fails
+        }
       }
+
       json.push(logEntry);
       fs.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), err => {
         if (err) console.error('Failed to write to JSON file:', err);
@@ -98,7 +114,7 @@ export class Logger {
     this.log(Logger.LEVELS.ERROR, `[ERROR]: ${message}`);
   }
 
-  setLevel(level: number) {
+  setLevel(level: LogLevel) {
     if (Object.values(Logger.LEVELS).includes(level)) {
       this.level = level;
     } else {
