@@ -1,12 +1,7 @@
 [
   {
-    "timestamp": "2024-08-15T04:53:19.497Z",
+    "timestamp": "2024-08-14 22:58:02 ",
     "level": "ERROR",
-    "message": "[ERROR]: This is an error message"
-  },
-  {
-    "timestamp": "2024-08-15T05:03:22.011Z",
-    "level": "ERROR",
-    "message": "[ERROR]: This is an error message"
+    "message": "This is an error message"
   }
 ]

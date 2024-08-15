@@ -1,6 +1,6 @@
 import { Logger } from '../src/Logger';
 
-const logger = new Logger(Logger.LEVELS.DEBUG);
+const logger = new Logger(Logger.LEVELS.INFO);
 
 // Log some messages
 logger.debug('This is a debug message');
