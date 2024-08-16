@@ -4,7 +4,7 @@
 echo "Current directory: $(pwd)"
 
 # Path to the file to check
-FILE_PATH="./examples/index.ts"
+FILE_PATH="./src/Logger.ts"
 
 # Check if the file exists
 if [ -f "$FILE_PATH" ]; then

@@ -21,8 +21,8 @@ export class Logger {
 
     constructor(
         level: LogLevel = Logger.LEVELS.INFO,
-        logFilePath: string = path.join(this.getBaseDir(), '../logs/app.log'),
-        jsonFilePath: string = path.join(this.getBaseDir(), '../logs/app.json')
+        logFilePath: string = path.join(this.getBaseDir(), '../logs/${this.formatDate(new Date())}.log'),
+        jsonFilePath: string = path.join(this.getBaseDir(), '../logs/${this.formatDate(new Date())}.json')
     ) {
         this.level = level;
         this.logFilePath = logFilePath;
