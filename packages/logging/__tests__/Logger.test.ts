@@ -2,71 +2,85 @@ import fs from 'fs';
 import path from 'path';
 import { Logger } from '../src/Logger';
 
-const mockFetch = jest.fn();
+describe('Logger Class', () => {
+    const testLogDir = path.join(__dirname, '../logs_test');
+    const testLogFilePath = path.join(testLogDir, 'app.log');
+    const testJsonFilePath = path.join(testLogDir, 'app.json');
 
-global.fetch = mockFetch;
-
-describe('Logger', () => {
-  const logFilePath = path.join(__dirname, '../logs/test.log');
-  const jsonFilePath = path.join(__dirname, '../logs/test.json');
-
-  beforeEach(() => {
-    // Clear the log files before each test
-    fs.writeFileSync(logFilePath, '');
-    fs.writeFileSync(jsonFilePath, '[]');
-    jest.clearAllMocks();
-  });
-
-  test('should log messages to text and JSON files', () => {
-    const logger = new Logger(Logger.LEVELS.DEBUG, logFilePath, jsonFilePath);
-
-    logger.debug('Debug message');
-    logger.info('Info message');
-    logger.warn('Warning message');
-    logger.error('Error message');
-
-    const logFileContent = fs.readFileSync(logFilePath, 'utf8');
-    const jsonFileContent = fs.readFileSync(jsonFilePath, 'utf8');
-
-    expect(logFileContent).toContain('Debug message');
-    expect(logFileContent).toContain('Info message');
-    expect(logFileContent).toContain('Warning message');
-    expect(logFileContent).toContain('Error message');
-
-    const jsonEntries = JSON.parse(jsonFileContent);
-    expect(jsonEntries).toHaveLength(4);
-    expect(jsonEntries[0].message).toBe('Debug message');
-    expect(jsonEntries[1].message).toBe('Info message');
-    expect(jsonEntries[2].message).toBe('Warning message');
-    expect(jsonEntries[3].message).toBe('Error message');
-  });
-
-  test('should send logs to API', async () => {
-    const logger = new Logger(Logger.LEVELS.DEBUG, logFilePath, jsonFilePath);
-
-    // Add some logs
-    logger.debug('Debug message for API');
-    logger.info('Info message for API');
-
-    // Mock the fetch response
-    mockFetch.mockResolvedValueOnce({
-      ok: true,
-      json: async () => ({ success: true })
+    beforeAll(() => {
+        // Ensure the test directory exists
+        if (!fs.existsSync(testLogDir)) {
+            fs.mkdirSync(testLogDir);
+        }
     });
 
-    const jsonFiles = [jsonFilePath];
-    await logger.sendAPI('https://', jsonFiles);
+    beforeEach(() => {
+        // Ensure log files are created
+        fs.writeFileSync(testLogFilePath, '');
+        fs.writeFileSync(testJsonFilePath, '[]');
+    });
 
-    expect(mockFetch).toHaveBeenCalledWith('https://', expect.objectContaining({
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-    }));
+    afterEach(() => {
+        // Clean up log files after each test
+        if (fs.existsSync(testLogFilePath)) {
+            fs.unlinkSync(testLogFilePath);
+        }
+        if (fs.existsSync(testJsonFilePath)) {
+            fs.unlinkSync(testJsonFilePath);
+        }
+    });
 
-    expect(mockFetch).toHaveBeenCalledTimes(1);
-    const fetchCall = mockFetch.mock.calls[0];
-    const requestBody = JSON.parse(fetchCall[1].body);
-    expect(requestBody).toHaveLength(2);
-    expect(requestBody[0].message).toBe('Debug message for API');
-    expect(requestBody[1].message).toBe('Info message for API');
-  });
+    test('should write debug log to file', () => {
+        const logger = new Logger(Logger.LEVELS.DEBUG, 'UTC', testLogDir);
+        logger.debug('This is a debug message');
+
+        const logContents = fs.readFileSync(testLogFilePath, 'utf-8');
+        expect(logContents).toContain('[DEBUG] - This is a debug message');
+    });
+
+    test('should write info log to file', () => {
+        const logger = new Logger(Logger.LEVELS.INFO, 'UTC', testLogDir);
+        logger.info('This is an info message');
+
+        const logContents = fs.readFileSync(testLogFilePath, 'utf-8');
+        expect(logContents).toContain('[INFO] - This is an info message');
+    });
+
+    test('should not write debug log when level is set to INFO', () => {
+        const logger = new Logger(Logger.LEVELS.INFO, 'UTC', testLogDir);
+        logger.debug('This is a debug message');
+
+        const logContents = fs.readFileSync(testLogFilePath, 'utf-8');
+        expect(logContents).toBe('');
+    });
+
+    test('should write log to JSON file', () => {
+        const logger = new Logger(Logger.LEVELS.INFO, 'UTC', testLogDir);
+        logger.info('This is an info message');
+
+        const jsonContents = fs.readFileSync(testJsonFilePath, 'utf-8');
+        const jsonLogs = JSON.parse(jsonContents);
+
+        expect(jsonLogs[0].message).toBe('This is an info message');
+        expect(jsonLogs[0].level).toBe('INFO');
+    });
+
+    test('should send logs within the specified date range', async () => {
+        const logger = new Logger(Logger.LEVELS.INFO, 'UTC', testLogDir);
+        logger.info('This is an info message');
+
+        const startDate = new Date('2000-01-01');
+        const endDate = new Date('2100-01-01');
+
+        // Mock the fetch function
+        global.fetch = jest.fn(() =>
+            Promise.resolve({
+                json: () => Promise.resolve({ success: true }),
+            })
+        ) as jest.Mock;
+
+        await logger.sendAPI('http://example.com/api', startDate, endDate);
+
+        expect(global.fetch).toHaveBeenCalledTimes(1);
+    });
 });

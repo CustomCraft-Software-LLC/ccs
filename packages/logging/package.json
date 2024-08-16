@@ -14,7 +14,7 @@
   ],
   "scripts": {
     "build": "npx tsc",
-    "start": "ts-node ./examples/index.ts",
+    "start": "npx tsx ./examples/index.ts",
     "test": "jest"
   },
   "repository": {

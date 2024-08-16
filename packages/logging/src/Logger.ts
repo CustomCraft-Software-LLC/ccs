@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import moment from 'moment-timezone';
-import { blue, green, yellow, red, reset } from 'colorette';
+import { blue, green, yellow, red } from 'colorette';
 
 // Define a union type for the log levels
 type LogLevel = 0 | 1 | 2 | 3;
@@ -18,35 +18,44 @@ export class Logger {
     private level: LogLevel;
     private logFilePath: string;
     private jsonFilePath: string;
+    private timezone: string;
 
     constructor(
         level: LogLevel = Logger.LEVELS.INFO,
-        logFilePath: string = path.join(this.getBaseDir(), '../logs/${this.formatDate(new Date())}.log'),
-        jsonFilePath: string = path.join(this.getBaseDir(), '../logs/${this.formatDate(new Date())}.json')
+        timezone: string = 'UTC',
+        logDir: string = path.join(__dirname, '../logs')
     ) {
         this.level = level;
-        this.logFilePath = logFilePath;
-        this.jsonFilePath = jsonFilePath;
-    }
-
-    private getBaseDir(): string {
-        return path.dirname(fileURLToPath(import.meta.url));
+        this.timezone = timezone;
+        const date = moment().tz(this.timezone).format('YYYY-MM-DD');
+        this.logFilePath = path.join(logDir, `${date}_${this.timezone}.log`);
+        this.jsonFilePath = path.join(logDir, `${date}_${this.timezone}.json`);
     }
 
     private getTimestamp(): string {
-        return moment().format('YYYY-MM-DD HH:mm:ss zzz');
+        return moment().tz(this.timezone).format('YYYY-MM-DD HH:mm:ss zzz');
     }
 
-    private formatMessage(level: LogLevel, message: string, color: boolean = true): string {
-        const colorMap: { [key: number]: (text: string) => string } = {
+    private getLevelName(level: LogLevel): string {
+        const levelNames: { [key in LogLevel]: string } = {
+            [Logger.LEVELS.DEBUG]: 'DEBUG',
+            [Logger.LEVELS.INFO]: 'INFO',
+            [Logger.LEVELS.WARN]: 'WARN',
+            [Logger.LEVELS.ERROR]: 'ERROR'
+        };
+        return levelNames[level] || 'UNKNOWN';
+    }
+
+    private formatMessage(level: LogLevel, message: string, color: boolean = false): string {
+        const colorMap: { [key in LogLevel]: (text: string) => string } = {
             [Logger.LEVELS.DEBUG]: blue,
             [Logger.LEVELS.INFO]: green,
             [Logger.LEVELS.WARN]: yellow,
             [Logger.LEVELS.ERROR]: red
         };
 
-        const levelName = Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key as keyof typeof Logger.LEVELS] === level) || 'UNKNOWN';
-        const colorFunc = color ? (colorMap[level] || ((text: string) => text)) : (text: string) => text;
+        const levelName = this.getLevelName(level);
+        const colorFunc = color ? colorMap[level] : (text: string) => text;
 
         return `${this.getTimestamp()} ${colorFunc(`[${levelName}]`)} - ${message}`;
     }
@@ -68,7 +77,7 @@ export class Logger {
     private appendToJsonFile(level: LogLevel, message: string) {
         const logEntry = {
             timestamp: this.getTimestamp(),
-            level: Object.keys(Logger.LEVELS).find(key => Logger.LEVELS[key as keyof typeof Logger.LEVELS] === level) || 'UNKNOWN',
+            level: this.getLevelName(level),
             message
         };
 
@@ -77,10 +86,11 @@ export class Logger {
             if (!err && data.length > 0) {
                 try {
                     json = JSON.parse(data.toString());
-                } catch {
-                    console.error('Failed to parse JSON file, creating a new one.');
+                } catch (parseError) {
+                    console.error('Failed to parse JSON file:', parseError);
                 }
             }
+
             json.push(logEntry);
             fs.writeFile(this.jsonFilePath, JSON.stringify(json, null, 2), err => {
                 if (err) console.error('Failed to write to JSON file:', err);
@@ -88,34 +98,38 @@ export class Logger {
         });
     }
 
-    sendAPI(url: string, jsonFilePaths: string[]) {
-        let allLogs: any[] = [];
-
-        jsonFilePaths.forEach(filePath => {
-            try {
-                const data = fs.readFileSync(filePath, 'utf8');
-                if (data.length > 0) {
-                    const logs = JSON.parse(data);
-                    allLogs = allLogs.concat(logs);
-                }
-            } catch (err) {
-                console.error(`Failed to read or parse JSON file: ${filePath}`, err);
+    sendAPI(url: string, startDate: Date, endDate: Date) {
+        fs.readFile(this.jsonFilePath, 'utf8', (err, data) => {
+            if (err) {
+                console.error('Failed to read JSON log file:', err);
+                return;
             }
-        });
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(allLogs)
-        })
-        .then(response => response.json())
-        .then(responseData => {
-            console.log('Successfully sent logs:', responseData);
-        })
-        .catch(error => {
-            console.error('Failed to send logs:', error);
+            try {
+                const logs = JSON.parse(data);
+                const filteredLogs = logs.filter((log: any) => {
+                    const logDate = new Date(log.timestamp);
+                    return logDate >= startDate && logDate <= endDate;
+                });
+
+                fetch(url, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(filteredLogs)
+                })
+                .then(response => response.json())
+                .then(responseData => {
+                    console.log('Successfully sent logs:', responseData);
+                })
+                .catch(error => {
+                    console.error('Failed to send logs:', error);
+                });
+
+            } catch (parseError) {
+                console.error('Failed to parse JSON log file:', parseError);
+            }
         });
     }
 
