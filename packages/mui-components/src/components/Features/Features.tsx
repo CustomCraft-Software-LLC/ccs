@@ -2,13 +2,13 @@ import React from 'react';
 import { Box, Typography, Grid, Paper } from '@mui/material';
 import { CheckCircle } from '@mui/icons-material';
 
-interface Feature {
+export interface Feature {
   icon: React.ReactNode;
   title: string;
   description: string;
 }
 
-interface FeaturesProps {
+export interface FeaturesProps {
   features: Feature[];
 }
 
