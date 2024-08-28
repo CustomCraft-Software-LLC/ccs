@@ -94,32 +94,113 @@ const bounceOut = keyframes`
     }
 `;
 
-const AnimationCSS = styled('div')<{ animation: string }>(({animation}) => ({
-    animation: `${animation} 2s infinite`,
+const fadeIn = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`;
+
+const fadeOut = keyframes`
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+`;
+
+const slideIn = keyframes`
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+`;
+
+const slideOut = keyframes`
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+`;
+
+const zoomIn = keyframes`
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+`;
+
+const zoomOut = keyframes`
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+`;
+
+// AnimationCSS now includes the duration, iteration, and delay props for customization
+const AnimationCSS = styled('div')<{
+    animation: string;
+    duration: string;
+    iteration: string;
+    delay: string;
+}>(({ animation, duration, iteration, delay }) => ({
+    animation: `${animation} ${duration} ${iteration} ${delay}`,
 }));
 
-interface AnimationProps { 
+export interface AnimationProps { 
     name: string;
+    duration?: string;
+    iteration?: string;
+    delay?: string;
     children?: React.ReactNode;
 }
 
-const Animation: React.FC<AnimationProps> = ({name, children}) => { 
-    switch(name) {
-        case 'rotateAroundY':
-            return <AnimationCSS animation={rotateAroundY}>{children}</AnimationCSS>;
-        case 'rotateAroundX':
-            return <AnimationCSS animation={rotateAroundX}>{children}</AnimationCSS>;
-        case 'bounce':
-            return <AnimationCSS animation={bounce}>{children}</AnimationCSS>;
-        case 'bounceIn':
-            return <AnimationCSS animation={bounceIn}>{children}</AnimationCSS>;
-        case 'blur':
-            return <AnimationCSS animation={blur}>{children}</AnimationCSS>;
-        case 'brightness':
-            return <AnimationCSS animation={brightness}>{children}</AnimationCSS>;
-        default: 
-            return null;
+const Animation: React.FC<AnimationProps> = ({
+    name,
+    duration = '2s',
+    iteration = 'infinite',
+    delay = '0s',
+    children
+}) => { 
+    const animations = {
+        rotateAroundY,
+        rotateAroundX,
+        bounce,
+        bounceIn,
+        bounceOut,
+        blur,
+        brightness,
+        fadeIn,
+        fadeOut,
+        slideIn,
+        slideOut,
+        zoomIn,
+        zoomOut,
+    };
+
+    const animation = animations[name as keyof typeof animations];
+
+    if (!animation) {
+        console.warn(`Animation "${name}" not found. Rendering children without animation.`);
+        return <>{children}</>;
     }
-}
+
+    return (
+        <AnimationCSS animation={animation} duration={duration} iteration={iteration} delay={delay}>
+            {children}
+        </AnimationCSS>
+    );
+};
 
 export default Animation;

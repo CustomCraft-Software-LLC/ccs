@@ -1,24 +1,28 @@
 import React from 'react';
-import './StatWidget.css';
-import Widget from '../Widget/Widget';
-import { Typography } from '@mui/material';
+import { Typography, Box } from '@mui/material';
+import Widget from '../Widget/Widget'; // Adjust path as needed
 
-interface StatWidgetProps { 
+export interface StatWidgetProps {
   isNum: boolean;
   title?: string;
   stat?: number;
+  titleSx?: React.CSSProperties; // Custom styles for title
+  statSx?: React.CSSProperties;  // Custom styles for stat
 }
 
-const StatWidget: React.FC<StatWidgetProps> = ({ isNum, title = '', stat = 0 }) => { 
-  return ( 
+const StatWidget: React.FC<StatWidgetProps> = ({ isNum, title = '', stat = 0, titleSx, statSx }) => {
+  return (
     <Widget title={title}>
-        {isNum ? ( 
-          <Typography>{title}</Typography>
-        ) : ( 
-          <Typography>{title}</Typography>
-        )}
+      <Box sx={{ textAlign: 'center' }}>
+        <Typography variant="h6" sx={{ mb: 1, ...titleSx }}>
+          {title}
+        </Typography>
+        <Typography variant="h4" sx={{ ...statSx }}>
+          {isNum ? stat.toLocaleString() : stat}
+        </Typography>
+      </Box>
     </Widget>
   );
-}
+};
 
 export default StatWidget;
