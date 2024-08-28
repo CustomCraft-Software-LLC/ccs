@@ -2,7 +2,7 @@ import React from 'react';
 import { Typography, Box, Divider, Button, Paper } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 
-interface PricingProps { 
+export interface PricingProps { 
   title: string;
   children?: React.ReactNode;
   pricing: number;

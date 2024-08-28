@@ -1,45 +1,44 @@
 import React from 'react';
-import { Meta, Story } from '@storybook/react';
-import PricingCard, { PricingCardProps } from './PricingCard'; // Adjust path as needed
-import { Info as InfoIcon } from '@mui/icons-material';
+import { Meta, StoryFn } from '@storybook/react';
+import PricingCard, { PricingCardProps } from './PricingCard';
+import InfoIcon from '@mui/icons-material/Info'; // Example icon from MUI icons
 
-// Default export with metadata
-const meta: Meta<typeof PricingCard> = {
+export default {
   title: 'Components/PricingCard',
   component: PricingCard,
   argTypes: {
-    onSubscribe: { action: 'subscribed' }, // Action for handling button click
-    icon: { control: 'none' } // Controls to disable icon selection in the Storybook UI
+    title: { control: 'text' },
+    price: { control: 'text' },
+    features: { control: 'object' }, // Updated from 'array' to 'object'
+    onSubscribe: { action: 'subscribed' }, // Action handler to log button clicks in Storybook
+    buttonLabel: { control: 'text' },
+    icon: { control: false }, // Disable control for icon; manage it directly in stories
   },
-};
+} as Meta<PricingCardProps>;
 
-export default meta;
+const Template: StoryFn<PricingCardProps> = (args) => <PricingCard {...args} />;
 
-// Template for creating stories
-const Template: Story<PricingCardProps> = (args) => <PricingCard {...args} />;
-
-// Basic card story
-export const Basic = Template.bind({});
-Basic.args = {
+export const BasicPlan = Template.bind({});
+BasicPlan.args = {
   title: 'Basic Plan',
-  price: '29',
+  price: '9.99',
   features: ['Feature 1', 'Feature 2', 'Feature 3'],
+  buttonLabel: 'Subscribe Now',
 };
 
-// Card with icon story
-export const WithIcon = Template.bind({});
-WithIcon.args = {
+export const ProPlan = Template.bind({});
+ProPlan.args = {
   title: 'Pro Plan',
-  price: '59',
-  features: ['Feature A', 'Feature B', 'Feature C'],
-  icon: InfoIcon,
+  price: '19.99',
+  features: ['Feature A', 'Feature B', 'Feature C', 'Feature D'],
+  buttonLabel: 'Get Started',
+  icon: InfoIcon, // Example of using an icon
 };
 
-// Card with custom button label story
-export const CustomButtonLabel = Template.bind({});
-CustomButtonLabel.args = {
+export const EnterprisePlan = Template.bind({});
+EnterprisePlan.args = {
   title: 'Enterprise Plan',
-  price: '99',
-  features: ['Feature X', 'Feature Y', 'Feature Z'],
-  buttonLabel: 'Get Started',
+  price: '49.99',
+  features: ['Premium Feature 1', 'Premium Feature 2', 'Premium Feature 3', 'Premium Feature 4'],
+  buttonLabel: 'Contact Us',
 };
