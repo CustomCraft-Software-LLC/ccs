@@ -1,83 +1,61 @@
 import React from 'react';
 import { Meta, StoryFn } from '@storybook/react';
-import Widget, { WidgetProps } from './Widget'; // Adjust the import path as needed
-import { Button, Typography } from '@mui/material';
+import Widget from './Widget';
+import { Box, Typography } from '@mui/material';
 
+// Meta configuration for Storybook
 export default {
   title: 'Components/Widget',
   component: Widget,
   argTypes: {
-    title: {
-      control: 'text',
-      defaultValue: 'Default Widget Title',
-    },
-    sx: {
-      control: 'object',
-      defaultValue: {},
-    },
-    titleSx: {
-      control: 'object',
-      defaultValue: {},
-    },
-    titleVariant: {
-      control: {
-        type: 'select',
-        options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
-      },
-      defaultValue: 'h4',
-    },
-    children: {
-      control: 'text',
-      defaultValue: 'This is the widget content.',
-    },
+    title: { control: 'text' },
+    children: { control: 'text' },
+    sx: { control: 'object' },
+    titleSx: { control: 'object' },
+    titleVariant: { control: 'radio', options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] },
   },
-} as Meta;
+} as Meta<typeof Widget>;
 
-const Template: StoryFn<WidgetProps> = (args) => <Widget {...args} />;
+// Template for creating stories
+const Template: StoryFn<typeof Widget> = (args) => <Widget {...args} />;
 
+// Default story
 export const Default = Template.bind({});
 Default.args = {
   title: 'Default Widget',
+  children: <Typography>Content goes here</Typography>,
 };
 
-export const WithButton = Template.bind({});
-WithButton.args = {
-  title: 'Widget with Button',
-  children: <Button variant="contained">Click Me</Button>,
-};
-
-export const CustomStyled = Template.bind({});
-CustomStyled.args = {
+// Custom Styles story
+export const CustomStyles = Template.bind({});
+CustomStyles.args = {
   title: 'Custom Styled Widget',
-  sx: {
-    bgcolor: 'primary.main',
-    color: 'white',
-    p: 4,
-    border: '1px solid',
-    borderColor: 'primary.dark',
-  },
-  titleSx: {
-    fontSize: '2rem',
-    color: 'secondary.light',
-  },
+  titleSx: { color: 'teal' },
+  sx: { bgcolor: '#e0f7fa' },
   children: <Typography>This widget has custom styles.</Typography>,
 };
 
-export const WithDifferentTitleVariant = Template.bind({});
-WithDifferentTitleVariant.args = {
-  title: 'Widget with Different Title Variant',
-  titleVariant: 'h2',
-  children: <Typography>Content with h2 title variant.</Typography>,
+// Large Content story
+export const LargeContent = Template.bind({});
+LargeContent.args = {
+  title: 'Large Content Widget',
+  sx: { minHeight: '300px', bgcolor: '#fff3e0' },
+  children: (
+    <Box>
+      <Typography paragraph>
+        This widget contains a large amount of content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet lectus ut nulla scelerisque, at hendrerit nulla congue. Vivamus ac lacus nec lorem commodo interdum.
+      </Typography>
+      <Typography paragraph>
+        Additional content can go here. Ut lobortis sapien vel mauris fermentum, id pellentesque lorem consectetur.
+      </Typography>
+    </Box>
+  ),
 };
 
-export const ComplexContent = Template.bind({});
-ComplexContent.args = {
-  title: 'Complex Widget Content',
-  children: (
-    <>
-      <Typography variant="h6">User Stats</Typography>
-      <Typography variant="body1">Total Users: 5000</Typography>
-      <Button variant="outlined" sx={{ mt: 2 }}>View Details</Button>
-    </>
-  ),
+// Example with titleVariant
+export const TitleVariant = Template.bind({});
+TitleVariant.args = {
+  title: 'Widget with Title Variant',
+  titleVariant: 'h2',
+  children: <Typography>Styled with a different title variant.</Typography>,
 };

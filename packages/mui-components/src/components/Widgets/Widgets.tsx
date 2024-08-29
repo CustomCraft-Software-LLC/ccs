@@ -1,20 +1,23 @@
 import React from 'react';
-import './Widgets.css';
-import { Box } from '@mui/material';
-import { SxProps, Theme } from '@mui/system';
+import { Box, SxProps, Theme } from '@mui/material';
 
-interface WidgetsProps { 
+// Props for the Widgets component
+export interface WidgetsProps { 
   children?: React.ReactNode;
 }
 
-const style : SxProps<Theme> = { 
+// Styles for the Widgets component
+const style: SxProps<Theme> = { 
   display: 'grid',
-  gridTemplateRows: 'repeat(auto-fit, minmax(200, 1fr))',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(200, 1fr))',
+  gridTemplateRows: 'repeat(auto-fill, minmax(200px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
   gap: '20px',
-}
+  width: '100%',  // Ensures full width of the container
+  padding: '10px', // Optional padding for some spacing around the grid
+  boxSizing: 'border-box', // Ensures padding is included in width calculation
+};
 
-const Widgets: React.FC<WidgetsProps> = ({children}) => {
+const Widgets: React.FC<WidgetsProps> = ({ children }) => {
   return (
     <Box sx={style}>
         {children}

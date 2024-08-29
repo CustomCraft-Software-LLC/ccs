@@ -1,28 +1,22 @@
 import React from 'react';
-import { Typography, Box, Divider, Button, Paper } from '@mui/material';
+import { Typography, Box, Button, Paper } from '@mui/material';
 import { SxProps, Theme } from '@mui/system';
 
 export interface PricingProps {
   title: string;
-  children?: React.ReactNode;
   pricing: number;
   to: string;
   buttonText: string;
   onButtonClick?: () => void;
-  titleVariant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-  pricingVariant?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   sx?: SxProps<Theme>;
 }
 
 const Pricing: React.FC<PricingProps> = ({
-  title = 'Title',
-  pricing = 0,
-  to = '/',
-  buttonText = 'Submit',
+  title,
+  pricing,
+  to,
+  buttonText,
   onButtonClick,
-  titleVariant = 'h4',
-  pricingVariant = 'h6',
-  children,
   sx,
 }) => {
   const defaultStyle: SxProps<Theme> = {
@@ -38,10 +32,11 @@ const Pricing: React.FC<PricingProps> = ({
 
   return (
     <Paper sx={defaultStyle}>
-      <Typography variant={titleVariant}>{title}</Typography>
-      <Typography variant={pricingVariant}>${pricing}</Typography>
-      {children}
-      <Button onClick={onButtonClick} href={to}>{buttonText}</Button>
+      <Typography variant="h4">{title}</Typography>
+      <Typography variant="h6">${pricing}</Typography>
+      <Button onClick={onButtonClick} href={to}>
+        {buttonText}
+      </Button>
     </Paper>
   );
 };

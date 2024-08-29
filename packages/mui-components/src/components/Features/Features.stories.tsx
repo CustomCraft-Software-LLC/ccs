@@ -2,7 +2,6 @@ import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
 import Features, { FeaturesProps } from './Features';
 import { CheckCircle, Star, Info } from '@mui/icons-material';
-import { Box } from '@mui/material';
 
 export default {
   title: 'Components/Features',

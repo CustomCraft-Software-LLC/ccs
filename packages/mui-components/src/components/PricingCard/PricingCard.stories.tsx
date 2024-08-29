@@ -1,44 +1,52 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { StoryFn, Meta } from '@storybook/react';
 import PricingCard, { PricingCardProps } from './PricingCard';
-import InfoIcon from '@mui/icons-material/Info'; // Example icon from MUI icons
+import { Box } from '@mui/material';
+import { Star as StarIcon } from '@mui/icons-material';
 
 export default {
   title: 'Components/PricingCard',
   component: PricingCard,
   argTypes: {
-    title: { control: 'text' },
-    price: { control: 'text' },
-    features: { control: 'object' }, // Updated from 'array' to 'object'
-    onSubscribe: { action: 'subscribed' }, // Action handler to log button clicks in Storybook
+    onSubscribe: { action: 'subscribed' },
     buttonLabel: { control: 'text' },
-    icon: { control: false }, // Disable control for icon; manage it directly in stories
+    priceInterval: { control: 'text' },
   },
-} as Meta<PricingCardProps>;
+} as Meta;
 
-const Template: StoryFn<PricingCardProps> = (args) => <PricingCard {...args} />;
+const Template: StoryFn<PricingCardProps> = (args) => (
+  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+    <PricingCard {...args} />
+  </Box>
+);
 
-export const BasicPlan = Template.bind({});
-BasicPlan.args = {
+export const Basic = Template.bind({});
+Basic.args = {
   title: 'Basic Plan',
-  price: '9.99',
+  price: '29',
   features: ['Feature 1', 'Feature 2', 'Feature 3'],
-  buttonLabel: 'Subscribe Now',
 };
 
-export const ProPlan = Template.bind({});
-ProPlan.args = {
+export const WithIcon = Template.bind({});
+WithIcon.args = {
   title: 'Pro Plan',
-  price: '19.99',
-  features: ['Feature A', 'Feature B', 'Feature C', 'Feature D'],
-  buttonLabel: 'Get Started',
-  icon: InfoIcon, // Example of using an icon
+  price: '99',
+  features: ['Pro Feature 1', 'Pro Feature 2', 'Pro Feature 3'],
+  icon: StarIcon,
 };
 
-export const EnterprisePlan = Template.bind({});
-EnterprisePlan.args = {
+export const CustomButtonLabel = Template.bind({});
+CustomButtonLabel.args = {
   title: 'Enterprise Plan',
-  price: '49.99',
-  features: ['Premium Feature 1', 'Premium Feature 2', 'Premium Feature 3', 'Premium Feature 4'],
-  buttonLabel: 'Contact Us',
+  price: '199',
+  features: ['Enterprise Feature 1', 'Enterprise Feature 2', 'Enterprise Feature 3'],
+  buttonLabel: 'Get Started',
+};
+
+export const CustomPriceInterval = Template.bind({});
+CustomPriceInterval.args = {
+  title: 'Annual Plan',
+  price: '299',
+  features: ['Annual Feature 1', 'Annual Feature 2', 'Annual Feature 3'],
+  priceInterval: 'year',
 };
