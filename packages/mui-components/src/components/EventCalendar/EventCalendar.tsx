@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, List, ListItem, ListItemText, Divider } from '@mui/material';
+import { Box, Typography, List, ListItem, ListItemText, Divider, SxProps, Theme } from '@mui/material';
 
 export interface Event {
   date: string;
@@ -9,13 +9,15 @@ export interface Event {
 
 export interface EventCalendarProps {
   events: Event[];
+  title?: string;
+  sx?: SxProps<Theme>;
 }
 
-const EventCalendar: React.FC<EventCalendarProps> = ({ events }) => {
+const EventCalendar: React.FC<EventCalendarProps> = ({ events, title = 'Upcoming Events', sx }) => {
   return (
-    <Box sx={{ py: 4 }}>
+    <Box sx={{ py: 4, ...sx }}>
       <Typography variant="h4" align="center" gutterBottom>
-        Upcoming Events
+        {title}
       </Typography>
       <List>
         {events.map((event, index) => (

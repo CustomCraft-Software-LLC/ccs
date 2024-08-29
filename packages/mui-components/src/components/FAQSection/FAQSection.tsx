@@ -1,5 +1,5 @@
 import React from 'react';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Box } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export interface FAQ {
@@ -9,22 +9,27 @@ export interface FAQ {
 
 export interface FAQSectionProps {
   faqs: FAQ[];
+  summarySx?: object;
+  detailsSx?: object;
+  gap?: number; // Add optional gap prop
 }
 
-const FAQSection: React.FC<FAQSectionProps> = ({ faqs }) => {
+const FAQSection: React.FC<FAQSectionProps> = ({ faqs, summarySx, detailsSx, gap = 2 }) => {
   return (
-    <div>
+    <Box sx={{ py: 4 }}>
       {faqs.map((faq, index) => (
-        <Accordion key={index}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="h6">{faq.question}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Typography>{faq.answer}</Typography>
-          </AccordionDetails>
-        </Accordion>
+        <Box key={index} sx={{ mb: gap }}> {/* Add gap between items */}
+          <Accordion>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={summarySx}>
+              <Typography variant="h6">{faq.question}</Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={detailsSx}>
+              <Typography>{faq.answer}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        </Box>
       ))}
-    </div>
+    </Box>
   );
 };
 
