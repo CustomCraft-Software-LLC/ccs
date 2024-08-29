@@ -1,36 +1,72 @@
-import React, { useState } from 'react';
-import './Sidebar.css';
-import { Drawer, List, SxProps, Theme } from '@mui/material';
+import React from 'react';
+import { Box, Typography, List, ListItem, ListItemIcon, ListItemText, Divider, SxProps, Theme } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-interface SidebarProps { 
-  shadowColor?: string;
-  bgColor?: string;
-  children?: React.ReactNode;
+interface SidebarItem {
+  text: string;
+  icon?: React.ReactNode;
+  path?: string;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ shadowColor = 'rgba(0,0,0,0.1)', bgColor = 'rgba(255,255,255,1.0)', children }) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+export interface SidebarProps {
+  title?: string;
+  items: SidebarItem[];
+  onItemClick?: (path: string) => void; // Ensuring `path` is required
+  sx?: SxProps<Theme>;
+}
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const style: SxProps<Theme> = {
-    backgroundColor: bgColor,
-    boxShadow: `0 4px 8px ${shadowColor}`,
-  }
-
+const Sidebar: React.FC<SidebarProps> = ({
+  title,
+  items,
+  onItemClick,
+  sx,
+}) => {
   return (
-    <Drawer
-      open={true}
-      variant='permanent'
-      anchor="left"
-      sx={style}
+    <Box
+      sx={{
+        width: 250,
+        bgcolor: 'background.paper',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        ...sx,
+      }}
     >
+      {title && (
+        <Typography
+          variant="h6"
+          sx={{
+            p: 2,
+            textAlign: 'center',
+            fontWeight: 'bold',
+            bgcolor: 'primary.main', // Added background color for better visibility
+            color: 'white', // Ensuring the title text stands out
+          }}
+        >
+          {title}
+        </Typography>
+      )}
+      <Divider />
       <List>
-        {children}
+        {items.map((item, index) => (
+          <ListItem
+            button
+            key={index}
+            onClick={() => {
+              if (item.path) {
+                onItemClick?.(item.path); // Using optional chaining
+              }
+            }}
+            component={item.path ? Link : 'div'}
+            to={item.path || '/'} // Default to '/' if no path provided
+            aria-label={item.text} // Improved accessibility
+          >
+            {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+            <ListItemText primary={item.text} />
+          </ListItem>
+        ))}
       </List>
-    </Drawer>
+    </Box>
   );
 };
 
