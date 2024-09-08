@@ -1,8 +1,0 @@
-/*
-
-const createChart = () => {
-    
-}
-
-export { createChart };
-*/

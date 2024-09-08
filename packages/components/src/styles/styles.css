@@ -1,9 +1,0 @@
-*:focus {
-    outline: none;
-}
-
-::selection {
-    background-color: initial;
-    color: initial;
-}
-
