@@ -1,0 +1,41 @@
+{
+  "name": "react-native-components",
+  "version": "1.0.0",
+  "description": "react library mobile components",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CustomCraft-Software-LLC/ccs-react-components.git"
+  },
+  "keywords": [
+    "react",
+    "native",
+    "react",
+    "npm",
+    "components",
+    "library"
+  ],
+  "author": "CustomCraft Software, LLC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CustomCraft-Software-LLC/ccs-react-components/issues"
+  },
+  "homepage": "https://github.com/CustomCraft-Software-LLC/ccs-react-components#readme",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-native": "^0.75.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@babel/preset-react": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
+  }
+}
