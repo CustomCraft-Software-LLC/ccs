@@ -11,20 +11,6 @@ interface NavigationContextType {
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
-const NavigationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [currentRoute, setCurrentRoute] = useState<Route>('Home');
-
-  const navigate = (route: Route) => {
-    setCurrentRoute(route);
-  };
-
-  return (
-    <NavigationContext.Provider value={{ currentRoute, navigate }}>
-      {children}
-    </NavigationContext.Provider>
-  );
-};
-
 const NavigationContainer: React.FC = () => {
   const { currentRoute, navigate } = useContext(NavigationContext)!;
 
@@ -78,4 +64,4 @@ const styles = {
   } as TextStyle,
 };
 
-export { NavigationProvider, NavigationContainer };
+export { NavigationContainer };
