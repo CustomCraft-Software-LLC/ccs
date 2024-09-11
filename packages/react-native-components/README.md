@@ -25,3 +25,4 @@ npm install @custom-craft-software/react-native-components
 ```bash
 yarn add @custom-craft-software/react-native-components
 ```
+
