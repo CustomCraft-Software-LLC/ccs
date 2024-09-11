@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import HomeScreen from '../screens/HomeScreen';
-import DetailsScreen from '../screens/DetailsScreen';
+import HomeScreen from '../Screens/HomeScreen';
+import DetailsScreen from '../Screens/DetailsScreen';
 
 type Screen = 'Home' | 'Details';
 
+interface Params {
+  itemId?: number;
+  [key: string]: any; // Allows for additional parameters if needed
+}
+
 const StackNavigation: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>('Home');
-  const [params, setParams] = useState<any>(null);
+  const [params, setParams] = useState<Params | undefined>(undefined);
 
-  const navigate = (screen: Screen, params?: any) => {
+  const navigate = (screen: Screen, params?: Params) => {
     setCurrentScreen(screen);
-    setParams(params);
+    setParams(params); // Sets params only if provided, otherwise undefined
   };
 
   const goBack = () => {
-    // Simple back navigation: go back to Home screen
     if (currentScreen !== 'Home') {
       setCurrentScreen('Home');
-      setParams(null);
+      setParams(undefined);
     }
   };
 
