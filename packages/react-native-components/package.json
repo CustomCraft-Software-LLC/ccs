@@ -1,6 +1,6 @@
 {
   "name": "@custom-craft-software/react-native-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react library mobile components",
   "main": "src/index.ts",
   "publishConfig": {
