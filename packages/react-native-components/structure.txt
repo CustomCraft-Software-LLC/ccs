@@ -1,0 +1,51 @@
+.
+├── babel.config.js
+├── example
+├── lib
+│   ├── components
+│   │   ├── Layout
+│   │   │   └── KeyboardAwareComponent.js
+│   │   ├── Navigation
+│   │   │   ├── BottomNavigation.js
+│   │   │   ├── NavigationContainer.js
+│   │   │   ├── StackNavigation.js
+│   │   │   └── TopNavigation.js
+│   │   ├── Screens
+│   │   │   ├── DetailsScreen.js
+│   │   │   └── HomeScreen.js
+│   │   └── UI
+│   │       ├── AnimatedView.js
+│   │       ├── NumericInput.js
+│   │       ├── PasswordInput.js
+│   │       └── TextInput.js
+│   └── index.js
+├── package.json
+├── package-lock.json
+├── README.md
+├── src
+│   ├── components
+│   │   ├── Gestures
+│   │   ├── Layout
+│   │   │   └── KeyboardAwareComponent.tsx
+│   │   ├── Navigation
+│   │   │   ├── BottomNavigation.tsx
+│   │   │   ├── NavigationContainer.tsx
+│   │   │   ├── StackNavigation.tsx
+│   │   │   └── TopNavigation.tsx
+│   │   ├── Screens
+│   │   │   ├── DetailsScreen.tsx
+│   │   │   └── HomeScreen.tsx
+│   │   └── UI
+│   │       ├── AnimatedView.tsx
+│   │       ├── NumericInput.tsx
+│   │       ├── PasswordInput.tsx
+│   │       └── TextInput.tsx
+│   ├── hooks
+│   ├── index.ts
+│   └── utils
+├── structure.txt
+├── __tests__
+│   └── index.test.ts
+└── tsconfig.json
+
+17 directories, 31 files

@@ -1,8 +1,11 @@
 {
-  "name": "react-native-components",
+  "name": "@custom-craft-software/react-native-components",
   "version": "1.0.0",
   "description": "react library mobile components",
   "main": "src/index.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc && babel src --out-dir lib --extensions \".ts,.tsx\" --copy-files",
     "test": "jest"
