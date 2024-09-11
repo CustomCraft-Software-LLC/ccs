@@ -1,21 +1,27 @@
 # React Native Components Library
 
-A React Native library offering a collection of reusable components for mobile app development. This library includes components for navigation, UI elements, and various screens to help you build and organize your React Native applications more effectively.
+Welcome to the React Native Components Library! This comprehensive toolkit offers a collection of reusable components designed to simplify and speed up mobile app development with React Native. Whether you're building navigation systems, user interface elements, or complete screens, our library provides the components you need to create robust and maintainable applications.
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [Components](#components)
-  - [Navigation Components](#navigation-components)
-  - [UI Components](#ui-components)
-  - [Screens](#screens)
-- [Contributing](#contributing)
-- [License](#license)
+- [React Native Components Library](#react-native-components-library)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+    - [Using npm](#using-npm)
+  - [Using Yarn](#using-yarn)
 
 ## Installation
 
-To install the library, run the following command:
+To start using the React Native Components Library in your project, install it via npm or Yarn:
+
+### Using npm
 
 ```bash
-npm install react-native-components
+npm install @custom-craft-software/react-native-components
+```
+
+## Using Yarn
+
+```bash
+yarn add @custom-craft-software/react-native-components
+```
