@@ -4,6 +4,7 @@
   "description": "react library mobile components",
   "main": "index.js",
   "scripts": {
+    "build": "tsc && babel src --out-dir lib --copy-files",
     "test": "jest"
   },
   "repository": {

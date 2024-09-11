@@ -64,4 +64,4 @@ const styles = {
   } as TextStyle,
 };
 
-export { NavigationContainer };
+export default NavigationContainer;
