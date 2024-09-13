@@ -14,8 +14,9 @@ export const Default = () => {
   const events = [
     { date: '2021', description: 'Event 1', content: 'Event 1 Details' },
     { date: '2022', description: 'Event 2', content: 'Event 2 Details' },
-    { date: '2023', description: 'Event 3', content: 'Event 3 Details' }
-];
+    { date: '2023', description: 'Event 3', content: 'Event 3 Details' },
+    { date: '2024', description: 'Event 3', content: 'Event 3 Details' }
+  ];
 
     return (   
         <div>
