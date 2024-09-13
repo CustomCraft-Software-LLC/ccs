@@ -1,6 +1,7 @@
 .
 ├── CHANGELOG.md
 ├── dist
+│   ├── bundle.css
 │   └── bundle.js
 ├── jsxToTsx.sh
 ├── LICENSE
@@ -48,8 +49,6 @@
 │   │   │   └── ListboxItem.tsx
 │   │   ├── NavButton
 │   │   │   └── NavButton.tsx
-│   │   ├── NavContext
-│   │   │   └── NavContext.tsx
 │   │   ├── Number
 │   │   │   ├── Number.css
 │   │   │   ├── Number.stories.tsx
@@ -70,18 +69,6 @@
 │   │   │   ├── Table.css
 │   │   │   ├── Table.stories.tsx
 │   │   │   └── Table.tsx
-│   │   ├── TableCol
-│   │   │   ├── TableCol.css
-│   │   │   ├── TableCol.stories.tsx
-│   │   │   └── TableCol.tsx
-│   │   ├── TableHead
-│   │   │   ├── TableHead.css
-│   │   │   ├── TableHead.stories.tsx
-│   │   │   └── TableHead.tsx
-│   │   ├── TableRow
-│   │   │   ├── TableRow.css
-│   │   │   ├── TableRow.stories.tsx
-│   │   │   └── TableRow.tsx
 │   │   └── Timeline
 │   │       ├── Timeline.css
 │   │       ├── Timeline.stories.tsx
@@ -96,4 +83,4 @@
 ├── styleguide.config.js
 └── tsconfig.json
 
-25 directories, 71 files
+21 directories, 62 files
