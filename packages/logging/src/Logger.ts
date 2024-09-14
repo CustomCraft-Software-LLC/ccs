@@ -7,7 +7,7 @@ import { blue, green, yellow, red } from 'colorette';
 // Define a union type for the log levels
 type LogLevel = 0 | 1 | 2 | 3;
 
-export class Logger {
+class Logger {
     static LEVELS = {
         DEBUG: 0,
         INFO: 1,
@@ -157,3 +157,5 @@ export class Logger {
         }
     }
 }
+
+export default Logger;
