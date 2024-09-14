@@ -9,6 +9,7 @@ Welcome to the React Native Components Library! This comprehensive toolkit offer
   - [Installation](#installation)
     - [Using npm](#using-npm)
   - [Using Yarn](#using-yarn)
+  - [License](#license)
 
 ## Installation
 
@@ -26,3 +27,6 @@ npm install @custom-craft-software/react-native-components
 yarn add @custom-craft-software/react-native-components
 ```
 
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.

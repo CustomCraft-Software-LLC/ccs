@@ -1,0 +1,28 @@
+.
+├── check_file.sh
+├── dist
+│   ├── examples
+│   │   └── index.js
+│   └── src
+│       ├── Logger.js
+│       └── Log.js
+├── dist-files.txt
+├── jest.config.ts
+├── LICENSE
+├── logs
+│   ├── test.json
+│   └── test.log
+├── logs_test
+│   ├── 2024-08-16_UTC.json
+│   └── 2024-08-16_UTC.log
+├── package.json
+├── package-lock.json
+├── src
+│   ├── Logger.ts
+│   └── Log.ts
+├── structure.txt
+├── __tests__
+│   └── Logger.test.ts
+└── tsconfig.json
+
+7 directories, 18 files
