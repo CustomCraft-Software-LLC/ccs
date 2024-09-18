@@ -1,5 +1,15 @@
 import React from 'react';
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText, Divider, SxProps, Theme } from '@mui/material';
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  SxProps,
+  Theme,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 
 interface SidebarItem {
@@ -11,7 +21,7 @@ interface SidebarItem {
 export interface SidebarProps {
   title?: string;
   items: SidebarItem[];
-  onItemClick?: (path: string) => void; // Ensuring `path` is required
+  onItemClick?: (path: string) => void;
   sx?: SxProps<Theme>;
 }
 
@@ -29,9 +39,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        ...sx,
+        ...sx, // Custom styles passed via props
       }}
     >
+      {/* Render Sidebar title, if provided */}
       {title && (
         <Typography
           variant="h6"
@@ -39,29 +50,37 @@ const Sidebar: React.FC<SidebarProps> = ({
             p: 2,
             textAlign: 'center',
             fontWeight: 'bold',
-            bgcolor: 'primary.main', // Added background color for better visibility
-            color: 'white', // Ensuring the title text stands out
+            bgcolor: 'primary.main',
+            color: 'white',
           }}
         >
           {title}
         </Typography>
       )}
+
       <Divider />
+
+      {/* Sidebar Menu Items */}
       <List>
         {items.map((item, index) => (
           <ListItem
             button
             key={index}
-            onClick={() => {
-              if (item.path) {
-                onItemClick?.(item.path); // Using optional chaining
-              }
+            onClick={() => item.path && onItemClick?.(item.path)} // Handling clicks
+            component={item.path ? Link : 'div'} // Make item a link if `path` is provided
+            to={item.path || '/'} // Fallback to `/` if no path is specified
+            sx={{
+              '&:hover': {
+                bgcolor: 'primary.light',
+                color: 'white',
+              },
             }}
-            component={item.path ? Link : 'div'}
-            to={item.path || '/'} // Default to '/' if no path provided
-            aria-label={item.text} // Improved accessibility
           >
-            {item.icon && <ListItemIcon>{item.icon}</ListItemIcon>}
+            {item.icon && (
+              <ListItemIcon sx={{ color: 'inherit' }}>
+                {item.icon}
+              </ListItemIcon>
+            )}
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
