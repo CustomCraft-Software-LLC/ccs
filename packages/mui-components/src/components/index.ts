@@ -1,5 +1,5 @@
 export { default as Animation } from './Animation/Animation';
-export { default as Sidebar } from './Sidebar/Sidebar';
+export { default as HoverSidebar } from './Sidebar/HoverSidebar';
 export { default as SidebarItem } from './SidebarItem/SidebarItem';
 export { default as Pricing } from './Pricing/Pricing';
 export { default as StatWidget } from './StatWidget/StatWidget';
