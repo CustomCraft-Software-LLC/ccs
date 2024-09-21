@@ -12,6 +12,6 @@ export default {
 
 export const Default = () => {
   return (   
-    <Search/>
+    <Search />
   );
-}
+};
