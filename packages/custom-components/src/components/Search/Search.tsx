@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import './Search.css';
-import Box from '../Box/Box.tsx';
-import { AiOutlineSearch } from 'react-icons/ai'; // Importing search icon from react-icons
+import { AiOutlineSearch } from 'react-icons/ai'; 
 
 interface SearchProps { 
     data?: string;
@@ -9,23 +8,35 @@ interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ data = '', onChange, ...props }) => { 
-    const SearchText = (
-        <span>
-            <AiOutlineSearch /> Search
-        </span>
-    );
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    const handleFocus = () => {
+        setIsExpanded(true);
+    };
+
+    const handleBlur = () => {
+        if (data === '') {
+            setIsExpanded(false);
+        }
+    };
 
     return ( 
-        <Box bRad='50px' padding='10px'>
-            {SearchText}
+        <div 
+            className={`search-container ${isExpanded ? 'expanded' : ''}`} 
+            onMouseEnter={() => setIsExpanded(true)} 
+            onMouseLeave={() => handleBlur()}
+        >
+            <AiOutlineSearch className="search-icon" />
             <input 
                 className="search" 
                 type="text" 
                 value={data}
-                placeholder={SearchText} 
+                placeholder="Search..."
                 onChange={onChange}
-                {...props} />
-        </Box>
+                onFocus={handleFocus}
+                {...props} 
+            />
+        </div>
     );
 }
 

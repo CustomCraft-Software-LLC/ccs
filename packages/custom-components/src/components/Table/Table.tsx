@@ -8,15 +8,13 @@ interface TableProps {
 }
 
 const Table: React.FC<TableProps> = ({ headers, data }) => {
-  const [searchQuery, setSearchQuery] = useState(''); // State for search input
-  const [filteredData, setFilteredData] = useState(data); // State for filtered data
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredData, setFilteredData] = useState(data);
 
-  // Function to handle search input changes
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
 
-    // Filter the table data based on the search query
     const filtered = data.filter((row) =>
       row.some((cell) => cell.toString().toLowerCase().includes(query))
     );
@@ -25,14 +23,13 @@ const Table: React.FC<TableProps> = ({ headers, data }) => {
 
   return (
     <div>
-      {/* Search Component */}
-      <Search
-        data={searchQuery}
-        onChange={handleSearchChange}
-        placeholder="Search table data..."
-      />
+      <div>
+        <Search
+          data={searchQuery}
+          onChange={handleSearchChange}
+        />
+      </div>
 
-      {/* Table Component */}
       <table className="table">
         <thead>
           <tr>
@@ -42,13 +39,21 @@ const Table: React.FC<TableProps> = ({ headers, data }) => {
           </tr>
         </thead>
         <tbody>
-          {filteredData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
-              {row.map((cell, cellIndex) => (
-                <td key={cellIndex}>{cell}</td>
-              ))}
+          {filteredData.length > 0 ? (
+            filteredData.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {row.map((cell, cellIndex) => (
+                  <td key={cellIndex}>{cell}</td>
+                ))}
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={headers.length} style={{ textAlign: 'center' }}>
+                No results found.
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>

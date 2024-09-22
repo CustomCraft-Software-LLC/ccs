@@ -1,5 +1,34 @@
-.search { 
-    outline: none;
-    border: 1px solid transparent;
-    
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc; 
+    border-radius: 50px; 
+    overflow: hidden; 
+    transition: width 0.3s ease; 
+    width: 40px; 
+}
+
+.search-container.expanded {
+    width: 200px; 
+}
+
+.search-icon {
+    color: #888; 
+    margin-right: 10px; 
+    font-size: 24px; 
+}
+
+.search {
+    border: none; 
+    outline: none; 
+    flex: 1; 
+    font-size: 16px; 
+    padding: 8px; 
+    transition: width 0.3s ease; 
+    width: 100%; 
+}
+
+.search::placeholder {
+    color: #aaa; 
+    opacity: 1; 
 }
