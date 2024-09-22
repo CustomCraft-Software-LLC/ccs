@@ -1,0 +1,2 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0});var e=require("react/jsx-runtime"),r=require("react"),t=r.createContext(void 0);exports.AppProvider=function(o){var i=o.children,n=r.useState(""),u={state:n[0],setState:n[1]};return e.jsx(t.Provider,{value:u,children:i})},exports.useAppContext=function(){var e=r.useContext(t);if(void 0===e)throw new Error("useAppContext must be used within an AppProvider");return e};
+//# sourceMappingURL=index.cjs.js.map

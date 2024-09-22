@@ -3,18 +3,16 @@ import typescript from 'rollup-plugin-typescript2';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
 
-const packageJson = require('./package.json');
-
 export default {
   input: path.resolve(__dirname, 'src/index.ts'),
   output: [
     {
-      file: packageJson.main,
+      file: path.resolve(__dirname, 'dist/index.cjs.js'), 
       format: 'cjs',
       sourcemap: true,
     },
     {
-      file: packageJson.module,
+      file: path.resolve(__dirname, 'dist/index.esm.js'),
       format: 'esm',
       sourcemap: true,
     },
@@ -24,11 +22,11 @@ export default {
     typescript({
       tsconfig: path.resolve(__dirname, 'tsconfig.json'),
     }),
-    terser(), // Optional: Minify the output
+    terser(),
   ],
   external: [
     'react',
     'react-dom',
-    'axios',
+    'react/jsx-runtime'
   ],
 };
