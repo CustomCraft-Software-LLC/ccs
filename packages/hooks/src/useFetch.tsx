@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
@@ -14,7 +14,6 @@ const useFetch = (endpoint: string, options: UseFetchOptions = {}) => {
 
   const [data, setData] = useState<any>(null);
   const [statusCode, setStatusCode] = useState<number | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,18 +27,16 @@ const useFetch = (endpoint: string, options: UseFetchOptions = {}) => {
 
         setData(response.data);
         setStatusCode(response.status);
-        setError(null);
-      } catch (fetchError) {
-        const message = fetchError.response?.data || 'Network error occurred';
-        setError(message);
-        setStatusCode(fetchError.response?.status || null);
+      } catch (error) {
+        const axiosError = error as AxiosError;
+        setStatusCode(axiosError.response?.status || 500);
       }
     };
 
     fetchData();
   }, [endpoint, method, body, headers]);
 
-  return { data, statusCode, error };
+  return { data, statusCode };
 };
 
 export default useFetch;
