@@ -1,0 +1,30 @@
+{
+  "name": "@custom-craft-software/hooks",
+  "version": "1.0.0",
+  "description": "custom hooks",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && rollup -c",
+    "test": "jest"
+  },
+  "keywords": [
+    "react",
+    "library",
+    "custom",
+    "hooks"
+  ],
+  "author": "CustomCraft Software, LLC",
+  "license": "ISC",
+  "devDependencies": {
+    "rimraf": "^6.0.1",
+    "rollup": "^2.79.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "tslib": "^2.7.0"
+  },
+  "dependencies": {
+    "axios": "^1.7.7"
+  }
+}
