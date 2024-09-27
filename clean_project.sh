@@ -1,20 +1,25 @@
 #!/bin/bash
 
 # Navigate to the project root directory
-cd ./ || exit
+cd ./ || { echo "Failed to navigate to the project root directory"; exit 1; }
 
 # Remove all dist folders in each package
-find packages -name "dist" -type d -exec rm -rf {} +
+echo "Removing all 'dist' folders..."
+find packages -name "dist" -type d -exec rm -rf {} + || { echo "Error removing 'dist' folders"; exit 1; }
 
 # Remove other specific folders if necessary
-find packages -name "__tests__" -type d -exec rm -rf {} +
-find packages -name "node_modules" -type d -exec rm -rf {} +
+echo "Removing '__tests__' folders..."
+find packages -name "__tests__" -type d -exec rm -rf {} + || { echo "Error removing '__tests__' folders"; exit 1; }
+
+echo "Removing 'node_modules' folders..."
+find packages -name "node_modules" -type d -exec rm -rf {} + || { echo "Error removing 'node_modules' folders"; exit 1; }
 
 # Remove specific unused files
-find packages -name "CHANGELOG.md" -exec rm -f {} +
-find packages -name "*.map" -exec rm -f {} +
-find packages -name "jsxToTsx.sh" -exec rm -f {} +
-find packages -name ".babelrc" -exec rm -f {} +
-find packages -name ".eslintrc" -exec rm -f {} +
+echo "Removing specific unused files..."
+declare -a files=("CHANGELOG.md" "*.map" "jsxToTsx.sh" ".babelrc" ".eslintrc")
+
+for file in "${files[@]}"; do
+    find packages -name "$file" -exec rm -f {} + || { echo "Error removing files matching '$file'"; exit 1; }
+done
 
 echo "Cleanup completed!"
