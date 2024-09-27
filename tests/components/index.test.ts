@@ -1,3 +1,0 @@
-describe('components', () => { 
-    test('', () => { });
-});
