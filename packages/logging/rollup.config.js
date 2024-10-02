@@ -7,12 +7,12 @@ export default {
   input: path.resolve(__dirname, 'src/index.ts'),
   output: [
     {
-      file: path.resolve(__dirname, 'dist/index.cjs.js'),  // Output for CommonJS
+      file: path.resolve(__dirname, 'dist/index.cjs.js'),  
       format: 'cjs',
       sourcemap: true,
     },
     {
-      file: path.resolve(__dirname, 'dist/index.esm.js'), // Output for ESM
+      file: path.resolve(__dirname, 'dist/index.esm.js'), 
       format: 'esm',
       sourcemap: true,
     },
@@ -22,10 +22,16 @@ export default {
     typescript({
       tsconfig: path.resolve(__dirname, 'tsconfig.json'),
     }),
-    terser(), // Optional: Minify the output
+    terser(), 
   ],
   external: [
     'express',
-    'loadash'
+    'lodash',  
+    'fs',      
+    'path',    
+    'axios',   
+    'chalk',   
+    'moment-timezone', 
+    'colorette'
   ],
 };
