@@ -1,34 +1,31 @@
-import typescript from 'rollup-plugin-typescript2';
-import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import path from 'path';
-import { terser } from '@rollup/plugin-terser'; // Correct import
+import typescript from 'rollup-plugin-typescript2';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import { terser } from 'rollup-plugin-terser';
 
 export default {
-  input: 'src/index.ts',
+  input: path.resolve(__dirname, 'src/index.ts'),
   output: [
     {
-      file: 'dist/index.js',
-      format: 'cjs', // CommonJS format
-      exports: 'auto', // Automatically export named and default exports
+      file: path.resolve(__dirname, 'dist/index.cjs.js'),  // Output for CommonJS
+      format: 'cjs',
+      sourcemap: true,
     },
     {
-      file: 'dist/index.esm.js',
-      format: 'esm', // ES Module format
+      file: path.resolve(__dirname, 'dist/index.esm.js'), // Output for ESM
+      format: 'esm',
+      sourcemap: true,
     },
   ],
   plugins: [
-    resolve(),
-    commonjs(),
+    peerDepsExternal(),
     typescript({
       tsconfig: path.resolve(__dirname, 'tsconfig.json'),
     }),
-    terser(), // Minify the bundle
+    terser(), // Optional: Minify the output
   ],
   external: [
-    // List any external dependencies here
     'express',
-    'lodash',
-    // Add other external dependencies as needed
+    'loadash'
   ],
 };
