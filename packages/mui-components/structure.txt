@@ -1,45 +1,4 @@
 .
-├── CHANGELOG.md
-├── dist
-│   ├── bundle.js
-│   └── types
-│       ├── components
-│       │   ├── Animation
-│       │   │   ├── Animation.d.ts
-│       │   │   └── Animation.stories.d.ts
-│       │   ├── GaugeWidget
-│       │   │   └── GaugeWidget.d.ts
-│       │   ├── Hero
-│       │   │   ├── HeroDesktop.d.ts
-│       │   │   ├── Hero.d.ts
-│       │   │   └── HeroMobile.d.ts
-│       │   ├── index.d.ts
-│       │   ├── Pricing
-│       │   │   ├── Pricing.d.ts
-│       │   │   └── Pricing.stories.d.ts
-│       │   ├── Sidebar
-│       │   │   ├── Sidebar.d.ts
-│       │   │   └── Sidebar.stories.d.ts
-│       │   ├── SidebarItem
-│       │   │   ├── SidebarItem.d.ts
-│       │   │   └── SidebarItem.stories.d.ts
-│       │   ├── StatWidget
-│       │   │   ├── StatWidget.d.ts
-│       │   │   └── StatWidget.stories.d.ts
-│       │   ├── ThemeToogleProvider
-│       │   │   └── ThemeToggleProvider.d.ts
-│       │   ├── UserMenu
-│       │   │   ├── UserMenu.d.ts
-│       │   │   └── UserMenu.stories.d.ts
-│       │   ├── Widget
-│       │   │   ├── Widget.d.ts
-│       │   │   └── Widget.stories.d.ts
-│       │   └── Widgets
-│       │       ├── Widgets.d.ts
-│       │       └── Widgets.stories.d.ts
-│       └── utils
-│           └── hero.d.ts
-├── jsxToTsx.sh
 ├── LICENSE
 ├── package.json
 ├── package-lock.json
@@ -90,12 +49,8 @@
 │   │   │   ├── ServicesSection.stories.tsx
 │   │   │   └── ServicesSection.tsx
 │   │   ├── Sidebar
-│   │   │   ├── Sidebar.stories.tsx
-│   │   │   └── Sidebar.tsx
-│   │   ├── SidebarItem
-│   │   │   ├── SidebarItem.css
-│   │   │   ├── SidebarItem.stories.tsx
-│   │   │   └── SidebarItem.tsx
+│   │   │   ├── HoverSidebar.stories.tsx
+│   │   │   └── HoverSidebar.tsx
 │   │   ├── StatWidget
 │   │   │   ├── StatWidget.stories.tsx
 │   │   │   └── StatWidget.tsx
@@ -107,42 +62,12 @@
 │   │   └── Widgets
 │   │       ├── Widgets.stories.tsx
 │   │       └── Widgets.tsx
-│   ├── stories
-│   │   ├── assets
-│   │   │   ├── accessibility.png
-│   │   │   ├── accessibility.svg
-│   │   │   ├── addon-library.png
-│   │   │   ├── assets.png
-│   │   │   ├── avif-test-image.avif
-│   │   │   ├── context.png
-│   │   │   ├── discord.svg
-│   │   │   ├── docs.png
-│   │   │   ├── figma-plugin.png
-│   │   │   ├── github.svg
-│   │   │   ├── share.png
-│   │   │   ├── styling.png
-│   │   │   ├── testing.png
-│   │   │   ├── theming.png
-│   │   │   ├── tutorials.svg
-│   │   │   └── youtube.svg
-│   │   ├── button.css
-│   │   ├── Button.stories.ts
-│   │   ├── Button.tsx
-│   │   ├── Configure.mdx
-│   │   ├── header.css
-│   │   ├── Header.stories.ts
-│   │   ├── Header.tsx
-│   │   ├── page.css
-│   │   ├── Page.stories.ts
-│   │   └── Page.tsx
 │   ├── styles
 │   │   └── styles.css
 │   └── utils
-│       ├── chart.js
-│       ├── hero.tsx
 │       └── sortTable.js
 ├── structure.txt
 ├── styleguide.config.js
 └── tsconfig.json
 
-41 directories, 104 files
+23 directories, 47 files

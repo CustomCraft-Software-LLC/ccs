@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosError } from 'axios';
 
+
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH';
 
 interface UseFetchOptions {
