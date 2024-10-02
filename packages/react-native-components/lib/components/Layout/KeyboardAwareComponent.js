@@ -1,1 +1,17 @@
-var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports,"__esModule",{value:true});exports.default=void 0;var _react=_interopRequireDefault(require("react"));var _reactNative=require("react-native");var _jsxRuntime=require("react/jsx-runtime");var _this=this,_jsxFileName="C:\\Users\\chara\\Desktop\\CustomCraft Software LLC\\Software\\ccs\\packages\\react-native-components\\src\\components\\Layout\\KeyboardAwareComponent.tsx";var KeyboardAwareComponent=function KeyboardAwareComponent(_ref){var children=_ref.children,style=_ref.style,_ref$behavior=_ref.behavior,behavior=_ref$behavior===void 0?'padding':_ref$behavior,_ref$keyboardVertical=_ref.keyboardVerticalOffset,keyboardVerticalOffset=_ref$keyboardVertical===void 0?_reactNative.Platform.OS==='ios'?60:0:_ref$keyboardVertical;return(0,_jsxRuntime.jsx)(_reactNative.KeyboardAvoidingView,{style:[styles.container,style],behavior:behavior,keyboardVerticalOffset:keyboardVerticalOffset,children:children});};var styles=_reactNative.StyleSheet.create({container:{flex:1}});var _default=exports.default=KeyboardAwareComponent;
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
+var react_native_1 = require("react-native");
+var KeyboardAwareComponent = function (_a) {
+    var children = _a.children, style = _a.style, _b = _a.behavior, behavior = _b === void 0 ? 'padding' : _b, _c = _a.keyboardVerticalOffset, keyboardVerticalOffset = _c === void 0 ? react_native_1.Platform.OS === 'ios' ? 60 : 0 : _c;
+    return (react_1.default.createElement(react_native_1.KeyboardAvoidingView, { style: [styles.container, style], behavior: behavior, keyboardVerticalOffset: keyboardVerticalOffset }, children));
+};
+var styles = react_native_1.StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+});
+exports.default = KeyboardAwareComponent;

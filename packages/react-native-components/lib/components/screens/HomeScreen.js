@@ -1,1 +1,28 @@
-var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports,"__esModule",{value:true});exports.default=void 0;var _react=_interopRequireDefault(require("react"));var _reactNative=require("react-native");var _jsxRuntime=require("react/jsx-runtime");var _this=this,_jsxFileName="C:\\Users\\chara\\Desktop\\CustomCraft Software LLC\\Software\\ccs\\packages\\react-native-components\\src\\components\\Screens\\HomeScreen.tsx";var HomeScreen=function HomeScreen(_ref){var onNavigate=_ref.onNavigate;return(0,_jsxRuntime.jsxs)(_reactNative.View,{style:styles.container,children:[(0,_jsxRuntime.jsx)(_reactNative.Text,{style:styles.title,children:"Home Screen"}),(0,_jsxRuntime.jsx)(_reactNative.Button,{title:"Go to Details",onPress:function onPress(){return onNavigate('Details',{itemId:42});}})]});};var styles=_reactNative.StyleSheet.create({container:{flex:1,justifyContent:'center',alignItems:'center',backgroundColor:'#f8f9fa'},title:{fontSize:24,fontWeight:'bold',marginBottom:20,color:'#343a40'}});var _default=exports.default=HomeScreen;
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
+var react_native_1 = require("react-native");
+var HomeScreen = function (_a) {
+    var onNavigate = _a.onNavigate;
+    return (react_1.default.createElement(react_native_1.View, { style: styles.container },
+        react_1.default.createElement(react_native_1.Text, { style: styles.title }, "Home Screen"),
+        react_1.default.createElement(react_native_1.Button, { title: "Go to Details", onPress: function () { return onNavigate('Details', { itemId: 42 }); } })));
+};
+var styles = react_native_1.StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#f8f9fa',
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+        color: '#343a40',
+    },
+});
+exports.default = HomeScreen;

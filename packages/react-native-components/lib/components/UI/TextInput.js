@@ -1,1 +1,41 @@
-var _interopRequireDefault=require("@babel/runtime/helpers/interopRequireDefault");Object.defineProperty(exports,"__esModule",{value:true});exports.default=void 0;var _objectWithoutProperties2=_interopRequireDefault(require("@babel/runtime/helpers/objectWithoutProperties"));var _react=_interopRequireDefault(require("react"));var _reactNative=require("react-native");var _jsxRuntime=require("react/jsx-runtime");var _excluded=["label","style"];var _this=this,_jsxFileName="C:\\Users\\chara\\Desktop\\CustomCraft Software LLC\\Software\\ccs\\packages\\react-native-components\\src\\components\\UI\\TextInput.tsx";var TextInput=function TextInput(_ref){var label=_ref.label,style=_ref.style,props=(0,_objectWithoutProperties2.default)(_ref,_excluded);return(0,_jsxRuntime.jsxs)(_reactNative.View,{style:styles.container,children:[label&&(0,_jsxRuntime.jsx)(_reactNative.Text,{style:styles.label,children:label}),(0,_jsxRuntime.jsx)(_reactNative.TextInput,Object.assign({style:[styles.input,style]},props))]});};var styles=_reactNative.StyleSheet.create({container:{marginVertical:10},label:{marginBottom:5,fontSize:16},input:{height:40,borderColor:'#ccc',borderWidth:1,borderRadius:5,paddingHorizontal:10}});var _default=exports.default=TextInput;
+"use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importDefault(require("react"));
+var react_native_1 = require("react-native");
+var TextInput = function (_a) {
+    var label = _a.label, style = _a.style, props = __rest(_a, ["label", "style"]);
+    return (react_1.default.createElement(react_native_1.View, { style: styles.container },
+        label && react_1.default.createElement(react_native_1.Text, { style: styles.label }, label),
+        react_1.default.createElement(react_native_1.TextInput, __assign({ style: [styles.input, style] }, props))));
+};
+var styles = react_native_1.StyleSheet.create({
+    container: { marginVertical: 10 },
+    label: { marginBottom: 5, fontSize: 16 },
+    input: { height: 40, borderColor: '#ccc', borderWidth: 1, borderRadius: 5, paddingHorizontal: 10 },
+});
+exports.default = TextInput;
