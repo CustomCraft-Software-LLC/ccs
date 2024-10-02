@@ -13,7 +13,7 @@ const generateCalendarDays = (year: number, month: number) => {
   return days;
 };
 
-interface CalendarWidgetProps {
+export interface CalendarWidgetProps {
   year: number;
   month: number;
   onDateClick?: (date: number) => void;

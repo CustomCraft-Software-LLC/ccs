@@ -1,83 +1,59 @@
-import commonjs from '@rollup/plugin-commonjs';
-import babel from '@rollup/plugin-babel';
-import { terser } from 'rollup-plugin-terser';
-import postcss from 'rollup-plugin-postcss';
-import typescript from '@rollup/plugin-typescript';
+import path from 'path';
+import typescript from 'rollup-plugin-typescript2';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import resolve from '@rollup/plugin-node-resolve';
+import { terser } from 'rollup-plugin-terser';
+import babel from 'rollup-plugin-babel'; // Old version of the Babel plugin
+import commonjs from 'rollup-plugin-commonjs'; // Old version of the CommonJS plugin
+import resolve from 'rollup-plugin-node-resolve'; // Old version of the Node Resolve plugin
 
 export default {
-  input: 'src/components/index.ts',  // Entry point for your component library
+  input: path.resolve(__dirname, 'src/components/index.ts'), // Entry point for your React component library
   output: [
     {
-      file: 'dist/bundle.cjs.js',    // CommonJS output
+      file: path.resolve(__dirname, 'dist/bundle.cjs.js'), // CommonJS output
       format: 'cjs',
-      sourcemap: true,               // Enable sourcemaps for debugging
+      sourcemap: true,
       globals: {
         react: 'React',
         'react-dom': 'ReactDOM',
       },
     },
     {
-      file: 'dist/bundle.esm.js',    // ES Module output for tree-shaking
+      file: path.resolve(__dirname, 'dist/bundle.esm.js'), // ES Module output
       format: 'esm',
       sourcemap: true,
     },
   ],
   plugins: [
-    // Prevents bundling peer dependencies (React, ReactDOM)
     peerDepsExternal(),
-
-    // Resolves node modules (including MUI and React)
     resolve({
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
-
-    // Convert CommonJS modules to ES6
     commonjs(),
-
-    // TypeScript plugin for Rollup
     typescript({
-      tsconfig: './tsconfig.json',
-      declaration: true,  // Generates .d.ts files
-      declarationDir: 'dist/types',
+      tsconfig: path.resolve(__dirname, 'tsconfig.json'),
+      declaration: true,
+      declarationDir: path.resolve(__dirname, 'dist/types'),
       sourceMap: true,
     }),
-
-    // Babel for transpiling ES6+, React, and TypeScript
     babel({
-      babelHelpers: 'bundled',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-      exclude: 'node_modules/**',   // Prevents node modules from being transpiled
+      exclude: 'node_modules/**',
     }),
-
-    // CSS handling (PostCSS)
-    postcss({
-      plugins: [],
-      minimize: true,  // Minimize CSS output
-      sourceMap: true,
-      extract: false,  // Keep styles in JS for component encapsulation
-    }),
-
-    // Minify the output
     terser({
       compress: {
-        drop_console: true,        // Remove console logs in production
-        drop_debugger: true,       // Remove debuggers
-        passes: 2,                 // Perform multiple passes for better compression
+        drop_console: true,
+        drop_debugger: true,
+        passes: 2,
       },
       output: {
-        comments: false,           // Remove comments
+        comments: false,
       },
     }),
   ],
-
-  // Externalize dependencies like React, ReactDOM, etc.
-  external: ['react', 'react-dom'],
-
-  // Watch for changes in the source files during development
+  external: ['react', 'react-dom'], // External dependencies
   watch: {
-    include: 'src/**',
+    include: 'src/**', // Watching for changes
   },
 };
