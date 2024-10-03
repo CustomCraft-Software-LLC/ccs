@@ -19,79 +19,27 @@ const AnimatedView: React.FC<AnimatedViewProps> = ({
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    let animation;
-
-    switch (animationType) {
-      case 'fade':
-        animation = Animated.timing(animatedValue, {
-          toValue: 1,
-          duration,
-          useNativeDriver: true,
-        });
-        break;
-      case 'slide':
-        animation = Animated.timing(animatedValue, {
-          toValue: 1,
-          duration,
-          useNativeDriver: true,
-        });
-        break;
-      case 'scale':
-        animation = Animated.spring(animatedValue, {
-          toValue: 1,
-          friction: 7,
-          tension: 40,
-          useNativeDriver: true,
-        });
-        break;
-      default:
-        animation = Animated.timing(animatedValue, {
-          toValue: 1,
-          duration,
-          useNativeDriver: true,
-        });
-    }
+    const animation = 
+      animationType === 'scale'
+        ? Animated.spring(animatedValue, { toValue: 1, useNativeDriver: true })
+        : Animated.timing(animatedValue, { toValue: 1, duration, useNativeDriver: true });
 
     animation.start();
   }, [animatedValue, animationType, duration]);
 
-  const getTransformStyle = () => {
+  const animationStyle = (() => {
     switch (animationType) {
       case 'slide':
-        return {
-          transform: [
-            {
-              translateY: animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [50, 0],
-              }),
-            },
-          ],
-        };
+        return { transform: [{ translateY: animatedValue.interpolate({ inputRange: [0, 1], outputRange: [50, 0] }) }] };
       case 'scale':
-        return {
-          transform: [
-            {
-              scale: animatedValue.interpolate({
-                inputRange: [0, 1],
-                outputRange: [0.8, 1],
-              }),
-            },
-          ],
-        };
+        return { transform: [{ scale: animatedValue.interpolate({ inputRange: [0, 1], outputRange: [0.8, 1] }) }] };
       case 'fade':
       default:
-        return {
-          opacity: animatedValue,
-        };
+        return { opacity: animatedValue };
     }
-  };
+  })();
 
-  return (
-    <Animated.View style={[style, getTransformStyle()]}>
-      {children}
-    </Animated.View>
-  );
+  return <Animated.View style={[style, animationStyle]}>{children}</Animated.View>;
 };
 
 export default AnimatedView;

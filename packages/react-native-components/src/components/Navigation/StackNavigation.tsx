@@ -3,11 +3,7 @@ import HomeScreen from '../Screens/HomeScreen';
 import DetailsScreen from '../Screens/DetailsScreen';
 
 type Screen = 'Home' | 'Details';
-
-interface Params {
-  itemId?: number;
-  [key: string]: any; // Allows for additional parameters if needed
-}
+type Params = { [key: string]: any };
 
 const StackNavigation: React.FC = () => {
   const [currentScreen, setCurrentScreen] = useState<Screen>('Home');
@@ -15,14 +11,12 @@ const StackNavigation: React.FC = () => {
 
   const navigate = (screen: Screen, params?: Params) => {
     setCurrentScreen(screen);
-    setParams(params); // Sets params only if provided, otherwise undefined
+    setParams(params);
   };
 
   const goBack = () => {
-    if (currentScreen !== 'Home') {
-      setCurrentScreen('Home');
-      setParams(undefined);
-    }
+    setCurrentScreen('Home');
+    setParams(undefined);
   };
 
   return (

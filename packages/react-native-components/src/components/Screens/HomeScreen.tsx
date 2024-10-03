@@ -12,6 +12,7 @@ interface Props {
   onNavigate: (screen: Screen, params?: Params) => void;
 }
 
+
 const HomeScreen: React.FC<Props> = ({ onNavigate }) => {
   return (
     <View style={styles.container}>
