@@ -2,24 +2,27 @@ import path from 'path';
 import typescript from 'rollup-plugin-typescript2';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { terser } from 'rollup-plugin-terser';
-import babel from 'rollup-plugin-babel'; // Old version of the Babel plugin
-import commonjs from 'rollup-plugin-commonjs'; // Old version of the CommonJS plugin
-import resolve from 'rollup-plugin-node-resolve'; // Old version of the Node Resolve plugin
+import babel from '@rollup/plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
+import replace from '@rollup/plugin-replace';
+
+const isClientBuild = process.env.BUILD_ENV === 'client';
 
 export default {
-  input: path.resolve(__dirname, 'src/components/index.ts'), // Entry point for your React component library
+  input: path.resolve(__dirname, 'src/components/index.ts'),
   output: [
     {
-      file: path.resolve(__dirname, 'dist/bundle.cjs.js'), // CommonJS output
+      file: path.resolve(__dirname, 'dist/bundle.cjs.js'),
       format: 'cjs',
       sourcemap: true,
       globals: {
-        react: 'React',
-        'react-dom': 'ReactDOM',
+        react: 'React'
       },
     },
     {
-      file: path.resolve(__dirname, 'dist/bundle.esm.js'), // ES Module output
+      file: path.resolve(__dirname, 'dist/bundle.esm.js'),
       format: 'esm',
       sourcemap: true,
     },
@@ -27,16 +30,16 @@ export default {
   plugins: [
     peerDepsExternal(),
     resolve({
+      preferBuiltins: true,
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
     }),
     commonjs(),
     typescript({
       tsconfig: path.resolve(__dirname, 'tsconfig.json'),
-      declaration: true,
-      declarationDir: path.resolve(__dirname, 'dist/types'),
-      sourceMap: true,
+      useTsconfigDeclarationDir: true,
     }),
     babel({
+      babelHelpers: 'bundled',
       extensions: ['.js', '.jsx', '.ts', '.tsx'],
       presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
       exclude: 'node_modules/**',
@@ -51,9 +54,16 @@ export default {
         comments: false,
       },
     }),
+    json(),
+    // Add the 'use client' directive when building for client
+    replace({
+      preventAssignment: true,
+      'process.env.BUILD_ENV': JSON.stringify(process.env.BUILD_ENV || 'client'),
+      'use client': isClientBuild ? "'use client';" : '',
+    }),
   ],
-  external: ['react', 'react-dom'], // External dependencies
+  external: ['react', 'react-dom'],
   watch: {
-    include: 'src/**', // Watching for changes
+    include: 'src/**',
   },
 };

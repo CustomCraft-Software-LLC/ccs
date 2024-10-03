@@ -33,7 +33,6 @@ export default {
     typescript({
       tsconfig: path.resolve(__dirname, 'tsconfig.json'),
       declaration: true,
-      declarationDir: path.resolve(__dirname, 'dist/types'),
       sourceMap: true,
     }),
     babel({
