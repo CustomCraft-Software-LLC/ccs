@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 type CodeSectionProps = {
   code: string;
@@ -6,12 +8,17 @@ type CodeSectionProps = {
 };
 
 const CodeSection: React.FC<CodeSectionProps> = ({ code, language = 'javascript' }) => {
+  const [copyStatus, setCopyStatus] = useState<string>('Copy');
+
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(code).then(() => {
-      alert('Code copied to clipboard!');
-    }).catch(err => {
-      console.error('Could not copy code: ', err);
-    });
+    navigator.clipboard.writeText(code)
+      .then(() => {
+        setCopyStatus('Copied!');
+        setTimeout(() => setCopyStatus('Copy'), 2000);
+      })
+      .catch(err => {
+        console.error('Could not copy code: ', err);
+      });
   };
 
   return (
@@ -28,13 +35,11 @@ const CodeSection: React.FC<CodeSectionProps> = ({ code, language = 'javascript'
         cursor: 'pointer',
         fontSize: '14px',
       }}>
-        Copy
+        {copyStatus}
       </button>
-      <pre style={{ margin: '0', overflowX: 'auto' }}>
-        <code className={`language-${language}`} style={{ whiteSpace: 'pre-wrap' }}>
-          {code}
-        </code>
-      </pre>
+      <SyntaxHighlighter language={language} style={solarizedlight}>
+        {code}
+      </SyntaxHighlighter>
     </div>
   );
 };
