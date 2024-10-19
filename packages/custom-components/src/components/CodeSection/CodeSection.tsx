@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { solarizedlight } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 type CodeSectionProps = {
   code: string;
@@ -14,7 +14,7 @@ const CodeSection: React.FC<CodeSectionProps> = ({ code, language = 'javascript'
     navigator.clipboard.writeText(code)
       .then(() => {
         setCopyStatus('Copied!');
-        setTimeout(() => setCopyStatus('Copy'), 2000);
+        setTimeout(() => setCopyStatus('Copy'), 2800);
       })
       .catch(err => {
         console.error('Could not copy code: ', err);
@@ -22,22 +22,23 @@ const CodeSection: React.FC<CodeSectionProps> = ({ code, language = 'javascript'
   };
 
   return (
-    <div style={{ position: 'relative', margin: '20px 0', border: '1px solid #ddd', borderRadius: '5px', padding: '10px', backgroundColor: '#f5f5f5' }}>
+    <div style={{ position: 'relative', margin: '20px 0', padding: '10px' }}>
       <button onClick={copyToClipboard} style={{
         position: 'absolute',
-        top: '10px',
-        right: '10px',
+        top: '24px',
+        right: '15px',
         padding: '5px 10px',
-        backgroundColor: '#007bff',
+        backgroundColor: '#000',
         color: '#fff',
-        border: 'none',
+        border: '1px #a0a0a0 solid',
         borderRadius: '3px',
         cursor: 'pointer',
         fontSize: '14px',
+        fontStyle: 'italic'
       }}>
         {copyStatus}
       </button>
-      <SyntaxHighlighter language={language} style={solarizedlight}>
+      <SyntaxHighlighter language={language} style={dracula}>
         {code}
       </SyntaxHighlighter>
     </div>
