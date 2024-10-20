@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Meta, StoryFn } from '@storybook/react';
-import DatePicker from './DatePicker'; // Adjust the path if needed
-import { DatePickerProps } from './DatePicker';
+import { Meta } from '@storybook/react';
+import DatePicker from './DatePicker'; 
 
 export default {
   title: 'Components/DatePicker',
@@ -11,36 +10,37 @@ export default {
   },
 } as Meta;
 
-// Template using StoryFn
-const Template: StoryFn<DatePickerProps> = (args) => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(args.selectDate || null);
-
+export const Default = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   return (
     <DatePicker
-      {...args}
       selectDate={selectedDate}
       onChange={setSelectedDate}
+      placeholder="Select a date"
     />
   );
 };
 
-// Default story
-export const Default = Template.bind({});
-Default.args = {
-  placeholder: 'Select a date',
+export const PredefinedDate = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  return (
+    <DatePicker
+      selectDate={selectedDate}
+      onChange={setSelectedDate}
+      placeholder="Pick a date"
+    />
+  );
 };
 
-// Story with a predefined date
-export const PredefinedDate = Template.bind({});
-PredefinedDate.args = {
-  selectDate: new Date(),
-  placeholder: 'Pick a date',
-};
-
-// Story with min and max date restrictions
-export const MinMaxDate = Template.bind({});
-MinMaxDate.args = {
-  minDate: new Date(2020, 0, 1), // January 1, 2020
-  maxDate: new Date(2025, 11, 31), // December 31, 2025
-  placeholder: 'Select a date within range',
+export const MinMaxDate = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  return (
+    <DatePicker
+      selectDate={selectedDate}
+      onChange={setSelectedDate}
+      minDate={new Date(2020, 0, 1)}
+      maxDate={new Date(2025, 11, 31)}
+      placeholder="Select a date within range"
+    />
+  );
 };

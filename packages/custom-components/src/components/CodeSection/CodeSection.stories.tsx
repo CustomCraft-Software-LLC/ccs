@@ -1,28 +1,56 @@
 import React from 'react';
-import { Meta, StoryFn } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import CodeSection from './CodeSection';
 
-const meta: Meta = {
+export default {
   title: 'Components/CodeSection',
   component: CodeSection,
-};
+} as Meta;
 
-export default meta;
-
-const Template: StoryFn<{ code: string; language?: string }> = (args) => <CodeSection {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  code: `import React from 'react';
+export const JavaScriptExample = () => (
+  <CodeSection
+    code={`import React from 'react';
 
 const MyComponent = () => {
   return <div>Hello, World!</div>;
-};`,
-  language: 'javascript',
-};
+};`}
+    language="javascript"
+  />
+);
 
-export const AnotherExample = Template.bind({});
-AnotherExample.args = {
-  code: `const add = (a, b) => a + b;`,
-  language: 'javascript',
-};
+export const PythonExample = () => (
+  <CodeSection
+    code={`def greet(name): 
+    return f"Hello, {name}!"`}
+    language="python"
+  />
+);
+
+export const HTMLExample = () => (
+  <CodeSection
+    code={`<div>
+    <h1>Hello, World!</h1>
+    <p>This is a simple HTML example.</p>
+  </div>`}
+    language="html"
+  />
+);
+
+export const CSSExample = () => (
+  <CodeSection
+    code={`.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}`}
+    language="css"
+  />
+);
+
+export const CopyFeatureExample = () => (
+  <CodeSection
+    code={`console.log('This is a test for the copy feature');`}
+    language="javascript"
+  />
+);
