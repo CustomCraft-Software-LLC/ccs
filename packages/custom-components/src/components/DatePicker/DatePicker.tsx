@@ -1,7 +1,7 @@
 import React from 'react';
 import './DatePicker.css';
 
-interface DatePickerProps {
+export interface DatePickerProps {
   selectDate?: Date | null;
   onChange?: (date: Date | null) => void;
   minDate?: Date | null;
