@@ -1,48 +1,98 @@
 .timeline {
+    position: relative;
+    padding: 20px;
+  }
+  
+  .timeline.horizontal {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .timeline.vertical {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .timeline-event {
+    position: relative;
     display: flex;
     align-items: center;
-    margin: 20px 0;
-    position: relative;
-}
-
-.timeline.vertical {
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.timeline.horizontal {
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.timeline.vertical:before {
+    margin: 20px 0; /* Margin for vertical spacing */
+  }
+  
+  .event-marker {
+    background-color: #007bff;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(50% - 6px); /* Centering for vertical */
+    z-index: 1;
+  }
+  
+  .event-content {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-left: 10px; /* For horizontal */
+    margin-top: 10px; /* For vertical */
+    min-width: 150px; /* Ensuring a minimum width */
+  }
+  
+  .event-date {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 5px;
+  }
+  
+  .event-description {
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .timeline.horizontal::before,
+  .timeline.vertical::before {
+    content: '';
+    position: absolute;
+    background: #007bff;
+  }
+  
+  .timeline.horizontal::before {
+    height: 2px;
+    left: 0;
+    right: 0;
+    top: 50%;
+  }
+  
+  .timeline.vertical::before {
     width: 2px;
-    height: 100%;
     left: 50%;
     top: 0;
-}
-
-.timeline.horizontal:before {
-    height: 2px;
-    width: 100%;
-    top: 50%;
-    left: 0;
-}
-
-.timeline-event {
-    padding: 10px;
-    margin: 10px;
-    position: relative;
-    z-index: 1;
-}
-
-.timeline.vertical .timeline-event {
-    width: 80%;
-    margin-left: calc(50% - 40%);
-    text-align: left;
-}
-
-.timeline.horizontal .timeline-event {
-    min-width: 50px;
-    text-align: center;
-}
+    bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .timeline.horizontal {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .timeline.horizontal::before {
+      top: auto;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+    }
+  
+    .timeline-event {
+      flex-direction: row;
+    }
+  
+    .timeline .event-marker {
+      left: calc(50% - 6px);
+      margin-right: 20px;
+    }
+  }

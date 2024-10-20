@@ -8,46 +8,31 @@ interface CountdownTimerProps {
 const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDate }) => {
   const calculateTimeLeft = () => {
     const difference = +new Date(targetDate) - +new Date();
-    let timeLeft: {
-      days?: number;
-      hours?: number;
-      minutes?: number;
-      seconds?: number;
+    return {
+      days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((difference / 1000 / 60) % 60),
+      seconds: Math.floor((difference / 1000) % 60),
     };
-
-    timeLeft = {};
-
-    if (difference > 0) {
-      timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
-      };
-    }
-
-    return timeLeft;
   };
 
   const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
+    return () => clearInterval(timer);
+  }, [targetDate]);
 
-    return () => clearTimeout(timer);
-  });
+  const { days, hours, minutes, seconds } = timeLeft;
 
   return (
     <div className="countdown-timer">
-      {timeLeft.days !== undefined && timeLeft.days > 0 && (
-        <span>{timeLeft.days} days </span>
-      )}
-      {timeLeft.hours !== undefined && <span>{timeLeft.hours} hours </span>}
-      {timeLeft.minutes !== undefined && <span>{timeLeft.minutes} minutes </span>}
-      {timeLeft.seconds !== undefined && <span>{timeLeft.seconds} seconds </span>}
-      {timeLeft.days !== undefined && timeLeft.days <= 0 && <span>left</span>}
+      {days > 0 && <span>{days}d </span>}
+      <span>{hours}h </span>
+      <span>{minutes}m </span>
+      <span>{seconds}s</span>
     </div>
   );
 };
