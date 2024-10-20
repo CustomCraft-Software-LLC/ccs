@@ -9,8 +9,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
-    "noEmit": true, 
-    "emitDeclarationOnly": false,
+    "emitDeclarationOnly": true, 
+    "declaration": true,        // Add this line
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "dist"

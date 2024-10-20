@@ -2,6 +2,7 @@ import babel from '@rollup/plugin-babel';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
 import typescript from '@rollup/plugin-typescript';
@@ -28,6 +29,7 @@ export default {
       sourceMap: false, // Disable TypeScript source maps for production
       declaration: false, // Skip declaration file generation if not needed
     }),
+    json(),
     babel({
       babelHelpers: 'bundled',
       presets: ['@babel/preset-env', '@babel/preset-react'],
@@ -42,6 +44,6 @@ export default {
       minimize: true, // Minimize CSS
     }),
     terser(), // Minify JavaScript
-    sizeSnapshot(), // Snapshot the size of the bundle
+    // sizeSnapshot(), // Snapshot the size of the bundle
   ],
 };
